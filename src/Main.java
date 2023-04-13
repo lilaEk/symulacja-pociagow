@@ -17,23 +17,11 @@ import java.util.ArrayList;
 public class Main {
 
     final static int iloscStacji = 100;
+    final static ArrayList<StacjaKolejowa> stacjeKolejowe = StacjaKolejowa.stworzZestawStacji(Main.iloscStacji);
 
     public static void main(String[] args) throws InterruptedException {
 
-        new StacjaKolejowa();
-
+        new MapaTransportu(stacjeKolejowe);
         new GUI();
-
-//        if (SwingUtilities.isEventDispatchThread()) {
-//            // Do UI-related work here
-//            System.out.println(true);
-//        } else {
-//            // Offload the work to the EDT using SwingUtilities.invokeLater()
-//            SwingUtilities.invokeLater(() -> {
-//                System.out.println(false);
-//                // Do UI-related work here
-//            });
-//        }
-
     }
 }

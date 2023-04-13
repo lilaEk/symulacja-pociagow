@@ -18,17 +18,14 @@ public class StacjaKolejowa {
     private int X,Y;
 
 
-    //int tempSize = 600; //do usuniecia
-
-
     public StacjaKolejowa(){}
     public StacjaKolejowa (String nazwaStacji){
         this.nazwaStacji = nazwaStacji;
         this.nrStacji = counter;
         counter++;
 
-        this.X = setX();
-        this.Y = setY();
+        this.X = (int)(Math.random()*845);
+        this.Y = (int)(Math.random()*700);
     }
 
     public static ArrayList<StacjaKolejowa> stworzZestawStacji(int iloscStacji){
@@ -81,30 +78,12 @@ public class StacjaKolejowa {
         }
     }
 
-    public int setX(){
-        int x = (int)(Math.random()*849);
-        return x;
-    }
-
-    public int setY(){
-        int y = (int)(Math.random()*700);
-        return y;
-    }
-
     public String getNazwaStacji() {
         return nazwaStacji;
     }
 
     public int getNrStacji() {
         return nrStacji;
-    }
-
-    public int getX() {
-        return X;
-    }
-
-    public int getY() {
-        return Y;
     }
 
     public Image dostarczZdjecieStacji() throws IOException {
@@ -137,9 +116,6 @@ public class StacjaKolejowa {
 
     public void draw(Graphics g) {
 
-//        g.setColor(Color.BLUE);
-//        g.drawRect(this.setX(),this.getY(), 8,8);
-
         try {
             ImageObserver io = new ImageObserver() {
                 @Override
@@ -148,7 +124,7 @@ public class StacjaKolejowa {
                 }
             };
 
-            g.drawImage(dostarczZdjecieStacji(), this.setX(), this.setY(), 15, 20, io);
+            g.drawImage(dostarczZdjecieStacji(), this.X, this.Y, 15, 20, io);
 
         } catch (IOException e){
                 throw new RuntimeException(e);

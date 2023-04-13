@@ -17,6 +17,8 @@ public class GUI extends JFrame {
 
     final static int canvasWidth = 1200;
     final static int canvasHeight = 700;
+    final static int mapaWight = 850;
+    final static int menuWight = canvasWidth- mapaWight;
 
     ArrayList<JButton> przyciskiMenu;
     JFrame frame;
@@ -25,10 +27,6 @@ public class GUI extends JFrame {
 
     public GUI (){
 
-//        this.setVisible(true);
-//        this.setSize(canvasWidth, canvasHeight);
-//        this.setResizable(false);
-//        this.setLayout(null);
 
         frame = new JFrame();
         frame.setSize(canvasWidth, canvasHeight);
@@ -62,15 +60,16 @@ public class GUI extends JFrame {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
-                    for (StacjaKolejowa sk : StacjaKolejowa.stworzZestawStacji(Main.iloscStacji)) {
+                    for (StacjaKolejowa sk : Main.stacjeKolejowe) {
                         sk.draw(g);
                     }
                 }
             });
 
-            mapaStacji.setSize(850, canvasHeight);
+            mapaStacji.setSize(mapaWight, canvasHeight);
             mapaStacji.setLocation(0, 0);
             mapaStacji.setLayout(null);
+            mapaStacji.setBorder(BorderFactory.createLineBorder(Color.black));
 
             Color c1 = new Color(0xFDDCBA);
             mapaStacji.setBackground(c1);
@@ -80,9 +79,10 @@ public class GUI extends JFrame {
 
         JPanel menu = new JPanel();
         {
-            menu.setSize(350, canvasHeight);
-            menu.setLocation(851,0);
+            menu.setSize(menuWight, canvasHeight);
+            menu.setLocation(mapaWight,0);
             menu.setLayout(null);
+            menu.setBorder(BorderFactory.createLineBorder(Color.black));
 
             Color c2 = new Color(0xF6A2AF);
             menu.setBackground(c2);
@@ -140,11 +140,5 @@ public class GUI extends JFrame {
         }
         repaint();
     }
-
-//    public void drawLine(Graphics g){
-//        super.paint(g);
-//        g.drawLine(800,0,800,700);
-//        frame.repaint();
-//    }
 
 }
