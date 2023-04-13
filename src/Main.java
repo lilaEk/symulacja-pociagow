@@ -15,13 +15,9 @@ import java.util.ArrayList;
 //załadowanie osób/ładunku do wagonów itp. Należy uwzględnić również usuwanie obiektów.
 
 public class Main {
-
-    final static int iloscStacji = 100;
-    final static ArrayList<StacjaKolejowa> stacjeKolejowe = StacjaKolejowa.stworzZestawStacji(Main.iloscStacji);
-
     public static void main(String[] args) throws InterruptedException {
-
-        new MapaTransportu(stacjeKolejowe);
-        new GUI();
+        final int iloscStacji = 100;
+        final ArrayList<StacjaKolejowa> stacjeKolejowe = StacjaKolejowa.stworzZestawStacji(iloscStacji);
+        new GUI(new MapaTransportu(stacjeKolejowe));
     }
 }

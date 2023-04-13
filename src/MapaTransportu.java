@@ -15,11 +15,16 @@ public class MapaTransportu {
             if (!trasyKolejowe.containsKey(sk)) {
                 trasyKolejowe.put(sk, new ArrayList<StacjaKolejowa>());
             }
-            int losowyNr = (int) (Math.random() * listaStacji.size());
-            trasyKolejowe.get(sk).add(listaStacji.get(losowyNr));
+            do {
+                int losowyNr = (int) (Math.random() * listaStacji.size());
+                trasyKolejowe.get(sk).add(listaStacji.get(losowyNr));
+            } while (Math.random()<0.3);
         }
 
         return trasyKolejowe;
     }
 
+    public Set<StacjaKolejowa> getListStacjeKolejowe() {
+        return trasyKolejowe.keySet();
+    }
 }
