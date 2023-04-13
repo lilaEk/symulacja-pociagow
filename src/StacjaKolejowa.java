@@ -1,5 +1,4 @@
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -15,49 +14,51 @@ public class StacjaKolejowa {
     private String nazwaStacji;
     private int nrStacji;
     private static int counter = 1; //jak działa static tutaj?
-    private int X,Y;
+    private int X, Y;
 
 
-    public StacjaKolejowa(){}
-    public StacjaKolejowa (String nazwaStacji){
+    public StacjaKolejowa() {
+    }
+
+    public StacjaKolejowa(String nazwaStacji) {
         this.nazwaStacji = nazwaStacji;
         this.nrStacji = counter;
         counter++;
 
-        this.X = (int)(Math.random()*845);
-        this.Y = (int)(Math.random()*700);
+        this.X = (int) (Math.random() * 845);
+        this.Y = (int) (Math.random() * 700);
     }
 
-    public static ArrayList<StacjaKolejowa> stworzZestawStacji(int iloscStacji){
+    public static ArrayList<StacjaKolejowa> stworzZestawStacji(int iloscStacji) {
 
         ArrayList<StacjaKolejowa> listaStacji = new ArrayList<>(iloscStacji);
 
-        for (int i=0; i<iloscStacji; i++){
+        for (int i = 0; i < iloscStacji; i++) {
 
             String tmpNumer;
-            if (counter==100) {
+            if (counter == 100) {
                 tmpNumer = String.valueOf(counter);
-            } else if (counter>9) {
-                tmpNumer = '0'+String.valueOf(counter);
+            } else if (counter > 9) {
+                tmpNumer = '0' + String.valueOf(counter);
             } else {
-                tmpNumer = "00"+String.valueOf(counter);
+                tmpNumer = "00" + String.valueOf(counter);
             }
 
-            String nazwaStacji = stworzPrzedrostek()+tmpNumer;
+            String nazwaStacji = stworzPrzedrostek() + tmpNumer;
             listaStacji.add(new StacjaKolejowa(nazwaStacji));
         }
 
         return listaStacji;
     }
 
-    public static String stworzPrzedrostek(){
+    public static String stworzPrzedrostek() {
 
         StringBuilder przedrostek = new StringBuilder();
 
         Random rand = new Random();
-        char pierwszyZnak = (((char)(rand.nextInt(26)+65)));
-        char drugiZnak = (((char)(rand.nextInt(26)+65)));
-        char trzeciZnak = (((char)(rand.nextInt(26)+65)));
+        char pierwszyZnak = (((char) (rand.nextInt(26) + 65)));
+        char drugiZnak = (((char) (rand.nextInt(26) + 65)));
+        char trzeciZnak = (((char) (rand.nextInt(26) + 65)));
 
         przedrostek.append(pierwszyZnak);
         przedrostek.append(drugiZnak);
@@ -72,8 +73,8 @@ public class StacjaKolejowa {
 
     }
 
-    public void wyswietlMojeStacje(ArrayList<StacjaKolejowa> list){
-        for (StacjaKolejowa stacja : list){
+    public void wyswietlMojeStacje(ArrayList<StacjaKolejowa> list) {
+        for (StacjaKolejowa stacja : list) {
             System.out.println(stacja);
         }
     }
@@ -90,7 +91,7 @@ public class StacjaKolejowa {
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File("C:\\Users\\pracka\\Desktop\\PJATK\\2\\GUI - programowanie obiektowe i GUI\\cwiczenia\\projekt1\\train_station_icon.png"));
-        } catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println("Nieprawidłowe zdjęcie");
         }
         return image;
@@ -114,7 +115,10 @@ public class StacjaKolejowa {
         return Objects.hash(nazwaStacji, nrStacji);
     }
 
-    public void draw(Graphics g) {
+    public void drawStacja(Graphics g) {
+
+        int wysokosc = 20;
+        int szerokosc = 15;
 
         try {
             ImageObserver io = new ImageObserver() {
@@ -124,10 +128,16 @@ public class StacjaKolejowa {
                 }
             };
 
-            g.drawImage(dostarczZdjecieStacji(), this.X, this.Y, 15, 20, io);
+            g.drawImage(dostarczZdjecieStacji(), this.X-szerokosc/2, this.Y-wysokosc, szerokosc, wysokosc, io);
 
-        } catch (IOException e){
-                throw new RuntimeException(e);
-            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-    };
+
+        //g.drawOval(this.X,this.Y,10, 10);
+    }
+
+    public void drawTrasa(Graphics g, StacjaKolejowa sd) {
+        g.drawLine(this.X, this.Y, sd.X, sd.Y);
+    }
+};

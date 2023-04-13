@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 
@@ -44,6 +45,7 @@ public class GUI extends JFrame {
                 @Override
                 protected void paintComponent(Graphics g) {
                     super.paintComponent(g);
+                    rysujPolaczenia(g, mapaTransportu);
                     rysujStacje(g, mapaTransportu);
                 }
             });
@@ -111,10 +113,19 @@ public class GUI extends JFrame {
         });
     }
 
+    private void rysujPolaczenia(Graphics g, MapaTransportu mapaTransportu) {
+        for (StacjaKolejowa sk : mapaTransportu.getListStacjeKolejowe()) {
+            List<StacjaKolejowa> stacjeDocelowe = mapaTransportu.getStacjeDocelowe(sk);
+            for (StacjaKolejowa sd : stacjeDocelowe){
+                sk.drawTrasa(g, sd);
+            }
+        }
+    }
+
     private void rysujStacje(Graphics g, MapaTransportu mapaTransportu) {
 
         for (StacjaKolejowa sk : mapaTransportu.getListStacjeKolejowe()) {
-            sk.draw(g);
+            sk.drawStacja(g);
         }
     }
 }

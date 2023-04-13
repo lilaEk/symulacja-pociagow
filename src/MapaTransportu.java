@@ -18,7 +18,7 @@ public class MapaTransportu {
             do {
                 int losowyNr = (int) (Math.random() * listaStacji.size());
                 trasyKolejowe.get(sk).add(listaStacji.get(losowyNr));
-            } while (Math.random()<0.3);
+            } while (Math.random()<0.2);
         }
 
         return trasyKolejowe;
@@ -26,5 +26,9 @@ public class MapaTransportu {
 
     public Set<StacjaKolejowa> getListStacjeKolejowe() {
         return trasyKolejowe.keySet();
+    }
+
+    public List<StacjaKolejowa> getStacjeDocelowe(StacjaKolejowa sk) {
+        return trasyKolejowe.get(sk);
     }
 }
