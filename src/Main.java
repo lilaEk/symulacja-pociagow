@@ -1,9 +1,7 @@
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Random;
+
 
 //Napisz aplikację, która będzie służyła do symulacji i obsługi logistycznej linii kolejowych z
 //uwzględnieniem stacji kolejowych, połączeń, skrzyżowań linii oraz różnych składów pociągów.
@@ -16,15 +14,26 @@ import java.util.Random;
 //między stacjami oraz możliwość wykonania zadań takich jak przypisanie wagonu do lokomotywy,
 //załadowanie osób/ładunku do wagonów itp. Należy uwzględnić również usuwanie obiektów.
 
-public class Main
-        extends Frame {
+public class Main {
 
     final static int iloscStacji = 100;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+        new StacjaKolejowa();
 
         new GUI();
 
+//        if (SwingUtilities.isEventDispatchThread()) {
+//            // Do UI-related work here
+//            System.out.println(true);
+//        } else {
+//            // Offload the work to the EDT using SwingUtilities.invokeLater()
+//            SwingUtilities.invokeLater(() -> {
+//                System.out.println(false);
+//                // Do UI-related work here
+//            });
+//        }
 
     }
 }

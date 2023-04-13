@@ -1,20 +1,23 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 //bo kolekcje
-import java.util.Comparator;
-import java.io.Serializable;
-import java.lang.Iterable;
 
 
-public class StacjaKolejowa {
+public class StacjaKolejowa extends JPanel {
 
     private String nazwaStacji;
     private int nrStacji;
     private static int counter = 1; //jak działa static tutaj?
     private int X,Y;
 
-    int tempSize = 400; //do usuniecia
+
+    //int tempSize = 600; //do usuniecia
 
 
     public StacjaKolejowa(){}
@@ -78,12 +81,12 @@ public class StacjaKolejowa {
     }
 
     public int setX(){
-        int x = (int)(Math.random()*tempSize);
+        int x = (int)(Math.random()*849);
         return x;
     }
 
     public int setY(){
-        int y = (int)(Math.random()*tempSize);
+        int y = (int)(Math.random()*700);
         return y;
     }
 
@@ -101,6 +104,16 @@ public class StacjaKolejowa {
 
     public int getY() {
         return Y;
+    }
+
+    public Image dostarczZdjecieStacji() throws IOException {
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(new File("C:\\Users\\pracka\\Desktop\\PJATK\\2\\GUI - programowanie obiektowe i GUI\\cwiczenia\\projekt1\\train_station_icon.png"));
+        } catch (IOException ex){
+            System.out.println("Nieprawidłowe zdjęcie");
+        }
+        return image;
     }
 
     @Override
@@ -121,8 +134,16 @@ public class StacjaKolejowa {
         return Objects.hash(nazwaStacji, nrStacji);
     }
 
-    public void draw(Graphics g){
-        g.setColor(Color.PINK);
-        g.drawRect(this.setX(),this.getY(), 5,5);
+    public void draw(Graphics g) {
+
+        g.setColor(Color.BLUE);
+        g.drawRect(this.setX(),this.getY(), 8,8);
+
+//        try {
+//            g.drawImage(dostarczZdjecieStacji(), this.setX(), this.setY(),15,20,this);
+        // może null?
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     };
 }
