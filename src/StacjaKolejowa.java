@@ -2,6 +2,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -9,7 +10,7 @@ import java.util.*;
 //bo kolekcje
 
 
-public class StacjaKolejowa extends JPanel {
+public class StacjaKolejowa {
 
     private String nazwaStacji;
     private int nrStacji;
@@ -136,14 +137,21 @@ public class StacjaKolejowa extends JPanel {
 
     public void draw(Graphics g) {
 
-        g.setColor(Color.BLUE);
-        g.drawRect(this.setX(),this.getY(), 8,8);
+//        g.setColor(Color.BLUE);
+//        g.drawRect(this.setX(),this.getY(), 8,8);
 
-//        try {
-//            g.drawImage(dostarczZdjecieStacji(), this.setX(), this.setY(),15,20,this);
-        // może null?
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            ImageObserver io = new ImageObserver() {
+                @Override
+                public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+                    return false;
+                }
+            };
+
+            g.drawImage(dostarczZdjecieStacji(), this.setX(), this.setY(), 15, 20, io);
+
+        } catch (IOException e){
+                throw new RuntimeException(e);
+            }
+        }
     };
-}

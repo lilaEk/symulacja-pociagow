@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import java.awt.Paint; //????????
+import java.awt.Color;
+import java.awt.Graphics;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.Color;
@@ -9,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 
 public class GUI extends JFrame {
-
 
     final static int canvasWidth = 1200;
     final static int canvasHeight = 700;
@@ -40,16 +44,38 @@ public class GUI extends JFrame {
         frame.setVisible(true);
 
 
-        JPanel mapa = new JPanel();
+//        JPanel mapa = new JPanel();
+//        {
+//            mapa.setSize(850, canvasHeight);
+//            mapa.setLocation(0,0);
+//            mapa.setLayout(null);
+//
+//            Color c1 = new Color(0xFDDCBA);
+//            mapa.setBackground(c1);
+//
+//            mapa.setVisible(true);
+//        }
+
+        JPanel mapaStacji = null;
         {
-            mapa.setSize(850, canvasHeight);
-            mapa.setLocation(0,0);
-            mapa.setLayout(null);
+            frame.add(mapaStacji = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    for (StacjaKolejowa sk : StacjaKolejowa.stworzZestawStacji(Main.iloscStacji)) {
+                        sk.draw(g);
+                    }
+                }
+            });
+
+            mapaStacji.setSize(850, canvasHeight);
+            mapaStacji.setLocation(0, 0);
+            mapaStacji.setLayout(null);
 
             Color c1 = new Color(0xFDDCBA);
-            mapa.setBackground(c1);
+            mapaStacji.setBackground(c1);
 
-            mapa.setVisible(true);
+            mapaStacji.setVisible(true);
         }
 
         JPanel menu = new JPanel();
@@ -64,7 +90,6 @@ public class GUI extends JFrame {
             menu.setVisible(true);
         }
 
-        frame.add(mapa);
         frame.add(menu);
 
 
@@ -74,8 +99,6 @@ public class GUI extends JFrame {
             frame.add(przyciskMenu);
             przyciskMenu.setBounds(871, 40,309,40);
             przyciskMenu.setBackground(Color.RED);
-//            przyciskMenu.setLayout(null);
-//            przyciskMenu.setVisible(true);
         }
 
         przyciskiMenu.add(new JButton("Dodaj stację kolejową"));
@@ -95,8 +118,6 @@ public class GUI extends JFrame {
             tempY = tempY+45;
             Color c3 = new Color(0xD98A96);
             b.setBackground(c3);
-//            b.setLayout(null);
-//            b.setVisible(true);
         }
 
         this.addWindowListener(
@@ -116,9 +137,8 @@ public class GUI extends JFrame {
 
         for (StacjaKolejowa sk : StacjaKolejowa.stworzZestawStacji(Main.iloscStacji)){
             sk.draw(g);
-            //sk.setVisible(true);
         }
-        //repaint();
+        repaint();
     }
 
 //    public void drawLine(Graphics g){
