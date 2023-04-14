@@ -14,21 +14,17 @@ public class PrzyciskiPanel extends JPanel {
         przyciskiMenu.add(new JButton("Usuń lokomotywę"));
         przyciskiMenu.add(new JButton("Usuń wagon z lokomotywy"));
         przyciskiMenu.add(new JButton("Usuń połączenie między stacjami"));
+
         GridLayout gridLayout = new GridLayout(przyciskiMenu.size() / 2, 1);
         gridLayout.setHgap(10);
         gridLayout.setVgap(10);
         this.setLayout(gridLayout);
 
-        int tempY = 100;
         for (JButton b : przyciskiMenu) {
             b.setSize(new Dimension(20, 20));
-
             Color c3 = new Color(0xD98A96);
             b.setBackground(c3);
             this.add(b );
         }
-
-
-
     }
 }

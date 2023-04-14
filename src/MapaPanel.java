@@ -12,7 +12,7 @@ public class MapaPanel extends JPanel {
         this.setSize(mapaWight, canvasHeight);
         this.setLocation(0, 0);
         this.setLayout(null);
-        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1,Color.black));
 
         Color c1 = new Color(0xFDDCBA);
         this.setBackground(c1);
