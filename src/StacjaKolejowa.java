@@ -97,6 +97,14 @@ public class StacjaKolejowa {
         return image;
     }
 
+    public int getX() {
+        return X;
+    }
+
+    public int getY() {
+        return Y;
+    }
+
     @Override
     public String toString() {
         return "Stacja Kolejowa " + nazwaStacji + " o numerze " + nrStacji + ".";
