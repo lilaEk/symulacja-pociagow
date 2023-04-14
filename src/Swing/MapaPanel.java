@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.Set;
 
 public class MapaPanel extends JPanel {
@@ -33,7 +31,7 @@ public class MapaPanel extends JPanel {
                     System.out.println(e.getX() + " " + e.getY());
                     StacjaKolejowa nowaStacja = new StacjaKolejowa(e.getX(), e.getY());
                     GUI.mapaTransportu.addStacja(nowaStacja);
-                    setMouseMode(MouseMode.DEFAULT);
+                    setMouseMode(Swing.MouseMode.DEFAULT);
                     gui.repaint();
                     System.out.println("dodano stacje:" + nowaStacja);
                 }
@@ -50,13 +48,12 @@ public class MapaPanel extends JPanel {
         MouseMode = addStacje;
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         switch (addStacje) {
-            case ADD_STACJE:
+            case ADD_STACJE -> {
                 Image image = StacjaKolejowa.dostarczZdjecieStacji();
-                Cursor c = toolkit.createCustomCursor(image, new Point(0,0), "img");
+                Cursor c = toolkit.createCustomCursor(image, new Point(0, 0), "img");
                 this.setCursor(c);
-                break;
-            case DEFAULT:
-                setCursor(Cursor.getDefaultCursor());
+            }
+            case DEFAULT -> setCursor(Cursor.getDefaultCursor());
         }
     }
 
