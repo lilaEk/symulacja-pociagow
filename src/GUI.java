@@ -10,8 +10,7 @@ public class GUI extends JFrame {
     final static int canvasHeight = 700;
     final static int mapaWight = 850;
     final static int menuWight = canvasWidth - mapaWight;
-    private final MapaTransportu mapaTransportu;
-
+    static MapaTransportu mapaTransportu;
 
     public GUI(MapaTransportu mapaTransportu) {
         this.mapaTransportu = mapaTransportu;
@@ -19,16 +18,16 @@ public class GUI extends JFrame {
         this.setSize(canvasWidth, canvasHeight);
         this.setLocation(50, 50);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setUndecorated(true); // przy true usuwa pasek
+        this.setResizable(true);
+        this.setUndecorated(false); // przy true usuwa pasek
         this.setLayout(null);
         this.setTitle("Mapa kolejowa");
 
         this.add(new MapaPanel(this.mapaTransportu, mapaWight, canvasHeight));
-        PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel();
+        PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel(this);
         RaportPanel raportPanel = new RaportPanel();
 
-        MenuPanel menuPanel = new MenuPanel(przyciskiPanel, raportPanel, menuWight, canvasHeight, canvasWidth);
+        MenuPanel menuPanel = new MenuPanel( przyciskiPanel, raportPanel, menuWight, canvasHeight, canvasWidth);
 
 
 //        menuPanel.setLayout(new BorderLayout());

@@ -75,4 +75,11 @@ public class MapaTransportu {
         return false;
     }
 
+    public StacjaKolejowa generujLosowaStacje() {
+        return null;
+    }
+
+    public void addStacja(StacjaKolejowa generujLosowaStacje) {
+        trasyKolejowe.put(generujLosowaStacje,new HashSet<>());
+    }
 }

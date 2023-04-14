@@ -1,12 +1,25 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class PrzyciskiPanel extends JPanel {
-    public PrzyciskiPanel() {
+    public PrzyciskiPanel(GUI gui) {
 
         ArrayList<JButton> przyciskiMenu = new ArrayList<>();
-        przyciskiMenu.add(new JButton("Dodaj stację kolejową"));
+        JButton dodaj_stacje_kolejowa = new JButton("Dodaj stację kolejową");
+        dodaj_stacje_kolejowa.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                StacjaKolejowa nowaStacja = StacjaKolejowa.stworzStacje(1).get(0);
+                GUI.mapaTransportu.addStacja(nowaStacja);
+                gui.repaint();
+                System.out.println("dodano stacje:" + nowaStacja);
+            }
+        });
+        przyciskiMenu.add(dodaj_stacje_kolejowa);
         przyciskiMenu.add(new JButton("Dodaj lokomotywę"));
         przyciskiMenu.add(new JButton("Dodaj wagon do lokomotywy"));
         przyciskiMenu.add(new JButton("Stwórz połączenie miedzy stacjami"));
@@ -24,7 +37,7 @@ public class PrzyciskiPanel extends JPanel {
             b.setSize(new Dimension(20, 20));
             Color c3 = new Color(0xD98A96);
             b.setBackground(c3);
-            this.add(b );
+            this.add(b);
         }
     }
 }

@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         final int iloscStacji = 20;
-        final ArrayList<StacjaKolejowa> stacjeKolejowe = StacjaKolejowa.stworzZestawStacji(iloscStacji);
+        final ArrayList<StacjaKolejowa> stacjeKolejowe = StacjaKolejowa.stworzStacje(iloscStacji);
         new GUI(new MapaTransportu(stacjeKolejowe));
     }
 }

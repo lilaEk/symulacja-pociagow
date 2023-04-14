@@ -29,7 +29,7 @@ public class StacjaKolejowa {
         this.Y = (int) (Math.random() * 700);
     }
 
-    public static ArrayList<StacjaKolejowa> stworzZestawStacji(int iloscStacji) {
+    public static ArrayList<StacjaKolejowa> stworzStacje(int iloscStacji) {
 
         ArrayList<StacjaKolejowa> listaStacji = new ArrayList<>(iloscStacji);
 
