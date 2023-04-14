@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class PrzyciskiPanel extends JPanel {
-    public PrzyciskiPanel(GUI gui) {
+    public PrzyciskiPanel(MapaPanel mapaPanel) {
 
         ArrayList<JButton> przyciskiMenu = new ArrayList<>();
         JButton dodaj_stacje_kolejowa = new JButton("Dodaj stację kolejową");
@@ -17,10 +17,7 @@ public class PrzyciskiPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                StacjaKolejowa nowaStacja = StacjaKolejowa.stworzStacje(1).get(0);
-                GUI.mapaTransportu.addStacja(nowaStacja);
-                gui.repaint();
-                System.out.println("dodano stacje:" + nowaStacja);
+                mapaPanel.setMouseMode(MouseMode.ADD_STACJE);
             }
         });
         przyciskiMenu.add(dodaj_stacje_kolejowa);

@@ -30,11 +30,12 @@ public class GUI extends JFrame {
         this.setLayout(null);
         this.setTitle("Mapa kolejowa");
 
-        this.add(new MapaPanel(this.mapaTransportu, mapaWight, canvasHeight));
-        PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel(this);
+        MapaPanel mapaPanel = new MapaPanel(this, this.mapaTransportu, mapaWight, canvasHeight);
+        this.add(mapaPanel);
+        PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel(mapaPanel);
         RaportPanel raportPanel = new RaportPanel();
 
-        MenuPanel menuPanel = new MenuPanel( przyciskiPanel, raportPanel, menuWight, canvasHeight, canvasWidth);
+        MenuPanel menuPanel = new MenuPanel(przyciskiPanel, raportPanel, menuWight, canvasHeight, canvasWidth);
 
 
 //        menuPanel.setLayout(new BorderLayout());

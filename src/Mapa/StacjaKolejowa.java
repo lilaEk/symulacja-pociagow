@@ -19,16 +19,13 @@ public class StacjaKolejowa {
     private int X, Y;
 
 
-    public StacjaKolejowa() {
-    }
-
-    public StacjaKolejowa(String nazwaStacji) {
-        this.nazwaStacji = nazwaStacji;
+    public StacjaKolejowa( int x, int y) {
+        this.nazwaStacji = generateNazwaStacji();
         this.nrStacji = counter;
         counter++;
 
-        this.X = (int) (Math.random() * 845);
-        this.Y = (int) (Math.random() * 700);
+        this.X = x;
+        this.Y = y;
     }
 
     public static ArrayList<StacjaKolejowa> stworzStacje(int iloscStacji) {
@@ -36,21 +33,26 @@ public class StacjaKolejowa {
         ArrayList<StacjaKolejowa> listaStacji = new ArrayList<>(iloscStacji);
 
         for (int i = 0; i < iloscStacji; i++) {
-
-            String tmpNumer;
-            if (counter == 100) {
-                tmpNumer = String.valueOf(counter);
-            } else if (counter > 9) {
-                tmpNumer = '0' + String.valueOf(counter);
-            } else {
-                tmpNumer = "00" + String.valueOf(counter);
-            }
-
-            String nazwaStacji = stworzPrzedrostek() + tmpNumer;
-            listaStacji.add(new StacjaKolejowa(nazwaStacji));
+            int X = (int) (Math.random() * 845);
+            int Y = (int) (Math.random() * 700);
+            listaStacji.add(new StacjaKolejowa(X,Y));
         }
 
         return listaStacji;
+    }
+
+    private static String generateNazwaStacji() {
+        String tmpNumer;
+        if (counter == 100) {
+            tmpNumer = String.valueOf(counter);
+        } else if (counter > 9) {
+            tmpNumer = '0' + String.valueOf(counter);
+        } else {
+            tmpNumer = "00" + String.valueOf(counter);
+        }
+
+        String nazwaStacji = stworzPrzedrostek() + tmpNumer;
+        return nazwaStacji;
     }
 
     public static String stworzPrzedrostek() {
@@ -89,7 +91,7 @@ public class StacjaKolejowa {
         return nrStacji;
     }
 
-    public Image dostarczZdjecieStacji() throws IOException {
+    public static Image dostarczZdjecieStacji()  {
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File("assets/train_station_icon.png"));
@@ -128,17 +130,13 @@ public class StacjaKolejowa {
     public void drawStacja(Graphics g) {
         int wysokosc = 20;
         int szerokosc = 15;
-        try {
-            ImageObserver io = new ImageObserver() {
-                @Override
-                public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
-                    return false;
-                }
-            };
-            g.drawImage(dostarczZdjecieStacji(), this.X - szerokosc / 2, this.Y - wysokosc, szerokosc, wysokosc, io);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        ImageObserver io = new ImageObserver() {
+            @Override
+            public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+                return false;
+            }
+        };
+        g.drawImage(dostarczZdjecieStacji(), this.X - szerokosc / 2, this.Y - wysokosc, szerokosc, wysokosc, io);
     }
 
     public void drawTrasa(Graphics g, StacjaKolejowa sd) {
