@@ -5,7 +5,7 @@ public class MapaTransportu {
     private Map<StacjaKolejowa, Set<StacjaKolejowa>> trasyKolejowe;
     private Map<StacjaKolejowa[], Double> dlugoscTras;
 
-    private double maxDlugoscTrasy = 250;
+    private double maxDlugoscTrasy = 450;
 
     public MapaTransportu(List<StacjaKolejowa> listaStacji) {
         this.dlugoscTras = new HashMap<StacjaKolejowa[], Double>();
@@ -16,18 +16,18 @@ public class MapaTransportu {
     private Map<StacjaKolejowa, Set<StacjaKolejowa>> generujTrasyKolejowe(List<StacjaKolejowa> listaStacji) {
         Map<StacjaKolejowa, Set<StacjaKolejowa>> trasaKolejowa = new HashMap<>();
 
-        for (StacjaKolejowa sk : listaStacji) {
-            if (!trasaKolejowa.containsKey(sk)) {
-                trasaKolejowa.put(sk, new HashSet<StacjaKolejowa>());
+        for (StacjaKolejowa stacjaGlowna : listaStacji) {
+            if (!trasaKolejowa.containsKey(stacjaGlowna)) {
+                trasaKolejowa.put(stacjaGlowna, new HashSet<StacjaKolejowa>());
             }
-            int x = 0;
+
             do {
                 int losowyIndeksStacji = (int) (Math.random() * listaStacji.size());
                 StacjaKolejowa stacjaDocelowa = listaStacji.get(losowyIndeksStacji);
 
-                if (dodajTrase(listaStacji, trasaKolejowa, sk, stacjaDocelowa)) x++;
+                dodajTrase(listaStacji, trasaKolejowa, stacjaGlowna, stacjaDocelowa);
 
-            } while ((Math.random() < 0.2) && x < 4);
+            } while (trasaKolejowa.get(stacjaGlowna).size() < 1 || ((trasaKolejowa.get(stacjaGlowna).size() < 4 && Math.random() < 0.5)));
         }
 
         return trasaKolejowa;
@@ -38,7 +38,10 @@ public class MapaTransportu {
 
             StacjaKolejowa[] paraStacji = {sk, stacjaDocelowa};
             double dlugoscTrasy = obliczDlugoscTrasy(sk, stacjaDocelowa);
+
             if (dlugoscTrasy > maxDlugoscTrasy) return false;
+
+            //if ()
 
             this.dlugoscTras.put(paraStacji, dlugoscTrasy);
             trasaKolejowa.get(sk).add(stacjaDocelowa);
@@ -64,12 +67,12 @@ public class MapaTransportu {
         return trasyKolejowe.get(sk);
     }
 
-    public boolean czyWartosciSiePowtarzaja(StacjaKolejowa sk, StacjaKolejowa losowa, Map<StacjaKolejowa, Set<StacjaKolejowa>> mapaStacji) {
+    public boolean czyWartosciSiePowtarzaja(StacjaKolejowa stacjaGlowna, StacjaKolejowa stacjaDocelowa, Map<StacjaKolejowa, Set<StacjaKolejowa>> mapaStacji) {
 
-        if (!mapaStacji.containsKey(losowa)) return false;
+        if (!mapaStacji.containsKey(stacjaDocelowa)) return false;
 
-        for (StacjaKolejowa temp : mapaStacji.get(losowa)) {
-            if (sk == temp) return true;
+        for (StacjaKolejowa temp : mapaStacji.get(stacjaDocelowa)) {
+            if (stacjaGlowna == temp) return true;
         }
         return false;
     }
