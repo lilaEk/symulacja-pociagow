@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        final int iloscStacji = 100;
+        final int iloscStacji = 20;
         final ArrayList<StacjaKolejowa> stacjeKolejowe = StacjaKolejowa.stworzZestawStacji(iloscStacji);
         new GUI(new MapaTransportu(stacjeKolejowe));
     }

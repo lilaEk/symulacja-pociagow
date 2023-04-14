@@ -7,6 +7,7 @@ import java.awt.Graphics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 
@@ -115,7 +116,7 @@ public class GUI extends JFrame {
 
     private void rysujPolaczenia(Graphics g, MapaTransportu mapaTransportu) {
         for (StacjaKolejowa sk : mapaTransportu.getListStacjeKolejowe()) {
-            List<StacjaKolejowa> stacjeDocelowe = mapaTransportu.getStacjeDocelowe(sk);
+            Set<StacjaKolejowa> stacjeDocelowe = mapaTransportu.getStacjeDocelowe(sk);
             for (StacjaKolejowa sd : stacjeDocelowe){
                 sk.drawTrasa(g, sd);
             }
