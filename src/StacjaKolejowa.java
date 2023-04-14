@@ -13,7 +13,7 @@ public class StacjaKolejowa {
 
     private String nazwaStacji;
     private int nrStacji;
-    private static int counter = 1; //jak działa static tutaj?
+    private static int counter = 1;
     private int X, Y;
 
 
@@ -141,8 +141,6 @@ public class StacjaKolejowa {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        //g.drawOval(this.X,this.Y,10, 10);
     }
 
     public void drawTrasa(Graphics g, StacjaKolejowa sd) {
