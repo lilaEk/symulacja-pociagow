@@ -27,7 +27,7 @@ public class MapaTransportu {
 
                 dodajTrase(listaStacji, trasaKolejowa, stacjaGlowna, stacjaDocelowa);
 
-            } while (trasaKolejowa.get(stacjaGlowna).size() == 1 || (trasaKolejowa.get(stacjaGlowna).size() < 4 && Math.random() < 0.5));
+            } while (trasaKolejowa.get(stacjaGlowna).size() == 0 || (trasaKolejowa.get(stacjaGlowna).size() < 4 && Math.random() < 0.5));
         }
 
         return trasaKolejowa;
