@@ -1,12 +1,8 @@
-import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import java.awt.Color;
-
-import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JButton;
+import javax.swing.*;
 
 public class GUI extends JFrame {
 
@@ -16,54 +12,30 @@ public class GUI extends JFrame {
     final static int menuWight = canvasWidth - mapaWight;
     private final MapaTransportu mapaTransportu;
 
-    ArrayList<JButton> przyciskiMenu;
-    JFrame frame;
 
     public GUI(MapaTransportu mapaTransportu) {
-
         this.mapaTransportu = mapaTransportu;
 
-        frame = new JFrame();
-        frame.setSize(canvasWidth, canvasHeight);
-        frame.setLocation(50, 50);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setUndecorated(false); // przy true usuwa pasek
-        frame.setLayout(null);
-        frame.setTitle("Mapa kolejowa");
-        frame.setVisible(true);
+        this.setSize(canvasWidth, canvasHeight);
+        this.setLocation(50, 50);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setUndecorated(true); // przy true usuwa pasek
+        this.setLayout(null);
+        this.setTitle("Mapa kolejowa");
 
-        frame.add(new MapaPanel(this.mapaTransportu, mapaWight, canvasHeight));
-        frame.add(new MenuPanel(menuWight, canvasHeight, canvasWidth));
+        this.add(new MapaPanel(this.mapaTransportu, mapaWight, canvasHeight));
+        PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel();
+        RaportPanel raportPanel = new RaportPanel();
 
-
-        przyciskiMenu = new ArrayList<>();
-
-        JButton przyciskMenu = new JButton("Menu");
-        {
-            frame.add(przyciskMenu);
-            przyciskMenu.setBounds(871, 40, 309, 40);
-            przyciskMenu.setBackground(Color.RED);
-        }
-
-        przyciskiMenu.add(new JButton("Dodaj stację kolejową"));
-        przyciskiMenu.add(new JButton("Dodaj lokomotywę"));
-        przyciskiMenu.add(new JButton("Dodaj wagon do lokomotywy"));
-        przyciskiMenu.add(new JButton("Stwórz połączenie miedzy stacjami"));
-        przyciskiMenu.add(new JButton("Usuń stację kolejową"));
-        przyciskiMenu.add(new JButton("Usuń lokomotywę"));
-        przyciskiMenu.add(new JButton("Usuń wagon z lokomotywy"));
-        przyciskiMenu.add(new JButton("Usuń połączenie między stacjami"));
+        MenuPanel menuPanel = new MenuPanel(przyciskiPanel, raportPanel, menuWight, canvasHeight, canvasWidth);
 
 
-        int tempY = 100;
-        for (JButton b : przyciskiMenu) {
-            frame.add(b);
-            b.setBounds(871, tempY, 309, 30);
-            tempY = tempY + 45;
-            Color c3 = new Color(0xD98A96);
-            b.setBackground(c3);
-        }
+//        menuPanel.setLayout(new BorderLayout());
+//        menuPanel.add(przyciskiPanel,BorderLayout.PAGE_START);
+//        menuPanel.add(raportPanel,BorderLayout.PAGE_END);
+
+        this.add(menuPanel);
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -72,5 +44,8 @@ public class GUI extends JFrame {
                 System.exit(0);
             }
         });
+
+
+        this.setVisible(true);
     }
 }

@@ -2,16 +2,21 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MenuPanel extends JPanel {
-    public MenuPanel(int menuWidth, int canvasHeight, int canvasWidth) {
 
+    public MenuPanel (PrzyciskiPanel przyciskiPanel, RaportPanel raportPanel, int menuWidth, int canvasHeight, int canvasWidth){
         this.setSize(menuWidth, canvasHeight);
         this.setLocation(canvasWidth-menuWidth, 0);
-        this.setLayout(null);
+
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
         Color c2 = new Color(0xF6A2AF);
-        this.setBackground(c2);
+        przyciskiPanel.setBackground(c2);
 
-        this.setVisible(true);
+        this.setLayout(new BorderLayout());
+
+        przyciskiPanel.setPreferredSize(new Dimension(menuWidth, 450));
+        this.add(przyciskiPanel,BorderLayout.PAGE_START);
+        this.add(raportPanel,BorderLayout.CENTER);
+
     }
 }
