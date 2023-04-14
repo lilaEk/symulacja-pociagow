@@ -1,3 +1,5 @@
+package Mapa;
+
 import java.util.*;
 
 public class MapaTransportu {

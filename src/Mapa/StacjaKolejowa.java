@@ -1,3 +1,5 @@
+package Mapa;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -90,7 +92,7 @@ public class StacjaKolejowa {
     public Image dostarczZdjecieStacji() throws IOException {
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File("C:\\Users\\pracka\\Desktop\\PJATK\\2\\GUI - programowanie obiektowe i GUI\\cwiczenia\\projekt1\\train_station_icon.png"));
+            image = ImageIO.read(new File("assets/train_station_icon.png"));
         } catch (IOException ex) {
             System.out.println("Nieprawidłowe zdjęcie");
         }
@@ -124,10 +126,8 @@ public class StacjaKolejowa {
     }
 
     public void drawStacja(Graphics g) {
-
         int wysokosc = 20;
         int szerokosc = 15;
-
         try {
             ImageObserver io = new ImageObserver() {
                 @Override
@@ -135,9 +135,7 @@ public class StacjaKolejowa {
                     return false;
                 }
             };
-
-            g.drawImage(dostarczZdjecieStacji(), this.X-szerokosc/2, this.Y-wysokosc, szerokosc, wysokosc, io);
-
+            g.drawImage(dostarczZdjecieStacji(), this.X - szerokosc / 2, this.Y - wysokosc, szerokosc, wysokosc, io);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

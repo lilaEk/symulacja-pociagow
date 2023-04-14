@@ -1,3 +1,8 @@
+package Swing;
+
+import Mapa.MapaTransportu;
+import Mapa.StacjaKolejowa;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Set;

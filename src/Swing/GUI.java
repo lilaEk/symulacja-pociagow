@@ -1,4 +1,11 @@
-import java.awt.*;
+package Swing;
+
+import Mapa.MapaTransportu;
+import Swing.MapaPanel;
+import Swing.MenuPanel;
+import Swing.PrzyciskiPanel;
+import Swing.RaportPanel;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
