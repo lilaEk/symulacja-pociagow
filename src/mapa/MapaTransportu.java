@@ -1,13 +1,13 @@
-package Mapa;
+package mapa;
 
 import java.util.*;
-
+// przy tworzeniu mapy wylicza środek i wypisuje tam koszt
 public class MapaTransportu {
 
     private Map<StacjaKolejowa, Set<StacjaKolejowa>> trasyKolejowe;
     private Map<StacjaKolejowa[], Double> dlugoscTras;
 
-    private double maxDlugoscTrasy = 450;
+    private static double maxDlugoscTrasy = 450;
 
     public MapaTransportu(List<StacjaKolejowa> listaStacji) {
         this.dlugoscTras = new HashMap<StacjaKolejowa[], Double>();
@@ -24,10 +24,12 @@ public class MapaTransportu {
             }
 
             do {
-                int losowyIndeksStacji = (int) (Math.random() * listaStacji.size());
+                int losowyIndeksStacji = new Random().nextInt(listaStacji.size());
                 StacjaKolejowa stacjaDocelowa = listaStacji.get(losowyIndeksStacji);
 
+//                boolean b = dodajTrase(listaStacji, trasaKolejowa, stacjaGlowna, stacjaDocelowa);
                 dodajTrase(listaStacji, trasaKolejowa, stacjaGlowna, stacjaDocelowa);
+                // zmiana random w nastepnej linijce - losowa ilosc stacji
 
             } while (trasaKolejowa.get(stacjaGlowna).size() == 0 || (trasaKolejowa.get(stacjaGlowna).size() < 4 && Math.random() < 0.5));
         }
@@ -42,6 +44,8 @@ public class MapaTransportu {
             double dlugoscTrasy = obliczDlugoscTrasy(sk, stacjaDocelowa);
 
             if (dlugoscTrasy > maxDlugoscTrasy) return false;
+
+            if (sk==stacjaDocelowa) return false;
 
             this.dlugoscTras.put(paraStacji, dlugoscTrasy);
             trasaKolejowa.get(sk).add(stacjaDocelowa);

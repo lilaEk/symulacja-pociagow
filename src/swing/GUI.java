@@ -1,10 +1,6 @@
-package Swing;
+package swing;
 
-import Mapa.MapaTransportu;
-import Swing.MapaPanel;
-import Swing.MenuPanel;
-import Swing.PrzyciskiPanel;
-import Swing.RaportPanel;
+import mapa.MapaTransportu;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

@@ -1,4 +1,4 @@
-package Swing;
+package swing;
 
 
 import javax.swing.*;
@@ -16,6 +16,7 @@ public class PrzyciskiPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                System.out.println("Wybierz, gdzie chcesz umieścić stację.");
                 mapaPanel.setMouseMode(MouseMode.ADD_STACJE);
             }
         });

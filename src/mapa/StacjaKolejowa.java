@@ -1,4 +1,4 @@
-package Mapa;
+package mapa;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -67,7 +67,6 @@ public class StacjaKolejowa {
         przedrostek.append(pierwszyZnak);
         przedrostek.append(drugiZnak);
         przedrostek.append(trzeciZnak);
-        przedrostek.append(" ");
 
         return przedrostek.toString();
 

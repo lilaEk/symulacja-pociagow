@@ -1,4 +1,4 @@
-package CechyWagonu;
+package wagony.cechyWagonu;
 
 public interface DostepDoSieciElektrycznej {
 

@@ -1,4 +1,4 @@
-package TypWagonu.RodzajTowarowegoCiezkiego;
+package wagony.typWagonu;
 
 public class TCMaterialyWybuchoweCiekle extends TCMaterialyWybuchowe{
 }

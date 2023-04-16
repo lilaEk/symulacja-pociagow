@@ -1,7 +1,7 @@
-package Swing;
+package swing;
 
-import Mapa.MapaTransportu;
-import Mapa.StacjaKolejowa;
+import mapa.MapaTransportu;
+import mapa.StacjaKolejowa;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,14 +26,15 @@ public class MapaPanel extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (isMouseMode(Swing.MouseMode.ADD_STACJE)) {
+                if (isMouseMode(swing.MouseMode.ADD_STACJE)) {
                     super.mouseClicked(e);
-                    System.out.println(e.getX() + " " + e.getY());
+                    System.out.println("Wybrano współrzędne "+e.getX() + " " + e.getY());
                     StacjaKolejowa nowaStacja = new StacjaKolejowa(e.getX(), e.getY());
                     GUI.mapaTransportu.addStacja(nowaStacja);
-                    setMouseMode(Swing.MouseMode.DEFAULT);
+                    setMouseMode(swing.MouseMode.DEFAULT);
                     gui.repaint();
-                    System.out.println("dodano stacje:" + nowaStacja);
+                    System.out.println("Dodano stację: " + nowaStacja);
+                    System.out.println();
                 }
             }
         });

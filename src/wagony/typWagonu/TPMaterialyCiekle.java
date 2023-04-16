@@ -1,4 +1,4 @@
-package TypWagonu.RodzajTowarowegoPodstawowego;
+package wagony.typWagonu;
 
 public class TPMaterialyCiekle extends TowarowyPodstawowy {
 }
