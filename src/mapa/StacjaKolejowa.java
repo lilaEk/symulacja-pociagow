@@ -2,6 +2,7 @@ package mapa;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
@@ -13,7 +14,7 @@ import java.util.Random;
 //bo kolekcje
 
 
-public class StacjaKolejowa {
+public class StacjaKolejowa extends Ellipse2D.Double {
 
     private String nazwaStacji;
     private int nrStacji;
@@ -21,7 +22,8 @@ public class StacjaKolejowa {
     private int X, Y;
 
 
-    public StacjaKolejowa( int x, int y) {
+    public StacjaKolejowa(int x, int y) {
+        super(x, y, 20, 20);
         this.nazwaStacji = generateNazwaStacji();
         this.nrStacji = counter;
         counter++;
@@ -106,11 +108,11 @@ public class StacjaKolejowa {
         return image;
     }
 
-    public int getX() {
+    public double getX() {
         return X;
     }
 
-    public int getY() {
+    public double getY() {
         return Y;
     }
 
@@ -142,6 +144,8 @@ public class StacjaKolejowa {
             }
         };
         g.drawImage(dostarczZdjecieStacji(), this.X - szerokosc / 2, this.Y - wysokosc, szerokosc, wysokosc, io);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.draw(this);
     }
 
     public void drawTrasa(Graphics g, StacjaKolejowa sd) {

@@ -13,6 +13,7 @@ public class MapaPanel extends JPanel {
 
     private MouseMode MouseMode;
     private final MapaTransportu mapaTransportu;
+    private StacjaKolejowa[] wybranaStacja;
 
     public MapaPanel(GUI gui, MapaTransportu mapaTransportu, int mapaWight, int canvasHeight) {
         this.mapaTransportu = mapaTransportu;
@@ -26,19 +27,44 @@ public class MapaPanel extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                // todo zamienić na switch
                 if (isMouseMode(swing.MouseMode.ADD_STACJE)) {
                     super.mouseClicked(e);
-                    System.out.println("Wybrano współrzędne "+e.getX() + " " + e.getY());
-                    StacjaKolejowa nowaStacja = new StacjaKolejowa(e.getX(), e.getY());
-                    GUI.mapaTransportu.addStacja(nowaStacja);
-                    setMouseMode(swing.MouseMode.DEFAULT);
-                    gui.repaint();
-                    System.out.println("Dodano stację: " + nowaStacja);
-                    System.out.println();
+                    dodajStacjeNaMapie(e);
                 }
+                if (isMouseMode(swing.MouseMode.ADD_TREASE)) {
+                    super.mouseClicked(e);
+                    dodajTraseNaMapie(e);
+                }
+                gui.repaint();
             }
         });
         this.setVisible(true);
+    }
+
+    private void dodajTraseNaMapie(MouseEvent e) {
+        for (StacjaKolejowa sk : mapaTransportu.getListStacjeKolejowe())
+            if (sk.contains(e.getPoint())) {
+                System.out.println("Kliknięto stacje: " + sk);
+                if (this.wybranaStacja == null) {
+                    this.wybranaStacja = new StacjaKolejowa[2];
+                    this.wybranaStacja[0] = sk;
+                    return;
+                }
+                if (this.wybranaStacja[0] != sk) this.wybranaStacja[1] = sk;
+                this.mapaTransportu.dodajTrase(this.wybranaStacja);
+                this.wybranaStacja = null;
+                this.MouseMode = swing.MouseMode.DEFAULT;
+            }
+    }
+
+    private void dodajStacjeNaMapie(MouseEvent e) {
+        System.out.println("Wybrano współrzędne " + e.getX() + " " + e.getY());
+        StacjaKolejowa nowaStacja = new StacjaKolejowa(e.getX(), e.getY());
+        GUI.mapaTransportu.addStacja(nowaStacja);
+        setMouseMode(swing.MouseMode.DEFAULT);
+        System.out.println("Dodano stację: " + nowaStacja);
+        System.out.println();
     }
 
     private boolean isMouseMode(MouseMode mode) {

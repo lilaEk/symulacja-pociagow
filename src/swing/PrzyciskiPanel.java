@@ -20,10 +20,20 @@ public class PrzyciskiPanel extends JPanel {
                 mapaPanel.setMouseMode(MouseMode.ADD_STACJE);
             }
         });
+
+        JButton stworz_polaczenie_miedzy_stacjami = new JButton("Stwórz połączenie miedzy stacjami");
+        stworz_polaczenie_miedzy_stacjami.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                System.out.println("Wybierz 2 stacje do polaczenia");
+                mapaPanel.setMouseMode(MouseMode.ADD_TREASE);
+            }
+        });
+
         przyciskiMenu.add(dodaj_stacje_kolejowa);
         przyciskiMenu.add(new JButton("Dodaj lokomotywę"));
         przyciskiMenu.add(new JButton("Dodaj wagon do lokomotywy"));
-        JButton stworz_polaczenie_miedzy_stacjami = new JButton("Stwórz połączenie miedzy stacjami");
         przyciskiMenu.add(stworz_polaczenie_miedzy_stacjami);
         przyciskiMenu.add(new JButton("Usuń stację kolejową"));
         przyciskiMenu.add(new JButton("Usuń lokomotywę"));
