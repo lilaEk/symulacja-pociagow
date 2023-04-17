@@ -66,7 +66,7 @@ public class MapaPanel extends JPanel {
     private void dodajStacjeNaMapie(MouseEvent e, GUI gui) {
         System.out.println("Wybrano współrzędne " + e.getX() + " " + e.getY());
         StacjaKolejowa nowaStacja = new StacjaKolejowa(e.getX(), e.getY());
-        GUI.mapaTransportu.addStacja(nowaStacja);
+        gui.getMapaTransportu().addStacja(nowaStacja);
         setMouseMode(swing.MouseMode.DEFAULT);
         System.out.println("Dodano stację: " + nowaStacja);
         System.out.println();

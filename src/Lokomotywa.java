@@ -23,9 +23,9 @@ public abstract class Lokomotywa {
 
 
     private static int nrIdentyfikacyjnyLokomotywy;
-    private int counter=1;
+    private int counter = 1;
 
-    public Lokomotywa(){
+    public Lokomotywa() {
         this.nrIdentyfikacyjnyLokomotywy = counter; // w pociagu
         counter++;
         stacjaMacierzysta = Main.mapaTransportu.getLosowaStacja();
@@ -34,20 +34,20 @@ public abstract class Lokomotywa {
         mapaTrasyMacierzystaDocelowa.put(stacjaMacierzysta, stacjaDocelowa);
     }
 
-    public ArrayList<Lokomotywa> stworzZestawLokomotyw(int iloscLokomotywc){
+    public ArrayList<Lokomotywa> stworzZestawLokomotyw(int iloscLokomotywc) {
         return null;
     }
 
-    public Lokomotywa nadajNazwe(){
+    public Lokomotywa nadajNazwe() {
         return null;
     }
 
-    public Lokomotywa nadajPredkosc(){
+    public Lokomotywa nadajPredkosc() {
         // jesli wazy wiecej niz costam to losuj z mniejszych
         return null;
     }
 
-    public Lokomotywa aktualizujPredkosc(){
+    public Lokomotywa aktualizujPredkosc() {
         return null;
     }
 

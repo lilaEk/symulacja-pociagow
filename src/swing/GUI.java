@@ -1,11 +1,11 @@
 package swing;
 
 import mapa.MapaTransportu;
-
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import sim.RuchPociagow;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GUI extends JFrame {
 
@@ -13,10 +13,13 @@ public class GUI extends JFrame {
     final static int canvasHeight = 700;
     final static int mapaWight = 850;
     final static int menuWight = canvasWidth - mapaWight;
-    static MapaTransportu mapaTransportu;
+    final MapaTransportu mapaTransportu;
+    final RuchPociagow ruchPociagow;
 
-    public GUI(MapaTransportu mapaTransportu) {
+
+    public GUI(MapaTransportu mapaTransportu, RuchPociagow ruchPociagow) {
         this.mapaTransportu = mapaTransportu;
+        this.ruchPociagow = ruchPociagow;
 
         this.setSize(canvasWidth, canvasHeight);
         this.setLocation(50, 50);
@@ -30,13 +33,7 @@ public class GUI extends JFrame {
         this.add(mapaPanel);
         PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel(mapaPanel);
         RaportPanel raportPanel = new RaportPanel();
-
         MenuPanel menuPanel = new MenuPanel(przyciskiPanel, raportPanel, menuWight, canvasHeight, canvasWidth);
-
-
-//        menuPanel.setLayout(new BorderLayout());
-//        menuPanel.add(przyciskiPanel,BorderLayout.PAGE_START);
-//        menuPanel.add(raportPanel,BorderLayout.PAGE_END);
 
         this.add(menuPanel);
 
@@ -47,8 +44,14 @@ public class GUI extends JFrame {
                 System.exit(0);
             }
         });
-
-
         this.setVisible(true);
+    }
+
+    public MapaTransportu getMapaTransportu() {
+        return mapaTransportu;
+    }
+
+    public RuchPociagow getRuchPociagow() {
+        return ruchPociagow;
     }
 }
