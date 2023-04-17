@@ -79,6 +79,9 @@ public class MapaTransportu {
         for (StacjaKolejowa temp : mapaStacji.get(stacjaDocelowa)) {
             if (stacjaGlowna == temp) return true;
         }
+        for (StacjaKolejowa temp : mapaStacji.get(stacjaGlowna)) {
+            if (stacjaDocelowa == temp) return true;
+        }
         return false;
     }
 
@@ -95,7 +98,7 @@ public class MapaTransportu {
     }
 
 
-    public void dodajTrase(StacjaKolejowa[] wybraneStacjeDoNowejTrasy) { //?????????????
-        dodajTrase(this.trasyKolejowe, wybraneStacjeDoNowejTrasy[0], wybraneStacjeDoNowejTrasy[1]);
+    public boolean dodajTrase(StacjaKolejowa[] wybraneStacjeDoNowejTrasy) { //?????????????
+        return dodajTrase(this.trasyKolejowe, wybraneStacjeDoNowejTrasy[0], wybraneStacjeDoNowejTrasy[1]);
     }
 }
