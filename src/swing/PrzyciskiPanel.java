@@ -16,6 +16,12 @@ public class PrzyciskiPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                if (mapaPanel.getMouseMode() == MouseMode.ADD_STACJE) {
+                    mapaPanel.setMouseMode(MouseMode.DEFAULT);
+                    System.out.println("Tryb wybierania stacji zamknięty.");
+                    System.out.println();
+                    return;
+                }
                 System.out.println("Wybierz, gdzie chcesz umieścić stację.");
                 mapaPanel.setMouseMode(MouseMode.ADD_STACJE);
             }
@@ -26,8 +32,14 @@ public class PrzyciskiPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                System.out.println("Wybierz 2 stacje do polaczenia");
-                mapaPanel.setMouseMode(MouseMode.ADD_TREASE);
+                if (mapaPanel.getMouseMode() == MouseMode.ADD_TRASE) {
+                    mapaPanel.setMouseMode(MouseMode.DEFAULT);
+                    System.out.println("Tryb tworzenia połączenia zamknięty.");
+                    System.out.println();
+                    return;
+                }
+                System.out.println("Wybierz dwie stacje do połączenia.");
+                mapaPanel.setMouseMode(MouseMode.ADD_TRASE);
             }
         });
 

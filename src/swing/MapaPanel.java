@@ -32,7 +32,7 @@ public class MapaPanel extends JPanel {
                 if (isMouseMode(swing.MouseMode.ADD_STACJE)) {
                     dodajStacjeNaMapie(e, gui);
                 }
-                if (isMouseMode(swing.MouseMode.ADD_TREASE)) {
+                if (isMouseMode(swing.MouseMode.ADD_TRASE)) {
                     dodajTraseNaMapie(e, gui);
                 }
 
@@ -57,7 +57,7 @@ public class MapaPanel extends JPanel {
                 } else System.out.println("Połączenie już istnieje.");
                 System.out.println();
                 this.wybranaStacja = null;
-                this.MouseMode = swing.MouseMode.DEFAULT;
+                setMouseMode(swing.MouseMode.DEFAULT);
 
                 gui.repaint();
             }
@@ -111,5 +111,9 @@ public class MapaPanel extends JPanel {
         for (StacjaKolejowa sk : mapaTransportu.getListStacjeKolejowe()) {
             sk.drawStacja(g);
         }
+    }
+
+    public swing.MouseMode getMouseMode() {
+        return this.MouseMode;
     }
 }
