@@ -1,9 +1,7 @@
 import mapa.StacjaKolejowa;
-import wagony.Wagon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public abstract class Lokomotywa {
 
@@ -28,10 +26,11 @@ public abstract class Lokomotywa {
     private int counter=1;
 
     public Lokomotywa(){
-        this.nrIdentyfikacyjnyLokomotywy = counter;
+        this.nrIdentyfikacyjnyLokomotywy = counter; // w pociagu
         counter++;
-        stacjaMacierzysta = Main.stacjeKolejowe.get(new Random().nextInt(Main.getIloscStacji()));
-        stacjaDocelowa = Main.stacjeKolejowe.get(new Random().nextInt(Main.getIloscStacji()));
+        stacjaMacierzysta = Main.mapaTransportu.getLosowaStacja();
+        // todo stacja docelowa nie może być macierzystą
+        stacjaDocelowa = Main.mapaTransportu.getLosowaStacja();
         mapaTrasyMacierzystaDocelowa.put(stacjaMacierzysta, stacjaDocelowa);
     }
 

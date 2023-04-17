@@ -1,6 +1,7 @@
 package mapa;
 
 import java.util.*;
+
 // przy tworzeniu mapy wylicza środek i wypisuje tam koszt
 public class MapaTransportu {
 
@@ -45,7 +46,7 @@ public class MapaTransportu {
 
             if (dlugoscTrasy > maxDlugoscTrasy) return false;
 
-            if (sk==stacjaDocelowa) return false;
+            if (sk == stacjaDocelowa) return false;
 
             this.dlugoscTras.put(paraStacji, dlugoscTrasy);
             trasaKolejowa.get(sk).add(stacjaDocelowa);
@@ -86,6 +87,10 @@ public class MapaTransportu {
     }
 
     public void addStacja(StacjaKolejowa generujLosowaStacje) {
-        trasyKolejowe.put(generujLosowaStacje,new HashSet<>());
+        trasyKolejowe.put(generujLosowaStacje, new HashSet<>());
+    }
+
+    public StacjaKolejowa getLosowaStacja() {
+        return this.trasyKolejowe.keySet().stream().skip(new Random().nextInt(this.trasyKolejowe.keySet().size())).findFirst().orElse(null);
     }
 }

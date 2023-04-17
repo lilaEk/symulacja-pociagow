@@ -3,16 +3,15 @@ import wagony.Wagon;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Pociag
-        extends Lokomotywa{
+public class Pociag {
 
-    private Map<Lokomotywa, ArrayList<Wagon>> pociag;
+    private static Map<Lokomotywa, ArrayList<Wagon>> pociag;
 
-    public Pociag(){
+    public Pociag() {
 
     }
 
-    public Lokomotywa liczWagę(ArrayList<Wagon> wagony){
+    public Lokomotywa liczWagę(ArrayList<Wagon> wagony) {
         return null;
     }
 }

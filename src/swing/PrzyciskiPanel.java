@@ -23,7 +23,8 @@ public class PrzyciskiPanel extends JPanel {
         przyciskiMenu.add(dodaj_stacje_kolejowa);
         przyciskiMenu.add(new JButton("Dodaj lokomotywę"));
         przyciskiMenu.add(new JButton("Dodaj wagon do lokomotywy"));
-        przyciskiMenu.add(new JButton("Stwórz połączenie miedzy stacjami"));
+        JButton stwórz_polaczenie_miedzy_stacjami = new JButton("Stwórz połączenie miedzy stacjami");
+        przyciskiMenu.add(stwórz_polaczenie_miedzy_stacjami);
         przyciskiMenu.add(new JButton("Usuń stację kolejową"));
         przyciskiMenu.add(new JButton("Usuń lokomotywę"));
         przyciskiMenu.add(new JButton("Usuń wagon z lokomotywy"));

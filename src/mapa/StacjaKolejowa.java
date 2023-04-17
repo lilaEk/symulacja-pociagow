@@ -6,7 +6,9 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Random;
 
 //bo kolekcje
 
@@ -74,6 +76,10 @@ public class StacjaKolejowa {
         //Adding 97 to this value shifts the range to the ASCII character codes for lowercase letters, which start at 97.
         //integer between 97 (ASCII code for 'a') and 122 (ASCII code for 'z')
 
+    }
+
+    public static int getLiczbaStacji() {
+        return counter;
     }
 
     public void wyswietlMojeStacje(ArrayList<StacjaKolejowa> list) {

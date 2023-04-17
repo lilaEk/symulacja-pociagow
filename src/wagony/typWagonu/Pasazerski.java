@@ -1,13 +1,16 @@
 package wagony.typWagonu;
-import wagony.cechyWagonu.DostepDoSieciElektrycznej;
+
 import wagony.Wagon;
+import wagony.cechyWagonu.DostepDoSieciElektrycznej;
 
 public class Pasazerski
 
-    // regulacja temperatury
+        // regulacja temperatury
 
         extends Wagon
         implements DostepDoSieciElektrycznej {
+
+    private int liczbaMiejscSiedzacych;
 
     public Pasazerski() {
         super();
