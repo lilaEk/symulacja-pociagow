@@ -1,5 +1,7 @@
 package mapa;
 
+import swing.MouseMode;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -39,7 +41,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
         for (int i = 0; i < iloscStacji; i++) {
             int X = (int) (Math.random() * 845);
             int Y = (int) (Math.random() * 700);
-            listaStacji.add(new StacjaKolejowa(X,Y));
+            listaStacji.add(new StacjaKolejowa(X, Y));
         }
 
         return listaStacji;
@@ -98,7 +100,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
         return nrStacji;
     }
 
-    public static Image dostarczZdjecieStacji()  {
+    public static Image dostarczZdjecieStacji() {
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File("assets/train_station_icon.png"));
@@ -134,7 +136,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
         return Objects.hash(nazwaStacji, nrStacji);
     }
 
-    public void drawStacja(Graphics g) {
+    public void drawStacja(Graphics g, MouseMode mode) {
         int wysokosc = 20;
         int szerokosc = 15;
         ImageObserver io = new ImageObserver() {
@@ -144,8 +146,10 @@ public class StacjaKolejowa extends Ellipse2D.Double {
             }
         };
         g.drawImage(dostarczZdjecieStacji(), this.X - szerokosc / 2, this.Y - wysokosc, szerokosc, wysokosc, io);
-        Graphics2D g2 = (Graphics2D) g;
-        g2.draw(this);
+        if (mode == MouseMode.ADD_TRASE) {
+            Graphics2D g2 = (Graphics2D) g;
+            g2.draw(this);
+        }
     }
 
     public void drawTrasa(Graphics g, StacjaKolejowa sd) {

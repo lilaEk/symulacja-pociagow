@@ -86,7 +86,13 @@ public class MapaPanel extends JPanel {
                 Cursor c = toolkit.createCustomCursor(image, new Point(0, 0), "img");
                 this.setCursor(c);
             }
-            case DEFAULT -> setCursor(Cursor.getDefaultCursor());
+            case ADD_TRASE -> {
+                repaint();
+            }
+            case DEFAULT -> {
+                setCursor(Cursor.getDefaultCursor());
+                repaint();
+            }
         }
     }
 
@@ -109,7 +115,7 @@ public class MapaPanel extends JPanel {
     private void rysujStacje(Graphics g, MapaTransportu mapaTransportu) {
 
         for (StacjaKolejowa sk : mapaTransportu.getListStacjeKolejowe()) {
-            sk.drawStacja(g);
+            sk.drawStacja(g, getMouseMode());
         }
     }
 
