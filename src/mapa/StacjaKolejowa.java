@@ -148,6 +148,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
             }
         };
         g.drawImage(dostarczZdjecieStacji(), this.X - szerokosc / 2, this.Y - wysokosc, szerokosc, wysokosc, io);
+        g.drawString(String.valueOf(getNazwaStacji()), this.X, this.Y);
         if (mode == MouseMode.ADD_TRASE) {
             Graphics2D g2 = (Graphics2D) g;
             g2.draw(this);

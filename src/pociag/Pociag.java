@@ -16,7 +16,7 @@ public class Pociag {
     private final Lokomotywa lokomotywa;
     private final List<Wagon> wagony;
     private double predkosc;
-    protected LinkedList<StacjaKolejowa> mapaTrasyMacierzystaDocelowa;
+    protected LinkedList<StacjaKolejowa> zaplanowanaTrasaJazdy;
     private boolean isSpawned = false;
     private StacjaKolejowa stacjaMacierzysta;
     private StacjaKolejowa stacjaZrodlowa;
@@ -30,13 +30,22 @@ public class Pociag {
 
         stacjaMacierzysta = mapaTransportu.getLosowaStacja();
         // todo stacja docelowa nie może być macierzystą
+        // todo isReachable - nowo powstala stacja bez polaczen nie moze byc docelowa dla zadnego pociagu
+
         stacjaDocelowa = mapaTransportu.getLosowaStacja();
     }
 
     public static Pociag generujLosowyPociag(MapaTransportu mapaTransportu) {
         int iloscWagonow = 5;
-        Pociag pociag = new Pociag(new Lokomotywa(), Wagon.stworzZestawWagonow(iloscWagonow), mapaTransportu);
-        return pociag;
+        return new Pociag(new Lokomotywa(), Wagon.stworzZestawWagonow(iloscWagonow), mapaTransportu);
+    }
+
+    public StacjaKolejowa getStacjaMacierzysta() {
+        return stacjaMacierzysta;
+    }
+
+    public StacjaKolejowa getStacjaDocelowa() {
+        return stacjaDocelowa;
     }
 
     public int nadajPredkosc() {
@@ -44,7 +53,7 @@ public class Pociag {
         return 100;
     }
 
-    public Lokomotywa liczWage(ArrayList<Wagon> wagony) {
+    public Lokomotywa liczWage() {
         return null;
     }
 
@@ -52,8 +61,19 @@ public class Pociag {
         if (!this.isSpawned) {
             StacjaKolejowa stacjaMacierzysta = this.stacjaMacierzysta;
             int dlugoscBoku = 10;
-            g.drawRect((int) stacjaMacierzysta.getX() - dlugoscBoku / 2, (int) stacjaMacierzysta.getY() - dlugoscBoku / 2, dlugoscBoku, dlugoscBoku);
-        }
 
+            Graphics2D g2d = (Graphics2D) g;
+
+            g2d.setPaint(new Color(54, 182, 16));
+            g2d.fillRect((int) stacjaMacierzysta.getX() - dlugoscBoku / 2, (int) stacjaMacierzysta.getY() - dlugoscBoku / 2, dlugoscBoku, dlugoscBoku);
+        }
+    }
+
+    public LinkedList<StacjaKolejowa> getZaplanowanaTrasaJazdy() {
+        return this.zaplanowanaTrasaJazdy;
+    }
+
+    public void setZaplanowanaTrasaJazdy(LinkedList<StacjaKolejowa> trasaJazdy) {
+        this.zaplanowanaTrasaJazdy = trasaJazdy;
     }
 }

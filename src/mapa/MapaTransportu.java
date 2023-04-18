@@ -101,4 +101,17 @@ public class MapaTransportu {
     public boolean dodajTrase(StacjaKolejowa[] wybraneStacjeDoNowejTrasy) { //?????????????
         return dodajTrase(this.trasyKolejowe, wybraneStacjeDoNowejTrasy[0], wybraneStacjeDoNowejTrasy[1]);
     }
+
+    public String printGraph() {
+        StringBuilder builder = new StringBuilder();
+
+        for (StacjaKolejowa sk : trasyKolejowe.keySet()) {
+            builder.append(sk.toString() + ": ");
+            for (StacjaKolejowa node : trasyKolejowe.get(sk)) {
+                builder.append(node.toString() + " ");
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
 }
