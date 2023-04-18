@@ -34,6 +34,7 @@ public class PociagSymulator {
         visited.add(pociag.getStacjaMacierzysta());
 
         List<LinkedList<StacjaKolejowa>> ret = findPaths(pociag, paths, currentNode, visited);
+        //todo znajdz najkrotsza sciezke na podstawie dlugosci tras
         return ret.get(1);
     }
 
@@ -48,7 +49,6 @@ public class PociagSymulator {
                 }
                 List<StacjaKolejowa> temp = new ArrayList<>(visited);
                 temp.add(node);
-//                findAllPaths(mapa, temp, paths, node);
                 findPaths(pociag, paths, node, temp);
             }
         }

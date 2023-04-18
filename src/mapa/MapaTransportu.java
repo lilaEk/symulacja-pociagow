@@ -39,21 +39,25 @@ public class MapaTransportu {
     }
 
     private boolean dodajTrase(Map<StacjaKolejowa, Set<StacjaKolejowa>> trasaKolejowa, StacjaKolejowa sk, StacjaKolejowa stacjaDocelowa) {
-        if (!czyWartosciSiePowtarzaja(sk, stacjaDocelowa, trasaKolejowa)) {
+        //if (!czyWartosciSiePowtarzaja(sk, stacjaDocelowa, trasaKolejowa)) {
+        //tylko niewydajne - usuwa duplikaty a potem dodaje
+        StacjaKolejowa[] paraStacji = {sk, stacjaDocelowa};
+        double dlugoscTrasy = obliczDlugoscTrasy(sk, stacjaDocelowa);
 
-            StacjaKolejowa[] paraStacji = {sk, stacjaDocelowa};
-            double dlugoscTrasy = obliczDlugoscTrasy(sk, stacjaDocelowa);
+        if (dlugoscTrasy > maxDlugoscTrasy) return false;
 
-            if (dlugoscTrasy > maxDlugoscTrasy) return false;
+        if (sk == stacjaDocelowa) return false;
 
-            if (sk == stacjaDocelowa) return false;
-
-            this.dlugoscTras.put(paraStacji, dlugoscTrasy);
-            trasaKolejowa.get(sk).add(stacjaDocelowa);
-
-            return true;
+        this.dlugoscTras.put(paraStacji, dlugoscTrasy);
+        trasaKolejowa.get(sk).add(stacjaDocelowa);
+        if (trasaKolejowa.get(stacjaDocelowa) == null) {
+            trasaKolejowa.put(stacjaDocelowa, new HashSet<StacjaKolejowa>());
         }
-        return false;
+        trasaKolejowa.get(stacjaDocelowa).add(sk);
+
+        return true;
+//        }
+//        return false;
     }
 
     private double obliczDlugoscTrasy(StacjaKolejowa sk, StacjaKolejowa stacjaDocelowa) {
