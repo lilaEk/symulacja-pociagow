@@ -129,8 +129,8 @@ public class Pociag {
             this.czasRozpoczeciaPostoju = System.currentTimeMillis();
             this.przebytaDroga = 0;
 
-            if (this.aktualnaPosredniaTrasaPodrozy == zaplanowanaTrasaJazdy.size()
-                    && (getNajblizszaDocelowa() == this.stacjaDocelowa || getNajblizszaDocelowa() == this.stacjaMacierzysta)) {
+            StacjaKolejowa currentSk = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
+            if (currentSk == this.stacjaDocelowa || currentSk == this.stacjaMacierzysta) {
                 Collections.reverse(this.zaplanowanaTrasaJazdy);
                 this.aktualnaPosredniaTrasaPodrozy = 0;
             }
