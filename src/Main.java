@@ -5,13 +5,11 @@ import sim.PociagSymulator;
 import sim.RuchPociagow;
 import swing.GUI;
 
-import java.util.Date;
-
 
 public class Main {
     final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(20));
     final static RuchPociagow ruchPociagow = new RuchPociagow(mapaTransportu);
-    final static int updatesPerSecond = 1;
+    final static int updatesPerSecond = 60;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -23,14 +21,15 @@ public class Main {
 
         Thread sim = new Thread(() -> {
             long now = System.currentTimeMillis();
+            long tick = 0;
             while (true) {
                 if (System.currentTimeMillis() - now < 1000 / updatesPerSecond) {
                     continue;
                 }
-                now = System.currentTimeMillis();
-                System.out.println(new Date().toString());
-                pociagSymulator.update();
+                tick++;
+                pociagSymulator.update(System.currentTimeMillis() - now, tick, updatesPerSecond);
                 gui.repaint();
+                now = System.currentTimeMillis();
             }
         });
         sim.start();

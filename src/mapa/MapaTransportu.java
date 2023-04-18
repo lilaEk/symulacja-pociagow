@@ -38,16 +38,23 @@ public class MapaTransportu {
         return trasaKolejowa;
     }
 
+    public static double obliczDlugoscTrasy(StacjaKolejowa sk, StacjaKolejowa stacjaDocelowa) {
+
+        double x2 = Math.pow(Math.abs(sk.getX() - stacjaDocelowa.getX()), 2);
+        double y2 = Math.pow(Math.abs(sk.getY() - stacjaDocelowa.getY()), 2);
+        double dlugoscTrasy = Math.sqrt(x2 + y2);
+        return dlugoscTrasy;
+    }
+
     private boolean dodajTrase(Map<StacjaKolejowa, Set<StacjaKolejowa>> trasaKolejowa, StacjaKolejowa sk, StacjaKolejowa stacjaDocelowa) {
-
-        StacjaKolejowa[] paraStacji = {sk, stacjaDocelowa};
-        double dlugoscTrasy = obliczDlugoscTrasy(sk, stacjaDocelowa);
-
-        if (dlugoscTrasy > maxDlugoscTrasy) return false;
-
         if (sk == stacjaDocelowa) return false;
 
+        double dlugoscTrasy = obliczDlugoscTrasy(sk, stacjaDocelowa);
+        if (dlugoscTrasy > maxDlugoscTrasy) return false;
+
+        StacjaKolejowa[] paraStacji = {sk, stacjaDocelowa};
         this.dlugoscTras.put(paraStacji, dlugoscTrasy);
+
         trasaKolejowa.get(sk).add(stacjaDocelowa);
         if (trasaKolejowa.get(stacjaDocelowa) == null) {
             trasaKolejowa.put(stacjaDocelowa, new HashSet<StacjaKolejowa>());
@@ -56,14 +63,6 @@ public class MapaTransportu {
 
         return true;
 
-    }
-
-    private double obliczDlugoscTrasy(StacjaKolejowa sk, StacjaKolejowa stacjaDocelowa) {
-
-        double x2 = Math.pow(Math.abs(sk.getX() - stacjaDocelowa.getX()), 2);
-        double y2 = Math.pow(Math.abs(sk.getY() - stacjaDocelowa.getY()), 2);
-        double dlugoscTrasy = Math.sqrt(x2 + y2);
-        return dlugoscTrasy;
     }
 
     public Set<StacjaKolejowa> getListStacjeKolejowe() {

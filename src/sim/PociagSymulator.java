@@ -19,11 +19,14 @@ public class PociagSymulator {
         this.ruchPociagow = ruchPociagow;
     }
 
-    public void update() {
+    public void update(long deltaT, long tick, int updatesPerSecond) {
         for (Pociag pociag : ruchPociagow.getPociagi()) {
             if (pociag.getZaplanowanaTrasaJazdy() == null) {
                 pociag.setZaplanowanaTrasaJazdy(generujTraseJazdy(pociag));
             }
+
+            pociag.jedz(deltaT, tick, updatesPerSecond);
+
         }
     }
 
