@@ -39,8 +39,7 @@ public class MapaTransportu {
     }
 
     private boolean dodajTrase(Map<StacjaKolejowa, Set<StacjaKolejowa>> trasaKolejowa, StacjaKolejowa sk, StacjaKolejowa stacjaDocelowa) {
-        //if (!czyWartosciSiePowtarzaja(sk, stacjaDocelowa, trasaKolejowa)) {
-        //tylko niewydajne - usuwa duplikaty a potem dodaje
+
         StacjaKolejowa[] paraStacji = {sk, stacjaDocelowa};
         double dlugoscTrasy = obliczDlugoscTrasy(sk, stacjaDocelowa);
 
@@ -56,8 +55,7 @@ public class MapaTransportu {
         trasaKolejowa.get(stacjaDocelowa).add(sk);
 
         return true;
-//        }
-//        return false;
+
     }
 
     private double obliczDlugoscTrasy(StacjaKolejowa sk, StacjaKolejowa stacjaDocelowa) {
@@ -76,18 +74,18 @@ public class MapaTransportu {
         return trasyKolejowe.get(sk);
     }
 
-    public boolean czyWartosciSiePowtarzaja(StacjaKolejowa stacjaGlowna, StacjaKolejowa stacjaDocelowa, Map<StacjaKolejowa, Set<StacjaKolejowa>> mapaStacji) {
-
-        if (!mapaStacji.containsKey(stacjaDocelowa)) return false;
-
-        for (StacjaKolejowa temp : mapaStacji.get(stacjaDocelowa)) {
-            if (stacjaGlowna == temp) return true;
-        }
-        for (StacjaKolejowa temp : mapaStacji.get(stacjaGlowna)) {
-            if (stacjaDocelowa == temp) return true;
-        }
-        return false;
-    }
+//    public boolean czyWartosciSiePowtarzaja(StacjaKolejowa stacjaGlowna, StacjaKolejowa stacjaDocelowa, Map<StacjaKolejowa, Set<StacjaKolejowa>> mapaStacji) {
+//
+//        if (!mapaStacji.containsKey(stacjaDocelowa)) return false;
+//
+//        for (StacjaKolejowa temp : mapaStacji.get(stacjaDocelowa)) {
+//            if (stacjaGlowna == temp) return true;
+//        }
+//        for (StacjaKolejowa temp : mapaStacji.get(stacjaGlowna)) {
+//            if (stacjaDocelowa == temp) return true;
+//        }
+//        return false;
+//    }
 
     public StacjaKolejowa generujLosowaStacje() {
         return null;

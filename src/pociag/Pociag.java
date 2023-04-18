@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class Pociag {
 
+    //todo trycatch
+
     private static Map<Lokomotywa, ArrayList<Wagon>> kolekcjaPociagow;
     private final Lokomotywa lokomotywa;
     private final List<Wagon> wagony;
@@ -31,7 +33,6 @@ public class Pociag {
         stacjaMacierzysta = mapaTransportu.getLosowaStacja();
         // todo stacja docelowa nie może być macierzystą
         // todo isReachable - nowo powstala stacja bez polaczen nie moze byc docelowa dla zadnego pociagu
-
         stacjaDocelowa = mapaTransportu.getLosowaStacja();
     }
 

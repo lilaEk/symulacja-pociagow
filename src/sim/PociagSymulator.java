@@ -28,14 +28,19 @@ public class PociagSymulator {
     }
 
     private LinkedList<StacjaKolejowa> generujTraseJazdy(Pociag pociag) {
-        List<LinkedList<StacjaKolejowa>> paths = new ArrayList<>();
-        StacjaKolejowa currentNode = pociag.getStacjaMacierzysta();
-        List<StacjaKolejowa> visited = new ArrayList<>();
-        visited.add(pociag.getStacjaMacierzysta());
+        try {
+            List<LinkedList<StacjaKolejowa>> paths = new ArrayList<>();
+            StacjaKolejowa currentNode = pociag.getStacjaMacierzysta();
+            List<StacjaKolejowa> visited = new ArrayList<>();
+            visited.add(pociag.getStacjaMacierzysta());
 
-        List<LinkedList<StacjaKolejowa>> ret = findPaths(pociag, paths, currentNode, visited);
-        //todo znajdz najkrotsza sciezke na podstawie dlugosci tras
-        return ret.get(1);
+            List<LinkedList<StacjaKolejowa>> ret = findPaths(pociag, paths, currentNode, visited);
+            //todo znajdz najkrotsza sciezke na podstawie dlugosci tras
+            return ret.get(0);
+        } catch (Exception e) {
+            System.out.println("Brak połączeń dla trasy między stacją " + pociag.getStacjaMacierzysta().getNazwaStacji() + ", a stacją " + pociag.getStacjaDocelowa().getNazwaStacji() + ". Dodaj połączenie ręcznie.");
+        }
+        return null;
     }
 
     private List<LinkedList<StacjaKolejowa>> findPaths(Pociag pociag, List<LinkedList<StacjaKolejowa>> paths, StacjaKolejowa currentNode, List<StacjaKolejowa> visited) {
