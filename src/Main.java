@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 public class Main {
-    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(100));
+    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(20));
     final static RuchPociagow ruchPociagow = new RuchPociagow(mapaTransportu);
     final static int updatesPerSecond = 1;
 
