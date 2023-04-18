@@ -7,13 +7,15 @@ import swing.GUI;
 
 
 public class Main {
-    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(20));
+    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(100));
     final static RuchPociagow ruchPociagow = new RuchPociagow(mapaTransportu);
     final static int updatesPerSecond = 60;
 
     public static void main(String[] args) throws InterruptedException {
 
-        ruchPociagow.dodajPociag(Pociag.generujLosowyPociag(mapaTransportu));
+        for (int i = 0; i < 25; i++) {
+            ruchPociagow.dodajPociag(Pociag.generujLosowyPociag(mapaTransportu));
+        }
 
         PociagSymulator pociagSymulator = new PociagSymulator(mapaTransportu, ruchPociagow);
         GUI gui = new GUI(mapaTransportu, ruchPociagow);

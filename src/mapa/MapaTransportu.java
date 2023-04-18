@@ -32,7 +32,7 @@ public class MapaTransportu {
                 dodajTrase(trasaKolejowa, stacjaGlowna, stacjaDocelowa);
                 // zmiana random w nastepnej linijce - losowa ilosc stacji
 
-            } while (trasaKolejowa.get(stacjaGlowna).size() == 0 || (trasaKolejowa.get(stacjaGlowna).size() < 4 && Math.random() < 0.5));
+            } while (trasaKolejowa.get(stacjaGlowna).size() == 0 || (trasaKolejowa.get(stacjaGlowna).size() < 3 && Math.random() < 0.5));
         }
 
         return trasaKolejowa;

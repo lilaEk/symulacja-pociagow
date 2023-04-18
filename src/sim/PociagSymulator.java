@@ -25,7 +25,6 @@ public class PociagSymulator {
                 pociag.setZaplanowanaTrasaJazdy(generujTraseJazdy(pociag));
             }
             if (pociag.getZaplanowanaTrasaJazdy() != null) pociag.jedz(deltaT, tick, updatesPerSecond);
-
         }
     }
 
@@ -40,13 +39,14 @@ public class PociagSymulator {
             //todo znajdz najkrotsza sciezke na podstawie dlugosci tras
             return ret.get(0);
         } catch (Exception e) {
-            System.out.println("Brak połączeń dla trasy między stacją " + pociag.getStacjaMacierzysta().getNazwaStacji() + ", a stacją " + pociag.getStacjaDocelowa().getNazwaStacji() + ". Dodaj połączenie ręcznie.");
+            pociag.setStatus("Brak połączeń dla trasy między stacją " + pociag.getStacjaMacierzysta().getNazwaStacji() + ", a stacją " + pociag.getStacjaDocelowa().getNazwaStacji() + ". Dodaj połączenie ręcznie.");
         }
         return null;
     }
 
     private List<LinkedList<StacjaKolejowa>> findPaths(Pociag pociag, List<LinkedList<StacjaKolejowa>> paths, StacjaKolejowa currentNode, List<StacjaKolejowa> visited) {
-        if (currentNode.equals(pociag.getStacjaDocelowa())) {
+        if (paths.size() > 0) return paths;
+        if (currentNode.equals(pociag.getStacjaDocelowa()) && visited.size() > 1) {
             paths.add(new LinkedList<>(visited));
         } else {
             Set<StacjaKolejowa> nodes = mapaTransportu.getStacjeDocelowe(currentNode);

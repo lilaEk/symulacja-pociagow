@@ -1,6 +1,10 @@
 package swing;
 
 
+import mapa.MapaTransportu;
+import pociag.Pociag;
+import sim.RuchPociagow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -8,7 +12,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class PrzyciskiPanel extends JPanel {
-    public PrzyciskiPanel(MapaPanel mapaPanel) {
+    public PrzyciskiPanel(MapaPanel mapaPanel, RuchPociagow ruchPociagow, MapaTransportu mapaTransportu) {
 
         ArrayList<JButton> przyciskiMenu = new ArrayList<>();
         JButton dodaj_stacje_kolejowa = new JButton("Dodaj stację kolejową");
@@ -43,8 +47,20 @@ public class PrzyciskiPanel extends JPanel {
             }
         });
 
+        JButton dodaj_pociag = new JButton("Dodaj pociąg");
+        dodaj_pociag.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                Pociag pociag = Pociag.generujLosowyPociag(mapaTransportu);
+                ruchPociagow.dodajPociag(pociag);
+                System.out.println("Dodano pociąg o numerze " + pociag.getNazwa());
+            }
+        });
+
+
         przyciskiMenu.add(dodaj_stacje_kolejowa);
-        przyciskiMenu.add(new JButton("Dodaj lokomotywę"));
+        przyciskiMenu.add(dodaj_pociag);
         przyciskiMenu.add(new JButton("Dodaj wagon do lokomotywy"));
         przyciskiMenu.add(stworz_polaczenie_miedzy_stacjami);
         przyciskiMenu.add(new JButton("Usuń stację kolejową"));

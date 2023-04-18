@@ -31,7 +31,7 @@ public class GUI extends JFrame {
 
         MapaPanel mapaPanel = new MapaPanel(this, mapaWight, canvasHeight);
         this.add(mapaPanel);
-        PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel(mapaPanel);
+        PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel(mapaPanel, ruchPociagow, mapaTransportu);
         RaportPanel raportPanel = new RaportPanel();
         MenuPanel menuPanel = new MenuPanel(przyciskiPanel, raportPanel, menuWight, canvasHeight, canvasWidth);
 

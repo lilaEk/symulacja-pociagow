@@ -8,8 +8,6 @@ public class Lokomotywa {
     private final int maxPredkosc = 200;
     private final int maxWagonyPodlaczoneDoElektrycznosci = 4; //potrzebujemy dostepu z pociagu
 
-
-
     private static int nrIdentyfikacyjnyLokomotywy;
     private int counter = 1;
 
@@ -19,18 +17,12 @@ public class Lokomotywa {
         this.nazwaLokomotywy = nadajNazwe();
     }
 
-//    public ArrayList<pociag.Lokomotywa> stworzZestawLokomotyw(int iloscLokomotywc) {
-//        return null;
-//    }
-
     public String nadajNazwe() {
         this.nazwaLokomotywy = "A" + String.valueOf(nrIdentyfikacyjnyLokomotywy);
         return nazwaLokomotywy;
     }
 
-//    public pociag.Lokomotywa aktualizujPredkosc() {
-//        return null;
-//    }
-
-
+    public String getNazwaLokomotywy() {
+        return nazwaLokomotywy;
+    }
 }

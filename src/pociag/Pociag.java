@@ -24,6 +24,7 @@ public class Pociag {
     private StacjaKolejowa stacjaDocelowa;
     private double przebytaDroga;
     private long czasRozpoczeciaPostoju = 0;
+    private String status = "Pociąg robi ciuch ciuch";
 
     public Pociag(Lokomotywa lokomotywa, List<Wagon> wagony, MapaTransportu mapaTransportu) {
         super();
@@ -34,7 +35,9 @@ public class Pociag {
         stacjaMacierzysta = mapaTransportu.getLosowaStacja();
         // todo stacja docelowa nie może być macierzystą
         // todo isReachable - nowo powstala stacja bez polaczen nie moze byc docelowa dla zadnego pociagu
-        stacjaDocelowa = mapaTransportu.getLosowaStacja();
+        do {
+            stacjaDocelowa = mapaTransportu.getLosowaStacja();
+        } while (stacjaMacierzysta == stacjaDocelowa);
     }
 
     public static Pociag generujLosowyPociag(MapaTransportu mapaTransportu) {
@@ -62,8 +65,13 @@ public class Pociag {
     public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new Color(54, 182, 16));
+        int dlugoscBoku = 10;
+        if (this.zaplanowanaTrasaJazdy == null) {
+            g2d.fillRect((int) this.stacjaMacierzysta.getX() - dlugoscBoku / 2, (int) this.stacjaMacierzysta.getY() - dlugoscBoku / 2, dlugoscBoku, dlugoscBoku);
+            return;
+        }
         if (this.stacjaZrodlowa == null) {
-            int dlugoscBoku = 10;
+
             StacjaKolejowa stacjaKolejowa = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
             g2d.fillRect((int) stacjaKolejowa.getX() - dlugoscBoku / 2, (int) stacjaKolejowa.getY() - dlugoscBoku / 2, dlugoscBoku, dlugoscBoku);
 
@@ -157,5 +165,14 @@ public class Pociag {
         if (this.aktualnaPosredniaTrasaPodrozy < this.zaplanowanaTrasaJazdy.size() - 1)
             return zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy + 1);
         return this.zaplanowanaTrasaJazdy.getLast();
+    }
+
+    public void setStatus(String s) {
+        this.status = s;
+    }
+
+    public String getNazwa() {
+        return null;
+        //todo identyfikator
     }
 }
