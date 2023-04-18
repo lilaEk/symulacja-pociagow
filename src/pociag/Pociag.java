@@ -63,10 +63,9 @@ public class Pociag {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new Color(54, 182, 16));
         if (this.stacjaZrodlowa == null) {
-            StacjaKolejowa stacjaMacierzysta = this.stacjaMacierzysta;
             int dlugoscBoku = 10;
-
-            g2d.fillRect((int) zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy).getX() - dlugoscBoku / 2, (int) zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy).getY() - dlugoscBoku / 2, dlugoscBoku, dlugoscBoku);
+            StacjaKolejowa stacjaKolejowa = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
+            g2d.fillRect((int) stacjaKolejowa.getX() - dlugoscBoku / 2, (int) stacjaKolejowa.getY() - dlugoscBoku / 2, dlugoscBoku, dlugoscBoku);
 
             return;
         }
@@ -124,16 +123,18 @@ public class Pociag {
         double dlugoscTrasy = MapaTransportu.obliczDlugoscTrasy(stacjaZrodlowa, getNajblizszaDocelowa());
         if (this.przebytaDroga >= dlugoscTrasy) {
             //todo wyciągnąć z mapy transportu - dlugosc tras
-            if (getNajblizszaDocelowa() == this.stacjaDocelowa) {
-                Collections.reverse(this.zaplanowanaTrasaJazdy);
-                this.aktualnaPosredniaTrasaPodrozy = 0;
-            }
+
             this.stacjaZrodlowa = null;
             this.aktualnaPosredniaTrasaPodrozy++;
             this.czasRozpoczeciaPostoju = System.currentTimeMillis();
             this.przebytaDroga = 0;
-        }
 
+            if (this.aktualnaPosredniaTrasaPodrozy == zaplanowanaTrasaJazdy.size()
+                    && (getNajblizszaDocelowa() == this.stacjaDocelowa || getNajblizszaDocelowa() == this.stacjaMacierzysta)) {
+                Collections.reverse(this.zaplanowanaTrasaJazdy);
+                this.aktualnaPosredniaTrasaPodrozy = 0;
+            }
+        }
     }
 
 
