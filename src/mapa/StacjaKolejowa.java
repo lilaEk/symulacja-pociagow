@@ -22,6 +22,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
     private int nrStacji;
     private static int counter = 1;
     private int X, Y;
+    private static BufferedImage image;
 
 
     public StacjaKolejowa(int x, int y) {
@@ -49,7 +50,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
 
     private static String generateNazwaStacji() {
         String tmpNumer;
-        if (counter == 100) {
+        if (counter >= 100) {
             tmpNumer = String.valueOf(counter);
         } else if (counter > 9) {
             tmpNumer = '0' + String.valueOf(counter);
@@ -101,9 +102,10 @@ public class StacjaKolejowa extends Ellipse2D.Double {
     }
 
     public static Image dostarczZdjecieStacji() {
-        BufferedImage image = null;
         try {
-            image = ImageIO.read(new File("assets/train_station_icon.png"));
+            if (image == null) {
+                image = ImageIO.read(new File("assets/train_station_icon.png"));
+            }
         } catch (IOException ex) {
             System.out.println("Nieprawidłowe zdjęcie");
         }

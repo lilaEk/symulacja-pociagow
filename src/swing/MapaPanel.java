@@ -2,6 +2,8 @@ package swing;
 
 import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
+import pociag.Pociag;
+import sim.RuchPociagow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +14,11 @@ import java.util.Set;
 public class MapaPanel extends JPanel {
 
     private MouseMode MouseMode;
-    private final MapaTransportu mapaTransportu;
+    private final GUI gui;
     private StacjaKolejowa[] wybranaStacja;
 
-    public MapaPanel(GUI gui, MapaTransportu mapaTransportu, int mapaWight, int canvasHeight) {
-        this.mapaTransportu = mapaTransportu;
+    public MapaPanel(GUI gui, int mapaWight, int canvasHeight) {
+        this.gui = gui;
 
         this.setSize(mapaWight, canvasHeight);
         this.setLocation(0, 0);
@@ -42,7 +44,7 @@ public class MapaPanel extends JPanel {
     }
 
     private void dodajTraseNaMapie(MouseEvent e, GUI gui) {
-        for (StacjaKolejowa sk : mapaTransportu.getListStacjeKolejowe())
+        for (StacjaKolejowa sk : gui.mapaTransportu.getListStacjeKolejowe())
             if (sk.contains(e.getPoint())) {
                 System.out.println("Kliknięto stację: " + sk);
                 if (this.wybranaStacja == null) {
@@ -52,7 +54,7 @@ public class MapaPanel extends JPanel {
                 }
                 if (this.wybranaStacja[0] != sk) this.wybranaStacja[1] = sk;
 
-                if (this.mapaTransportu.dodajTrase(this.wybranaStacja)) {
+                if (gui.mapaTransportu.dodajTrase(this.wybranaStacja)) {
                     System.out.println("Dodano połączenie między stacją " + this.wybranaStacja[0].getNazwaStacji() + ", a " + this.wybranaStacja[1].getNazwaStacji());
                 } else System.out.println("Połączenie już istnieje.");
                 System.out.println();
@@ -99,8 +101,15 @@ public class MapaPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        rysujPolaczenia(g, mapaTransportu);
-        rysujStacje(g, mapaTransportu);
+        rysujPolaczenia(g, gui.mapaTransportu);
+        rysujStacje(g, gui.mapaTransportu);
+        rysujPociagi(g, gui.mapaTransportu, gui.ruchPociagow);
+    }
+
+    private void rysujPociagi(Graphics g, MapaTransportu mapaTransportu, RuchPociagow ruchPociagow) {
+        for (Pociag pociag : ruchPociagow.getPociagi()) {
+            pociag.draw(g);
+        }
     }
 
     private void rysujPolaczenia(Graphics g, MapaTransportu mapaTransportu) {

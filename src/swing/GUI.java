@@ -29,7 +29,7 @@ public class GUI extends JFrame {
         this.setLayout(null);
         this.setTitle("Mapa kolejowa");
 
-        MapaPanel mapaPanel = new MapaPanel(this, this.mapaTransportu, mapaWight, canvasHeight);
+        MapaPanel mapaPanel = new MapaPanel(this, mapaWight, canvasHeight);
         this.add(mapaPanel);
         PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel(mapaPanel);
         RaportPanel raportPanel = new RaportPanel();

@@ -1,5 +1,6 @@
 import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
+import pociag.Pociag;
 import sim.PociagSymulator;
 import sim.RuchPociagow;
 import swing.GUI;
@@ -8,14 +9,13 @@ import java.util.Date;
 
 
 public class Main {
-    public static final int iloscStacji = 20;
-    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(20));
+    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(100));
     final static RuchPociagow ruchPociagow = new RuchPociagow(mapaTransportu);
     final static int updatesPerSecond = 1;
 
     public static void main(String[] args) throws InterruptedException {
 
-        ruchPociagow.dodajPociag();
+        ruchPociagow.dodajPociag(Pociag.generujLosowyPociag(mapaTransportu));
 
         PociagSymulator pociagSymulator = new PociagSymulator(mapaTransportu, ruchPociagow);
         GUI gui = new GUI(mapaTransportu, ruchPociagow);
