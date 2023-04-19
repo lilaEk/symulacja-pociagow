@@ -62,10 +62,26 @@ public class MapaTransportu {
         if (trasaKolejowa.get(stacjaDocelowa) == null) {
             trasaKolejowa.put(stacjaDocelowa, new HashSet<StacjaKolejowa>());
         }
+        if (jezeliTrasaIstnieje(sk, stacjaDocelowa)) {
+            return false;
+        }
         trasaKolejowa.get(stacjaDocelowa).add(sk);
 
         return true;
 
+    }
+
+    private boolean jezeliTrasaIstnieje(StacjaKolejowa sk, StacjaKolejowa stacjaDocelowa) {
+
+        if (trasyKolejowe == null) return false;
+        for (StacjaKolejowa sk1 : trasyKolejowe.get(sk)) {
+            for (StacjaKolejowa stacjaDocelowa1 : trasyKolejowe.get(stacjaDocelowa)) {
+                if (sk == stacjaDocelowa1) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public Set<StacjaKolejowa> getListStacjeKolejowe() {
