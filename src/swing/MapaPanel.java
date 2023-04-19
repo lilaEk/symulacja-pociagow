@@ -86,11 +86,12 @@ public class MapaPanel extends JPanel {
                     return;
                 }
 
-                if (this.wybranaStacja[0] != sk) this.wybranaStacja[1] = sk; //co to robi?
-//                if (this.wybranaStacja[0] == wybranaStacja[1]){
-//                    System.out.println("Nie można stworzyć połączenia stacji ze sobą.");
-//                    continue;
-//                }
+                if (this.wybranaStacja[0] == sk) {
+                    System.out.println("Nie można stworzyć połączenia stacji ze sobą.");
+                    return;
+                }
+
+                this.wybranaStacja[1] = sk;
 
                 if (gui.mapaTransportu.dodajTrase(this.wybranaStacja)) {
                     System.out.println("Dodano połączenie między stacją " + this.wybranaStacja[0].getNazwaStacji() + ", a " + this.wybranaStacja[1].getNazwaStacji());
