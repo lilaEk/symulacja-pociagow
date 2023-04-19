@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class RaportPanel extends JPanel {
 
-    private static String tekstRaportu = "\nRAPORT POCIĄGU\n(wybierz pociąg, którego dane chcesz zobaczyć)\n\n";
-    private TextArea raport;
+    private final TextArea raport;
+    private String tekstRaportu = "\nRAPORT POCIĄGU\n(wybierz pociąg, którego dane chcesz zobaczyć)\n\n";
 
     public RaportPanel() {
 
@@ -18,26 +18,18 @@ public class RaportPanel extends JPanel {
 
         this.raport = new TextArea(12, 35);
         raport.setBackground(c);
-        raport.setVisible(true);
         raport.setEditable(false);
-
         raport.setText(tekstRaportu);
-//        raport.append(tekstRaportu);
+        raport.setSize(300, 300);
 
-//        JScrollPane scrollPane = new JScrollPane(raport);
-////        scrollPane.createVerticalScrollBar();
-////        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-////        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//        scrollPane.setBounds(800, 500, 250, 150);
-
-
-//        scrollPane.setVisible(true);
         this.add(raport);
 
     }
 
-    public static String wyswietlNowyRaport(Pociag pociag) {
-        String nowyTekst = tekstRaportu + Pociag.zdajRaportPociagu(pociag);
-        return nowyTekst;
+    public void wyswietlNowyRaport(Pociag pociag) {
+        String s = Pociag.zdajRaportPociagu(pociag);
+
+        raport.setText(tekstRaportu + s);
+        this.repaint();
     }
 }

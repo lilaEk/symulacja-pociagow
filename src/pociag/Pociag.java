@@ -110,9 +110,11 @@ public class Pociag {
     }
 
     public static String zdajRaportPociagu(Pociag pociag) {
+        String nazwaStacji = pociag.stacjaMacierzysta.getNazwaStacji();
+        String lastStacji = pociag.stacjaZrodlowa != null ? pociag.stacjaZrodlowa.getNazwaStacji() : "brak";
         String zawartoscRaportu = pociag.toString() +
-                "\nStacja macierzysta: " + pociag.stacjaMacierzysta.getNazwaStacji() +
-                "\nStacja, z której ostatnio wyjechano: " + pociag.stacjaZrodlowa.getNazwaStacji() +
+                "\nStacja macierzysta: " + nazwaStacji +
+                "\nStacja, z której ostatnio wyjechano: " + lastStacji +
                 "\nStacja docelowa: " + pociag.stacjaDocelowa.getNazwaStacji() +
                 "\nAktualna prędkość: " + pociag.predkosc + // czy poprawnie
                 "\nProcent ukończonej drogi na całej trasie: " + "DO DODANIA" + // todo
@@ -146,10 +148,11 @@ public class Pociag {
         double x = this.stacjaZrodlowa.getX();
         double y = this.stacjaZrodlowa.getY();
 
-        g2d.fillRect((int) (x + szukajAktualnegoXPociagu()) - 5, (int) (y + szukajAktualnegoYPociagu()) - 5, 10, 10);
+        g2d.fillRect((int) (x + getPozycjaX()) - 5, (int) (y + getPozycjaY()) - 5, 10, 10);
     }
 
-    public double szukajAktualnegoXPociagu() {
+    public double getPozycjaX() {
+        if (this.stacjaZrodlowa == null) return this.stacjaMacierzysta.getX();
         StacjaKolejowa stacjaZrodlowa = this.stacjaZrodlowa;
         StacjaKolejowa najblizszaDocelowa = this.getNajblizszaDocelowa();
         double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(stacjaZrodlowa, najblizszaDocelowa);
@@ -164,7 +167,8 @@ public class Pociag {
         return absX;
     }
 
-    public double szukajAktualnegoYPociagu() {
+    public double getPozycjaY() {
+        if (this.stacjaZrodlowa == null) return this.stacjaMacierzysta.getY();
         StacjaKolejowa stacjaZrodlowa = this.stacjaZrodlowa;
         StacjaKolejowa najblizszaDocelowa = this.getNajblizszaDocelowa();
         double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(stacjaZrodlowa, najblizszaDocelowa);

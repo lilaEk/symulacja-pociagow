@@ -30,45 +30,48 @@ public class MapaPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                System.out.println("kliknieto: " + e.getX() + " " + e.getY());
                 // todo zamienić na switch
                 if (isMouseMode(swing.MouseMode.ADD_STACJE)) {
                     dodajStacjeNaMapie(e, gui);
+                    return;
                 } else if (isMouseMode(swing.MouseMode.ADD_TRASE)) {
                     dodajTraseNaMapie(e, gui);
-                } else if (isMouseMode(swing.MouseMode.DEFAULT)) {
-                    if (czyKliknietoWPociag(e)) {
-                        wyswietlRaportDlaPociagu(ktoryPociagKliknieto(e));
-                        System.out.println("Kliknięto");
-                    }
-                    System.out.println("kliknieto na mape ale nie w punkt");
+                    return;
                 }
+                Pociag kliknietyPociag = ktoryPociagKliknieto(e);
+                if (kliknietyPociag != null) {
+                    wyswietlRaportDlaPociagu(kliknietyPociag);
+                    System.out.println("Kliknięto");
+                }
+                System.out.println("kliknieto na mape ale nie w punkt");
             }
         });
         this.setVisible(true);
     }
 
-    private boolean czyKliknietoWPociag(MouseEvent e) {
-        int odleglosc = 8;
-        for (Pociag p : Pociag.getPociagi()) {
-            double dystans = Math.sqrt(Math.pow(e.getX() - p.szukajAktualnegoXPociagu(), 2) + (Math.pow(e.getY() - p.szukajAktualnegoYPociagu(), 2)));
-            if (dystans < odleglosc) return true;
-        }
-        return false;
-    }
-
     private Pociag ktoryPociagKliknieto(MouseEvent e) {
 
-        int odleglosc = 8;
+        int odleglosc = 50;
         for (Pociag p : Pociag.getPociagi()) {
-            double dystans = Math.sqrt(Math.pow(e.getX() - p.szukajAktualnegoXPociagu(), 2) + (Math.pow(e.getY() - p.szukajAktualnegoYPociagu(), 2)));
-            if (dystans < odleglosc) return p;
+            int myszkaX = e.getX();
+            int myszkaY = e.getY();
+            double pociagX = p.getPozycjaX();
+            double pociagY = p.getPozycjaY();
+
+            if (
+                    (myszkaY <= pociagY + odleglosc || myszkaY >= pociagY - odleglosc) &&
+                            (myszkaX <= pociagX + odleglosc || myszkaX >= pociagX - odleglosc)
+            ) {
+                return p;
+            }
         }
         System.out.println("Nie klknieto pociagu");
         return null;
     }
 
     private void wyswietlRaportDlaPociagu(Pociag pociag) {
-        RaportPanel.wyswietlNowyRaport(pociag);
+        this.gui.raportPanel.wyswietlNowyRaport(pociag);
     }
 
     private void dodajTraseNaMapie(MouseEvent e, GUI gui) {

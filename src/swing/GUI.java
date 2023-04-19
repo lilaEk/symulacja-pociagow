@@ -15,6 +15,7 @@ public class GUI extends JFrame {
     final static int menuWight = canvasWidth - mapaWight;
     final MapaTransportu mapaTransportu;
     final RuchPociagow ruchPociagow;
+    final RaportPanel raportPanel;
 
 
     public GUI(MapaTransportu mapaTransportu, RuchPociagow ruchPociagow) {
@@ -32,8 +33,8 @@ public class GUI extends JFrame {
         MapaPanel mapaPanel = new MapaPanel(this, mapaWight, canvasHeight);
         this.add(mapaPanel);
         PrzyciskiPanel przyciskiPanel = new PrzyciskiPanel(mapaPanel, ruchPociagow, mapaTransportu);
-        RaportPanel raportPanel = new RaportPanel();
-        MenuPanel menuPanel = new MenuPanel(przyciskiPanel, raportPanel, menuWight, canvasHeight, canvasWidth);
+        this.raportPanel = new RaportPanel();
+        MenuPanel menuPanel = new MenuPanel(przyciskiPanel, this.raportPanel, menuWight, canvasHeight, canvasWidth);
 
         this.add(menuPanel);
 
