@@ -24,7 +24,9 @@ public class PociagSymulator {
             if (pociag.getZaplanowanaTrasaJazdy() == null) {
                 pociag.setZaplanowanaTrasaJazdy(generujTraseJazdy(pociag));
             }
-            if (pociag.getZaplanowanaTrasaJazdy() != null) pociag.jedz(deltaT, tick, updatesPerSecond);
+            if (pociag.getZaplanowanaTrasaJazdy() != null) {
+                pociag.jedz(deltaT, tick, updatesPerSecond, ruchPociagow);
+            }
         }
     }
 

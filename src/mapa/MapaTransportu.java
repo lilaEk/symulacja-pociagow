@@ -28,7 +28,6 @@ public class MapaTransportu {
                 int losowyIndeksStacji = new Random().nextInt(listaStacji.size());
                 StacjaKolejowa stacjaDocelowa = listaStacji.get(losowyIndeksStacji);
 
-//                boolean b = dodajTrase(listaStacji, trasaKolejowa, stacjaGlowna, stacjaDocelowa);
                 dodajTrase(trasaKolejowa, stacjaGlowna, stacjaDocelowa);
                 // zmiana random w nastepnej linijce - losowa ilosc stacji
 
@@ -53,7 +52,11 @@ public class MapaTransportu {
         if (dlugoscTrasy > maxDlugoscTrasy) return false;
 
         StacjaKolejowa[] paraStacji = {sk, stacjaDocelowa};
-        this.dlugoscTras.put(paraStacji, dlugoscTrasy);
+        if (dlugoscTras.containsKey(paraStacji)) {
+            return false; // nie działa
+        } else {
+            this.dlugoscTras.put(paraStacji, dlugoscTrasy);
+        }
 
         trasaKolejowa.get(sk).add(stacjaDocelowa);
         if (trasaKolejowa.get(stacjaDocelowa) == null) {
@@ -72,19 +75,6 @@ public class MapaTransportu {
     public Set<StacjaKolejowa> getStacjeDocelowe(StacjaKolejowa sk) {
         return trasyKolejowe.get(sk);
     }
-
-//    public boolean czyWartosciSiePowtarzaja(StacjaKolejowa stacjaGlowna, StacjaKolejowa stacjaDocelowa, Map<StacjaKolejowa, Set<StacjaKolejowa>> mapaStacji) {
-//
-//        if (!mapaStacji.containsKey(stacjaDocelowa)) return false;
-//
-//        for (StacjaKolejowa temp : mapaStacji.get(stacjaDocelowa)) {
-//            if (stacjaGlowna == temp) return true;
-//        }
-//        for (StacjaKolejowa temp : mapaStacji.get(stacjaGlowna)) {
-//            if (stacjaDocelowa == temp) return true;
-//        }
-//        return false;
-//    }
 
     public StacjaKolejowa generujLosowaStacje() {
         return null;

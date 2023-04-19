@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RuchPociagow {
+    // baza pociagow
+
     private final List<Pociag> pociagi = new ArrayList<>();
     private final MapaTransportu mapaTransportu;
 

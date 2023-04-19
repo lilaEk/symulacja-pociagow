@@ -47,6 +47,19 @@ public class PrzyciskiPanel extends JPanel {
             }
         });
 
+        JButton dodaj_wagon_do_lokomotywy = new JButton("Dodaj wagon do lokomotywy");
+        dodaj_wagon_do_lokomotywy.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                System.out.println("Wybierz lokomotywę, do której chcesz dodać wagon.");
+                //MapaPanel.ktoryPociagKliknieto().Pociag.dodajLosowyWagonDoPociagu();
+
+                //.......................
+                System.out.println("Dodano wagon o numerze ... do wybranego pociągu."); //todo
+            }
+        });
+
         JButton dodaj_pociag = new JButton("Dodaj pociąg");
         dodaj_pociag.addMouseListener(new MouseAdapter() {
             @Override
@@ -54,16 +67,32 @@ public class PrzyciskiPanel extends JPanel {
                 super.mouseClicked(e);
                 Pociag pociag = Pociag.generujLosowyPociag(mapaTransportu);
                 ruchPociagow.dodajPociag(pociag);
-                System.out.println("Dodano pociąg o numerze " + pociag.getNazwa());
+                System.out.println("Dodano pociąg o numerze " + pociag.getNazwaPociagu());
+            }
+        });
+
+        JButton usun_stacje_kolejowa = new JButton("Usuń stację kolejową");
+        usun_stacje_kolejowa.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (mapaPanel.getMouseMode() == MouseMode.USUN_STACJE) {
+                    mapaPanel.setMouseMode(MouseMode.DEFAULT);
+                    System.out.println("Tryb usuwania stacji zamknięty.");
+                    System.out.println();
+                    return;
+                }
+                System.out.println("Wybierz, stację chcesz usunąć.");
+                mapaPanel.setMouseMode(MouseMode.USUN_STACJE);
             }
         });
 
 
         przyciskiMenu.add(dodaj_stacje_kolejowa);
         przyciskiMenu.add(dodaj_pociag);
-        przyciskiMenu.add(new JButton("Dodaj wagon do lokomotywy"));
+        przyciskiMenu.add(dodaj_wagon_do_lokomotywy);
         przyciskiMenu.add(stworz_polaczenie_miedzy_stacjami);
-        przyciskiMenu.add(new JButton("Usuń stację kolejową"));
+        przyciskiMenu.add(usun_stacje_kolejowa);
         przyciskiMenu.add(new JButton("Usuń lokomotywę"));
         przyciskiMenu.add(new JButton("Usuń wagon z lokomotywy"));
         przyciskiMenu.add(new JButton("Usuń połączenie między stacjami"));
@@ -74,7 +103,6 @@ public class PrzyciskiPanel extends JPanel {
         this.setLayout(gridLayout);
 
         for (JButton b : przyciskiMenu) {
-            b.setSize(new Dimension(20, 20));
             Color c3 = new Color(0xD98A96);
             b.setBackground(c3);
             this.add(b);

@@ -33,18 +33,51 @@ public class MapaPanel extends JPanel {
                 // todo zamienić na switch
                 if (isMouseMode(swing.MouseMode.ADD_STACJE)) {
                     dodajStacjeNaMapie(e, gui);
-                }
-                if (isMouseMode(swing.MouseMode.ADD_TRASE)) {
+                } else if (isMouseMode(swing.MouseMode.ADD_TRASE)) {
                     dodajTraseNaMapie(e, gui);
+                } else if (isMouseMode(swing.MouseMode.DEFAULT)) {
+                    if (czyKliknietoWPociag(e)) {
+                        wyswietlRaportDlaPociagu(ktoryPociagKliknieto(e));
+                        System.out.println("Kliknięto");
+                    }
+                    System.out.println("kliknieto na mape ale nie w punkt");
                 }
-
             }
         });
         this.setVisible(true);
     }
 
+    private boolean czyKliknietoWPociag(MouseEvent e) {
+        int odleglosc = 8;
+        for (Pociag p : Pociag.getPociagi()) {
+            double dystans = Math.sqrt(Math.pow(e.getX() - p.szukajAktualnegoXPociagu(), 2) + (Math.pow(e.getY() - p.szukajAktualnegoYPociagu(), 2)));
+            if (dystans < odleglosc) return true;
+        }
+        return false;
+    }
+
+    private Pociag ktoryPociagKliknieto(MouseEvent e) {
+
+        int odleglosc = 8;
+        for (Pociag p : Pociag.getPociagi()) {
+            double dystans = Math.sqrt(Math.pow(e.getX() - p.szukajAktualnegoXPociagu(), 2) + (Math.pow(e.getY() - p.szukajAktualnegoYPociagu(), 2)));
+            if (dystans < odleglosc) return p;
+        }
+        System.out.println("Nie klknieto pociagu");
+        return null;
+    }
+
+    private void wyswietlRaportDlaPociagu(Pociag pociag) {
+        RaportPanel.wyswietlNowyRaport(pociag);
+    }
+
     private void dodajTraseNaMapie(MouseEvent e, GUI gui) {
-        for (StacjaKolejowa sk : gui.mapaTransportu.getListStacjeKolejowe())
+
+        //nie zabezpiecza przed dodaniem ponownie tego samego polaczenia
+        //wyrzuca bladprzy klikieciu dwa razy jednej stacji
+
+        for (StacjaKolejowa sk : gui.mapaTransportu.getListStacjeKolejowe()) {
+
             if (sk.contains(e.getPoint())) {
                 System.out.println("Kliknięto stację: " + sk);
                 if (this.wybranaStacja == null) {
@@ -52,7 +85,12 @@ public class MapaPanel extends JPanel {
                     this.wybranaStacja[0] = sk;
                     return;
                 }
-                if (this.wybranaStacja[0] != sk) this.wybranaStacja[1] = sk;
+
+                if (this.wybranaStacja[0] != sk) this.wybranaStacja[1] = sk; //co to robi?
+//                if (this.wybranaStacja[0] == wybranaStacja[1]){
+//                    System.out.println("Nie można stworzyć połączenia stacji ze sobą.");
+//                    continue;
+//                }
 
                 if (gui.mapaTransportu.dodajTrase(this.wybranaStacja)) {
                     System.out.println("Dodano połączenie między stacją " + this.wybranaStacja[0].getNazwaStacji() + ", a " + this.wybranaStacja[1].getNazwaStacji());
@@ -63,6 +101,7 @@ public class MapaPanel extends JPanel {
 
                 gui.repaint();
             }
+        }
     }
 
     private void dodajStacjeNaMapie(MouseEvent e, GUI gui) {
@@ -90,6 +129,11 @@ public class MapaPanel extends JPanel {
             }
             case ADD_TRASE -> {
                 repaint();
+            }
+            case USUN_STACJE -> {
+                Image image = StacjaKolejowa.dostarczZdjecieUsunietejStacji();
+                Cursor c = toolkit.createCustomCursor(image, new Point(0, 0), "img");
+                this.setCursor(c);
             }
             case DEFAULT -> {
                 setCursor(Cursor.getDefaultCursor());

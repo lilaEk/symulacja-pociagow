@@ -22,7 +22,8 @@ public class StacjaKolejowa extends Ellipse2D.Double {
     private int nrStacji;
     private static int counter = 1;
     private int X, Y;
-    private static BufferedImage image;
+    private static BufferedImage imageStacja;
+    private static BufferedImage imageUsunietaStacja;
 
 
     public StacjaKolejowa(int x, int y) {
@@ -77,10 +78,6 @@ public class StacjaKolejowa extends Ellipse2D.Double {
 
         return przedrostek.toString();
 
-        //26 letters of the English alphabet, the ASCII codes for uppercase letters start at 65, with 'A', and end at 90, with 'Z
-        //Adding 97 to this value shifts the range to the ASCII character codes for lowercase letters, which start at 97.
-        //integer between 97 (ASCII code for 'a') and 122 (ASCII code for 'z')
-
     }
 
     public static int getLiczbaStacji() {
@@ -103,13 +100,24 @@ public class StacjaKolejowa extends Ellipse2D.Double {
 
     public static Image dostarczZdjecieStacji() {
         try {
-            if (image == null) {
-                image = ImageIO.read(new File("assets/train_station_icon.png"));
+            if (imageStacja == null) {
+                imageStacja = ImageIO.read(new File("assets/train_station_icon.png"));
             }
         } catch (IOException ex) {
             System.out.println("Nieprawidłowe zdjęcie");
         }
-        return image;
+        return imageStacja;
+    }
+
+    public static Image dostarczZdjecieUsunietejStacji() {
+        try {
+            if (imageUsunietaStacja == null) {
+                imageUsunietaStacja = ImageIO.read(new File("assets/X_train_station_icon.png"));
+            }
+        } catch (IOException e) {
+            System.out.println("Nieprawidłowe zdjęcie");
+        }
+        return imageUsunietaStacja;
     }
 
     public double getX() {
@@ -148,7 +156,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
             }
         };
         g.drawImage(dostarczZdjecieStacji(), this.X - szerokosc / 2, this.Y - wysokosc, szerokosc, wysokosc, io);
-        g.drawString(String.valueOf(getNazwaStacji()), this.X, this.Y);
+        g.drawString(String.valueOf(getNazwaStacji()), this.X - 20, this.Y - 22);
         if (mode == MouseMode.ADD_TRASE) {
             Graphics2D g2 = (Graphics2D) g;
             g2.draw(this);
