@@ -1,7 +1,8 @@
 package wagony.typWagonu;
 
-import wagony.cechyWagonu.DostepDoSieciElektrycznej;
 import wagony.Wagon;
+import wagony.cechyWagonu.DostepDoSieciElektrycznej;
+import wagony.cechyWagonu.DostepDoWifi;
 import wagony.cechyWagonu.RodzajDostepnejKuchni;
 import wagony.cechyWagonu.RodzajZabezpieczen;
 
@@ -12,11 +13,9 @@ public class Restauracyjny
 
         // może byc tylko w pociagu gdzie jest pasazerski
         // moze byc tylko jeden!
-        // interface dostep do wifi
-        // rodzaj zabezpieczen
 
         extends Wagon
-        implements DostepDoSieciElektrycznej {
+        implements DostepDoSieciElektrycznej, DostepDoWifi {
 
     private final static int iloscStolikow = 15;
     private final static int maxIloscGosci = 80;

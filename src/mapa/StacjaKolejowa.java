@@ -41,7 +41,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
         ArrayList<StacjaKolejowa> listaStacji = new ArrayList<>(iloscStacji);
 
         for (int i = 0; i < iloscStacji; i++) {
-            int X = (int) (Math.random() * 845);
+            int X = (int) (Math.random() * 850);
             int Y = (int) (Math.random() * 700);
             listaStacji.add(new StacjaKolejowa(X, Y));
         }
@@ -157,7 +157,7 @@ public class StacjaKolejowa extends Ellipse2D.Double {
         };
         g.drawImage(dostarczZdjecieStacji(), this.X - szerokosc / 2, this.Y - wysokosc, szerokosc, wysokosc, io);
         g.drawString(String.valueOf(getNazwaStacji()), this.X - 20, this.Y - 22);
-        if (mode == MouseMode.ADD_TRASE) {
+        if (mode == MouseMode.ADD_TRASE || mode == MouseMode.USUN_STACJE || mode == MouseMode.USUN_TRASE) {
             Graphics2D g2 = (Graphics2D) g;
             g2.draw(this);
         }
@@ -166,4 +166,5 @@ public class StacjaKolejowa extends Ellipse2D.Double {
     public void drawTrasa(Graphics g, StacjaKolejowa sd) {
         g.drawLine(this.X, this.Y, sd.X, sd.Y);
     }
+
 };

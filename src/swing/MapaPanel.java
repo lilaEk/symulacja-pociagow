@@ -30,7 +30,6 @@ public class MapaPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                System.out.println("kliknieto: " + e.getX() + " " + e.getY());
                 // todo zamienić na switch
                 if (isMouseMode(swing.MouseMode.ADD_STACJE)) {
                     dodajStacjeNaMapie(e, gui);
@@ -38,13 +37,19 @@ public class MapaPanel extends JPanel {
                 } else if (isMouseMode(swing.MouseMode.ADD_TRASE)) {
                     dodajTraseNaMapie(e, gui);
                     return;
+                } else if (isMouseMode(swing.MouseMode.USUN_STACJE)) {
+                    usunStacjeZMapy(e, gui);
+                } else if (isMouseMode(swing.MouseMode.USUN_TRASE)) {
+                    usunTraseNaMapie(e, gui);
+                } else {
+                    System.out.println("Kliknięto: " + e.getX() + " " + e.getY());
+                    Pociag kliknietyPociag = ktoryPociagKliknieto(e);
+                    if (kliknietyPociag != null) {
+                        wyswietlRaportDlaPociagu(kliknietyPociag);
+                        System.out.println("Wyświetlono raport dla pociągu " + kliknietyPociag.getNazwaPociagu());
+                        kliknietyPociag = null;
+                    }
                 }
-                Pociag kliknietyPociag = ktoryPociagKliknieto(e);
-                if (kliknietyPociag != null) {
-                    wyswietlRaportDlaPociagu(kliknietyPociag);
-                    System.out.println("Kliknięto");
-                }
-                System.out.println("kliknieto na mape ale nie w punkt");
             }
         });
         this.setVisible(true);
@@ -52,21 +57,23 @@ public class MapaPanel extends JPanel {
 
     private Pociag ktoryPociagKliknieto(MouseEvent e) {
 
-        int odleglosc = 50;
+        int odleglosc = 30;
         for (Pociag p : Pociag.getPociagi()) {
             int myszkaX = e.getX();
             int myszkaY = e.getY();
+
             double pociagX = p.getPozycjaX();
             double pociagY = p.getPozycjaY();
 
-            if (
-                    (myszkaY <= pociagY + odleglosc || myszkaY >= pociagY - odleglosc) &&
-                            (myszkaX <= pociagX + odleglosc || myszkaX >= pociagX - odleglosc)
-            ) {
+//            double distance = Math.sqrt(Math.pow(myszkaX - pociagX, 2) + Math.pow(myszkaY - pociagY, 2));
+//            if (distance <= odleglosc) return p;
+
+            if ((myszkaY <= pociagY + odleglosc && myszkaY >= pociagY - odleglosc) &&
+                    (myszkaX <= pociagX + odleglosc && myszkaX >= pociagX - odleglosc)) {
                 return p;
             }
         }
-        System.out.println("Nie klknieto pociagu");
+        System.out.println("Nie kliknięto pociagu.");
         return null;
     }
 
@@ -108,6 +115,37 @@ public class MapaPanel extends JPanel {
         }
     }
 
+    private void usunTraseNaMapie(MouseEvent e, GUI gui) {
+
+        for (StacjaKolejowa sk : gui.mapaTransportu.getListStacjeKolejowe()) {
+
+            if (sk.contains(e.getPoint())) {
+                System.out.println("Kliknięto stację: " + sk);
+                if (this.wybranaStacja == null) {
+                    this.wybranaStacja = new StacjaKolejowa[2];
+                    this.wybranaStacja[0] = sk;
+                    return;
+                }
+
+                if (this.wybranaStacja[0] == sk) {
+                    System.out.println("Nie można usunąć połączenia stacji ze sobą.");
+                    return;
+                }
+
+                this.wybranaStacja[1] = sk;
+
+                if (gui.mapaTransportu.usunTrase(this.wybranaStacja)) {
+                    System.out.println("Usunięto połączenie między stacją " + this.wybranaStacja[0].getNazwaStacji() + ", a " + this.wybranaStacja[1].getNazwaStacji());
+                } else System.out.println("Połączenie nie istnieje.");
+                System.out.println();
+                this.wybranaStacja = null;
+                setMouseMode(swing.MouseMode.DEFAULT);
+
+                gui.repaint();
+            }
+        }
+    }
+
     private void dodajStacjeNaMapie(MouseEvent e, GUI gui) {
         System.out.println("Wybrano współrzędne " + e.getX() + " " + e.getY());
         StacjaKolejowa nowaStacja = new StacjaKolejowa(e.getX(), e.getY());
@@ -118,27 +156,54 @@ public class MapaPanel extends JPanel {
         gui.repaint();
     }
 
+    public void usunStacjeZMapy(MouseEvent e, GUI gui) {
+        System.out.println("Wybrano współrzędne " + e.getX() + " " + e.getY());
+        for (StacjaKolejowa sk : gui.mapaTransportu.getListStacjeKolejowe()) {
+
+//            if (e.getX()==sk.getX() && e.getY()==sk.getY()){
+            double distance = Math.sqrt(Math.pow(e.getX() - sk.getX(), 2) + Math.pow(e.getY() - sk.getY(), 2));
+            if (distance < 20) {
+                gui.mapaTransportu.usunStacje(sk, gui);
+                System.out.println("Usunięto stację " + sk);
+                System.out.println();
+                setMouseMode(swing.MouseMode.DEFAULT);
+                gui.repaint();
+                return;
+            }
+        }
+        System.out.println("Nie znaleziono stacji.");
+    }
+
     private boolean isMouseMode(MouseMode mode) {
         return mode == this.MouseMode;
     }
 
-    public void setMouseMode(MouseMode addStacje) {
-        MouseMode = addStacje;
+    public void setMouseMode(MouseMode mouseMode) {
+        MouseMode = mouseMode;
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        switch (addStacje) {
+        switch (mouseMode) {
             case ADD_STACJE -> {
                 Image image = StacjaKolejowa.dostarczZdjecieStacji();
                 Cursor c = toolkit.createCustomCursor(image, new Point(0, 0), "img");
                 this.setCursor(c);
-            }
-            case ADD_TRASE -> {
-                repaint();
             }
             case USUN_STACJE -> {
                 Image image = StacjaKolejowa.dostarczZdjecieUsunietejStacji();
                 Cursor c = toolkit.createCustomCursor(image, new Point(0, 0), "img");
                 this.setCursor(c);
             }
+            case ADD_POCIAG -> {
+            }
+
+            case USUN_POCIAG -> {
+            }
+
+            case ADD_TRASE -> {
+            }
+
+            case USUN_TRASE -> {
+            }
+            //todo pousuwac niepotrzebne
             case DEFAULT -> {
                 setCursor(Cursor.getDefaultCursor());
                 repaint();

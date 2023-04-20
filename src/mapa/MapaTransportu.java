@@ -1,11 +1,13 @@
 package mapa;
 
+import swing.GUI;
+
 import java.util.*;
 
 // przy tworzeniu mapy wylicza środek i wypisuje tam koszt
 public class MapaTransportu {
 
-    private Map<StacjaKolejowa, Set<StacjaKolejowa>> trasyKolejowe;
+    public Map<StacjaKolejowa, Set<StacjaKolejowa>> trasyKolejowe;
     private Map<StacjaKolejowa[], Double> dlugoscTras;
 
     private static double maxDlugoscTrasy = 450;
@@ -53,7 +55,7 @@ public class MapaTransportu {
 
         StacjaKolejowa[] paraStacji = {sk, stacjaDocelowa};
         if (dlugoscTras.containsKey(paraStacji)) {
-            return false; // nie działa
+            return false;
         } else {
             this.dlugoscTras.put(paraStacji, dlugoscTrasy);
         }
@@ -100,12 +102,36 @@ public class MapaTransportu {
         trasyKolejowe.put(generujLosowaStacje, new HashSet<>());
     }
 
+    public void usunStacje(StacjaKolejowa stacja, GUI gui) {
+//        if (trasyKolejowe.get(stacja)!=null){
+//            //public Map<StacjaKolejowa, Set<StacjaKolejowa>> trasyKolejowe;
+//            for (StacjaKolejowa sk : trasyKolejowe.keySet() ){
+//
+//            }
+//        }
+//        usunTrasyDlaUsunietejStacji(stacja, gui);
+        trasyKolejowe.remove(stacja);
+    }
+
+//    private void usunTrasyDlaUsunietejStacji(StacjaKolejowa stacja, GUI gui) {
+//
+//        for (StacjaKolejowa s : getListStacjeKolejowe()) {
+//            for (StacjaKolejowa stacjaKolejowa : (trasyKolejowe.get(stacja))) {
+//                StacjaKolejowa[] tmp1 = {stacjaKolejowa, stacja};
+//                StacjaKolejowa[] tmp2 = {stacja, stacjaKolejowa};
+//                if (dlugoscTras.containsKey(tmp1)){dlugoscTras.remove(tmp1);}
+//                if (dlugoscTras.containsKey(tmp2)){dlugoscTras.remove(tmp2);}
+//            }
+//        }
+//        gui.repaint();
+//    }
+
     public StacjaKolejowa getLosowaStacja() {
         return this.trasyKolejowe.keySet().stream().skip(new Random().nextInt(this.trasyKolejowe.keySet().size())).findFirst().orElse(null);
     }
 
 
-    public boolean dodajTrase(StacjaKolejowa[] wybraneStacjeDoNowejTrasy) { //?????????????
+    public boolean dodajTrase(StacjaKolejowa[] wybraneStacjeDoNowejTrasy) {
         return dodajTrase(this.trasyKolejowe, wybraneStacjeDoNowejTrasy[0], wybraneStacjeDoNowejTrasy[1]);
     }
 
@@ -120,5 +146,12 @@ public class MapaTransportu {
             builder.append("\n");
         }
         return builder.toString();
+    }
+
+    public boolean usunTrase(StacjaKolejowa[] wybranaStacja) {
+        if (jezeliTrasaIstnieje(wybranaStacja[0], wybranaStacja[1])) {
+            return true;
+        }
+        return false;
     }
 }

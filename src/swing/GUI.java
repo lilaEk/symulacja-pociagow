@@ -55,4 +55,6 @@ public class GUI extends JFrame {
     public RuchPociagow getRuchPociagow() {
         return ruchPociagow;
     }
+
+//    public PociagSymulator getPociagSymulator(){ return pociagSymulator; }
 }

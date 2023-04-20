@@ -24,4 +24,8 @@ public class RuchPociagow {
     public List<Pociag> getPociagi() {
         return this.pociagi;
     }
+
+    public void usunPociag(Pociag pociag) {
+        pociagi.remove(pociag);
+    }
 }
