@@ -68,7 +68,7 @@ public class PrzyciskiPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pociag pociag = Pociag.generujLosowyPociag(mapaTransportu, new Random().nextInt(10) + 5);
-                ruchPociagow.dodajPociag(pociag);
+
                 System.out.println("Dodano pociąg o numerze " + pociag.getNazwaPociagu());
             }
         });
@@ -79,8 +79,8 @@ public class PrzyciskiPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 Pociag pociag = Pociag.losujPociag();
-                ruchPociagow.usunPociag(pociag);
-                System.out.println("Usuń pociąg o numerze " + pociag.getNazwaPociagu());
+                Pociag.usunPociag(pociag);
+                System.out.println("Usunięto pociąg o numerze " + pociag.getNazwaPociagu());
             }
         });
 

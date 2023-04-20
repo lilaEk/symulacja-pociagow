@@ -23,7 +23,8 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         for (int i = 0; i < 5; i++) {
-            ruchPociagow.dodajPociag(Pociag.generujLosowyPociag(mapaTransportu, new Random().nextInt(10) + 5));
+
+            Pociag.generujLosowyPociag(mapaTransportu, new Random().nextInt(10) + 5);
             System.out.println();
         }
 

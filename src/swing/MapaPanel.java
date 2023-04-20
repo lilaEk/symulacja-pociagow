@@ -190,7 +190,7 @@ public class MapaPanel extends JPanel {
     }
 
     private void rysujPociagi(Graphics g, MapaTransportu mapaTransportu, RuchPociagow ruchPociagow) {
-        for (Pociag pociag : ruchPociagow.getPociagi()) {
+        for (Pociag pociag : Pociag.getPociagi()) {
             pociag.draw(g);
         }
     }

@@ -20,7 +20,7 @@ public class PociagSymulator {
     }
 
     public void update(long deltaT, long tick, int updatesPerSecond) throws RailroadHazard {
-        for (Pociag pociag : ruchPociagow.getPociagi()) {
+        for (Pociag pociag : Pociag.getPociagi()) {
             if (pociag.getZaplanowanaTrasaJazdy() == null) {
                 pociag.setZaplanowanaTrasaJazdy(generujTraseJazdy(pociag));
             }

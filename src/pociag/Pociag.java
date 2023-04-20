@@ -104,6 +104,10 @@ public class Pociag extends Rectangle2D.Double {
     }
 
 
+    public static void usunPociag(Pociag pociag) {
+        pociagi.remove(pociag);
+    }
+
     public static int getMaxUciag() {
         return maxUciag;
     }
@@ -326,7 +330,7 @@ public class Pociag extends Rectangle2D.Double {
     }
 
     private StacjaKolejowa znajdzPociagNaTejsamejTrasie(RuchPociagow ruchPociagow) {
-        for (Pociag pociag : ruchPociagow.getPociagi()) {
+        for (Pociag pociag : pociagi) {
             if (this == pociag) continue;
             if ((pociag.stacjaZrodlowa == this.getNajblizszaDocelowa() && pociag.getNajblizszaDocelowa() == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))) {
                 return pociag.stacjaZrodlowa;
