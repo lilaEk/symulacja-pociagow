@@ -1,7 +1,6 @@
 import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
 import pociag.Pociag;
-import pociag.RailroadHazard;
 import swing.GUI;
 import symulacja.PociagSymulator;
 import symulacja.RuchPociagow;
@@ -38,11 +37,7 @@ public class Main {
                     continue;
                 }
                 tick++;
-                try {
-                    pociagSymulator.update(System.currentTimeMillis() - now, tick, updatesPerSecond);
-                } catch (RailroadHazard e) {
-                    throw new RuntimeException(e);
-                }
+                pociagSymulator.update(System.currentTimeMillis() - now, tick, updatesPerSecond);
                 gui.repaint();
                 now = System.currentTimeMillis();
             }

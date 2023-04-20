@@ -13,7 +13,7 @@ public class RaportPanel extends JPanel {
     private Pociag pociag;
 
     public RaportPanel() {
-
+        super(new BorderLayout());
         Color c = new Color(0xFFD1DE);
 
         this.raport = new TextArea(12, 35);

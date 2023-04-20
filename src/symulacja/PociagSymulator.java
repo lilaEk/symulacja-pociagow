@@ -20,13 +20,17 @@ public class PociagSymulator {
         this.ruchPociagow = ruchPociagow;
     }
 
-    public void update(long deltaT, long tick, int updatesPerSecond) throws RailroadHazard {
+    public void update(long deltaT, long tick, int updatesPerSecond) {
         for (Pociag pociag : Pociag.getPociagi()) {
             if (pociag.getZaplanowanaTrasaJazdy() == null) {
                 pociag.setZaplanowanaTrasaJazdy(generujTraseJazdy(pociag));
             }
             if (pociag.getZaplanowanaTrasaJazdy() != null) {
-                pociag.jedz(deltaT, tick, updatesPerSecond, ruchPociagow);
+                try {
+                    pociag.jedz(deltaT, tick, updatesPerSecond, ruchPociagow);
+                } catch (RailroadHazard e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
