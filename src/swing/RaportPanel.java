@@ -16,13 +16,13 @@ public class RaportPanel extends JPanel {
         super(new BorderLayout());
         Color c = new Color(0xFFD1DE);
 
-        this.raport = new TextArea(12, 35);
+        this.raport = new TextArea(12, 1);
         raport.setBackground(c);
         raport.setEditable(false);
         raport.setText(tekstRaportu);
-        raport.setSize(300, 300);
 
-        this.add(raport);
+        JScrollPane scrollPane = new JScrollPane(raport);
+        this.add(scrollPane, BorderLayout.CENTER);
 
     }
 
