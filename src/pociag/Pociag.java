@@ -108,16 +108,8 @@ public class Pociag extends Rectangle2D.Double {
         return maxUciag;
     }
 
-    public static Pociag losujPociag(MapaTransportu mapaTransportu) {
-        int losowyIndeks;
-        Pociag losowyPociag;
-        do {
-            losowyIndeks = new Random().nextInt(pociagi.size());
-            losowyPociag = pociagi.get(losowyIndeks);
-        } while (losowyPociag != null);
-
-        losowyPociag = pociagi.get(losowyIndeks);
-        return losowyPociag;
+    public static Pociag losujPociag() {
+        return pociagi.get(new Random().nextInt(pociagi.size()));
     }
 
     public StacjaKolejowa getStacjaMacierzysta() {

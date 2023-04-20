@@ -66,11 +66,9 @@ public class Main {
         String wpisz = "AKTUALIZACJA\n\n " + new Date() + "\n";
 
         StringBuilder sb = new StringBuilder(wpisz);
-        int counterPociagow = 1;
 
         for (Pociag pociag : Pociag.pociagi) {
-            sb.append(counterPociagow + pociag.getNazwaPociagu());
-            counterPociagow++;
+            sb.append(pociag.getNazwaPociagu());
             sb.append(zdajRaportWagonow(pociag));
             sb.append("\n");
         }

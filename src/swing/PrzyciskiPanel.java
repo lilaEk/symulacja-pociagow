@@ -78,9 +78,9 @@ public class PrzyciskiPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Pociag pociag = Pociag.losujPociag(mapaTransportu);
+                Pociag pociag = Pociag.losujPociag();
                 ruchPociagow.usunPociag(pociag);
-                System.out.println("Dodano pociąg o numerze " + pociag.getNazwaPociagu());
+                System.out.println("Usuń pociąg o numerze " + pociag.getNazwaPociagu());
             }
         });
 
