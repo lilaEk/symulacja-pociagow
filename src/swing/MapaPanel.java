@@ -18,6 +18,8 @@ public class MapaPanel extends JPanel {
     private StacjaKolejowa[] wybranaStacja;
 
     public MapaPanel(GUI gui, int mapaWight, int canvasHeight) {
+        super(true);//set Double buffering for JPanel
+
         this.gui = gui;
 
         this.setSize(mapaWight, canvasHeight);
