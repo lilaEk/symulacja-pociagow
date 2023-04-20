@@ -292,7 +292,7 @@ public class Pociag extends Rectangle2D.Double {
             StacjaKolejowa currentSk = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
             if (currentSk == this.stacjaDocelowa || currentSk == this.stacjaMacierzysta) {
                 this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 30_000;
-                this.status = "czeka na postoju 20sek";
+                this.status = "czeka na postoju 30sek";
                 Collections.reverse(this.zaplanowanaTrasaJazdy);
                 this.aktualnaPosredniaTrasaPodrozy = 0;
             }
@@ -313,11 +313,10 @@ public class Pociag extends Rectangle2D.Double {
         //todo nie moga byc na tej samej trasie wcale
         for (Pociag pociag : ruchPociagow.getPociagi()) {
             if (this == pociag) continue;
-            if ((pociag.stacjaZrodlowa == this.getNajblizszaDocelowa() && pociag.getNajblizszaDocelowa() == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))
-//                            || pociag.stacjaZrodlowa == this.stacjaZrodlowa)
-//                            && pociag.zaplanowanaTrasaJazdy.get(aktualnaPosredniaTrasaPodrozy) == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy)
-//
-            ) {
+            if ((pociag.stacjaZrodlowa == this.getNajblizszaDocelowa() && pociag.getNajblizszaDocelowa() == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))) {
+                return pociag.stacjaZrodlowa;
+            }
+            if ((pociag.getNajblizszaDocelowa() == this.getNajblizszaDocelowa() && pociag.stacjaZrodlowa == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))) {
                 return pociag.stacjaZrodlowa;
             }
         }
