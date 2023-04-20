@@ -2,6 +2,7 @@ import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
 import pociag.Pociag;
 import sim.PociagSymulator;
+import sim.RailroadHazard;
 import sim.RuchPociagow;
 import swing.GUI;
 
@@ -15,6 +16,7 @@ public class Main {
 
         for (int i = 0; i < 5; i++) {
             ruchPociagow.dodajPociag(Pociag.generujLosowyPociag(mapaTransportu));
+            System.out.println();
         }
 
         PociagSymulator pociagSymulator = new PociagSymulator(mapaTransportu, ruchPociagow);
@@ -28,7 +30,11 @@ public class Main {
                     continue;
                 }
                 tick++;
-                pociagSymulator.update(System.currentTimeMillis() - now, tick, updatesPerSecond);
+                try {
+                    pociagSymulator.update(System.currentTimeMillis() - now, tick, updatesPerSecond);
+                } catch (RailroadHazard e) {
+                    throw new RuntimeException(e);
+                }
                 gui.repaint();
                 now = System.currentTimeMillis();
             }

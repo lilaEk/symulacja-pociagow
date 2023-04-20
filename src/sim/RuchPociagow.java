@@ -17,7 +17,6 @@ public class RuchPociagow {
     }
 
     public void dodajPociag(Pociag pociag) {
-//        new Pociag(new Lokomotywa(mapaTransportu), Wagon.stworzZestawWagonow(5) );
         this.pociagi.add(pociag);
     }
 

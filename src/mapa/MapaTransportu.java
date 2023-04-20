@@ -4,7 +4,6 @@ import swing.GUI;
 
 import java.util.*;
 
-// przy tworzeniu mapy wylicza środek i wypisuje tam koszt
 public class MapaTransportu {
 
     public Map<StacjaKolejowa, Set<StacjaKolejowa>> trasyKolejowe;
@@ -103,28 +102,26 @@ public class MapaTransportu {
     }
 
     public void usunStacje(StacjaKolejowa stacja, GUI gui) {
-//        if (trasyKolejowe.get(stacja)!=null){
-//            //public Map<StacjaKolejowa, Set<StacjaKolejowa>> trasyKolejowe;
-//            for (StacjaKolejowa sk : trasyKolejowe.keySet() ){
-//
-//            }
-//        }
-//        usunTrasyDlaUsunietejStacji(stacja, gui);
+
         trasyKolejowe.remove(stacja);
     }
 
-//    private void usunTrasyDlaUsunietejStacji(StacjaKolejowa stacja, GUI gui) {
-//
-//        for (StacjaKolejowa s : getListStacjeKolejowe()) {
-//            for (StacjaKolejowa stacjaKolejowa : (trasyKolejowe.get(stacja))) {
-//                StacjaKolejowa[] tmp1 = {stacjaKolejowa, stacja};
-//                StacjaKolejowa[] tmp2 = {stacja, stacjaKolejowa};
-//                if (dlugoscTras.containsKey(tmp1)){dlugoscTras.remove(tmp1);}
-//                if (dlugoscTras.containsKey(tmp2)){dlugoscTras.remove(tmp2);}
-//            }
-//        }
-//        gui.repaint();
-//    }
+    private void usunTrasyDlaUsunietejStacji(StacjaKolejowa stacja, GUI gui) {
+
+        for (StacjaKolejowa s : getListStacjeKolejowe()) {
+            for (StacjaKolejowa stacjaKolejowa : (trasyKolejowe.get(stacja))) {
+                StacjaKolejowa[] tmp1 = {stacjaKolejowa, stacja};
+                StacjaKolejowa[] tmp2 = {stacja, stacjaKolejowa};
+                if (dlugoscTras.containsKey(tmp1)) {
+                    dlugoscTras.remove(tmp1);
+                }
+                if (dlugoscTras.containsKey(tmp2)) {
+                    dlugoscTras.remove(tmp2);
+                }
+            }
+        }
+        gui.repaint();
+    }
 
     public StacjaKolejowa getLosowaStacja() {
         return this.trasyKolejowe.keySet().stream().skip(new Random().nextInt(this.trasyKolejowe.keySet().size())).findFirst().orElse(null);

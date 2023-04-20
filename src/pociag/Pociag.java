@@ -2,9 +2,9 @@ package pociag;
 
 import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
+import sim.RailroadHazard;
 import sim.RuchPociagow;
 import wagony.Wagon;
-import wagony.typWagonu.*;
 
 import java.awt.*;
 import java.util.List;
@@ -12,36 +12,36 @@ import java.util.*;
 
 public class Pociag {
 
-    //todo trycatch
-
-    private final Lokomotywa lokomotywa;
-    public static ArrayList<Pociag> pociagi = new ArrayList<>();
-    private final List<Wagon> wagony;
+    private static final int maxUciag = 1000;
+    private static int maxLiczbaWagonow = 15;
     private static int nrIdentyfikacyjnyPociagu;
-    protected LinkedList<StacjaKolejowa> zaplanowanaTrasaJazdy;
-    private int aktualnaPosredniaTrasaPodrozy = 0;
-
-    private StacjaKolejowa stacjaMacierzysta;
     private static int counter = 1;
-    private StacjaKolejowa stacjaDocelowa;
-    private double przebytaDroga;
-    private long czasRozpoczeciaPostoju = 0;
+    private final int maxPredkosc = 200;
+    private final int maxWagonyPodlaczoneDoElektrycznosci = 5;
+    private final List<Wagon> wagony;
+    public StacjaKolejowa stacjaZrodlowa;
     private String nazwaPociagu;
     private double predkosc = 100;
+    public static ArrayList<Pociag> pociagi = new ArrayList<>();
+    protected LinkedList<StacjaKolejowa> zaplanowanaTrasaJazdy;
+
+    private StacjaKolejowa stacjaMacierzysta;
+    private StacjaKolejowa stacjaDocelowa;
     private String status = "Pociąg jedzie bez zakłóceń.";
-    public StacjaKolejowa stacjaZrodlowa;
+
+    private double przebytaDroga;
+    private int aktualnaPosredniaTrasaPodrozy = 0;
+    private long czasRozpoczeciaPostoju = 0;
 
 
-    public Pociag(Lokomotywa lokomotywa, List<Wagon> wagony, MapaTransportu mapaTransportu) {
-        this.nrIdentyfikacyjnyPociagu = counter; // w pociagu
+    public Pociag(List<Wagon> wagony, MapaTransportu mapaTransportu) {
+        this.nrIdentyfikacyjnyPociagu = counter;
         counter++;
         this.nazwaPociagu = nadajNazwe();
-        this.lokomotywa = lokomotywa;
         this.wagony = wagony;
         this.predkosc = 100;
 
         this.stacjaMacierzysta = mapaTransportu.getLosowaStacja();
-        // todo isReachable - nowo powstala stacja bez polaczen nie moze byc docelowa dla zadnego pociagu
         do {
             this.stacjaDocelowa = mapaTransportu.getLosowaStacja();
         } while (this.stacjaMacierzysta == this.stacjaDocelowa);
@@ -53,43 +53,22 @@ public class Pociag {
         return pociagi;
     }
 
+
     public static Pociag generujLosowyPociag(MapaTransportu mapaTransportu) {
-        int iloscWagonow = 5;
-        return new Pociag(new Lokomotywa(), Wagon.stworzZestawWagonow(iloscWagonow), mapaTransportu);
+        int iloscWagonow = 0;
+        try {
+            iloscWagonow = new Random().nextInt(10) + 5;
+            if (iloscWagonow > maxLiczbaWagonow) {
+                throw new Exception("Przekroczono dopuszczalną ilość wagonów.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return new Pociag(Wagon.stworzZestawWagonow(iloscWagonow), mapaTransportu);
     }
 
-    public static Wagon dodajLosowyWagonDoPociagu() {
-        int losowa = 13;
-        Wagon nowoPodlaczanyWagon;
-        switch (new Random().nextInt(losowa)) {
-            case 0:
-                return nowoPodlaczanyWagon = new BagazowoPocztowy();
-            case 1:
-                return nowoPodlaczanyWagon = new Chlodniczy();
-            case 2:
-                return nowoPodlaczanyWagon = new Pasazerski();
-            case 3:
-                return nowoPodlaczanyWagon = new Pocztowy();
-            case 4:
-                return nowoPodlaczanyWagon = new Restauracyjny();
-            case 5:
-                return nowoPodlaczanyWagon = new TowarowyCiezki();
-            case 6:
-                return nowoPodlaczanyWagon = new TCMaterialyToksyczne();
-            case 7:
-                return nowoPodlaczanyWagon = new TCMaterialyWybuchowe();
-            case 8:
-                return nowoPodlaczanyWagon = new TCMaterialyWybuchoweCiekle();
-            case 9:
-                return nowoPodlaczanyWagon = new TowarowyPodstawowy();
-            case 10:
-                return nowoPodlaczanyWagon = new TPChlodniczy();
-            case 11:
-                return nowoPodlaczanyWagon = new TPMaterialyCiekle();
-            case 12:
-                return nowoPodlaczanyWagon = new TPMaterialyGazowe();
-        }
-        return null;
+    public static int getMaxUciag() {
+        return maxUciag;
     }
 
     public static Pociag losujPociag(MapaTransportu mapaTransportu) {
@@ -131,8 +110,8 @@ public class Pociag {
         return zawartoscRaportu;
     }
 
-    public Lokomotywa liczWage() {
-        return null;
+    private int getMaxLiczbaWagonow() {
+        return getMaxLiczbaWagonow();
     }
 
     @Override
@@ -208,7 +187,6 @@ public class Pociag {
 
     public double getPozycjaY() {
 
-        //test
         if (this.getNajblizszaDocelowa() == null) {
             return stacjaMacierzysta.getY();
         }
@@ -235,7 +213,6 @@ public class Pociag {
         return absY;
     }
 
-
     public LinkedList<StacjaKolejowa> getZaplanowanaTrasaJazdy() {
         return this.zaplanowanaTrasaJazdy;
     }
@@ -244,43 +221,12 @@ public class Pociag {
         this.zaplanowanaTrasaJazdy = trasaJazdy;
     }
 
-//    public void wyznaczObszarDookolaPociagu(Pociag pociag) {
-//    }
-
-    public void jedz(long deltaT, long tick, int updatesPerSecond, RuchPociagow ruchPociagow) {
-        //czas postoju 30 sec
-        if (this.czasRozpoczeciaPostoju > System.currentTimeMillis()) return;
-        if (this.stacjaZrodlowa == null) {
-            // todo kolizja
-            if (znajdzPociagNaTejsamejTrasie(ruchPociagow) == null) {
-                this.stacjaZrodlowa = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
-            }
-            return;
+    public int liczWage(Pociag pociag) {
+        int wagaPociagu = 0;
+        for (Wagon wagon : wagony) {
+            wagaPociagu = wagaPociagu + wagon.getCalkowitaWagaWagonu();
         }
-
-        // pociag jedzie
-        this.przebytaDroga += obliczPrzebytaDroga(deltaT, this.predkosc);
-        long l = deltaT * ((tick % updatesPerSecond) + 4);
-        if (l > 1000) {
-            this.predkosc = nadajPredkosc(); // nie dziala
-        }
-        double dlugoscTrasy = MapaTransportu.obliczDlugoscTrasy(stacjaZrodlowa, getNajblizszaDocelowa());
-        if (this.przebytaDroga >= dlugoscTrasy) {
-            //todo wyciągnąć z mapy transportu - dlugosc tras
-
-            this.stacjaZrodlowa = null;
-            this.aktualnaPosredniaTrasaPodrozy++;
-            this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 2_000;
-            this.przebytaDroga = 0;
-            this.predkosc = predkosc;
-
-            StacjaKolejowa currentSk = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
-            if (currentSk == this.stacjaDocelowa || currentSk == this.stacjaMacierzysta) {
-                this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 30_000;
-                Collections.reverse(this.zaplanowanaTrasaJazdy);
-                this.aktualnaPosredniaTrasaPodrozy = 0;
-            }
-        }
+        return wagaPociagu;
     }
 
 
@@ -313,22 +259,43 @@ public class Pociag {
         this.status = s;
     }
 
-    private StacjaKolejowa znajdzPociagNaTejsamejTrasie(RuchPociagow ruchPociagow) {
-        //todo nie moga byc na tej samej trasie wcale
-        for (Pociag pociag : ruchPociagow.getPociagi()) {
-            if (this == pociag) continue;
-            if (
-                    (pociag.stacjaZrodlowa == this.getNajblizszaDocelowa() && pociag.getNajblizszaDocelowa() == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))
-                // || pociag.stacjaZrodlowa == this.stacjaZrodlowa /*&& pociag.getNajblizszaDocelowa() == this.getNajblizszaDocelowa()*/ - nie moga wjechac na ta sama trase
-            )
-                return pociag.stacjaZrodlowa;
+    public void jedz(long deltaT, long tick, int updatesPerSecond, RuchPociagow ruchPociagow) throws RailroadHazard {
+
+        if (this.czasRozpoczeciaPostoju > System.currentTimeMillis()) return;
+        if (this.stacjaZrodlowa == null) {
+            if (znajdzPociagNaTejsamejTrasie(ruchPociagow) == null) {
+                this.stacjaZrodlowa = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
+            }
+            return;
         }
-        return null;
+        // pociag jedzie
+        this.przebytaDroga += obliczPrzebytaDroga(deltaT, this.predkosc);
+        long l = deltaT * ((tick % updatesPerSecond) + 4);
+        if (l / 1000 > 0) {
+            this.predkosc = nadajPredkosc();
+            if (predkosc > 200) throw new RailroadHazard("Prędkość niedopuszczalna." + this.toString());
+
+        }
+        double dlugoscTrasy = MapaTransportu.obliczDlugoscTrasy(stacjaZrodlowa, getNajblizszaDocelowa());
+        if (this.przebytaDroga >= dlugoscTrasy) {
+
+            this.stacjaZrodlowa = null;
+            this.aktualnaPosredniaTrasaPodrozy++;
+            this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 2_000;
+            this.przebytaDroga = 0;
+            this.predkosc = predkosc;
+
+            StacjaKolejowa currentSk = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
+            if (currentSk == this.stacjaDocelowa || currentSk == this.stacjaMacierzysta) {
+                this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 30_000;
+                Collections.reverse(this.zaplanowanaTrasaJazdy);
+                this.aktualnaPosredniaTrasaPodrozy = 0;
+            }
+        }
     }
 
     public String getNazwaPociagu() {
         return nazwaPociagu;
-        //todo identyfikator
     }
 
     public String nadajNazwe() {
@@ -336,4 +303,28 @@ public class Pociag {
         return nazwaPociagu;
     }
 
+    private StacjaKolejowa znajdzPociagNaTejsamejTrasie(RuchPociagow ruchPociagow) {
+        //todo nie moga byc na tej samej trasie wcale
+        for (Pociag pociag : ruchPociagow.getPociagi()) {
+            if (this == pociag) continue;
+            if (
+                    (pociag.stacjaZrodlowa == this.getNajblizszaDocelowa()
+                            && pociag.getNajblizszaDocelowa() == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))
+//                            || pociag.stacjaZrodlowa == this.stacjaZrodlowa)
+//                            && pociag.zaplanowanaTrasaJazdy.get(aktualnaPosredniaTrasaPodrozy) == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy)
+//
+            ) {
+                return pociag.stacjaZrodlowa;
+            }
+        }
+        return null;
+    }
+
+    public int getMaxPredkosc() {
+        return maxPredkosc;
+    }
+
+    public int getMaxWagonyPodlaczoneDoElektrycznosci() {
+        return maxWagonyPodlaczoneDoElektrycznosci;
+    }
 }

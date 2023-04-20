@@ -30,7 +30,7 @@ public class MapaPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                // todo zamienić na switch
+
                 if (isMouseMode(swing.MouseMode.ADD_STACJE)) {
                     dodajStacjeNaMapie(e, gui);
                     return;
@@ -65,13 +65,13 @@ public class MapaPanel extends JPanel {
             double pociagX = p.getPozycjaX();
             double pociagY = p.getPozycjaY();
 
-//            double distance = Math.sqrt(Math.pow(myszkaX - pociagX, 2) + Math.pow(myszkaY - pociagY, 2));
-//            if (distance <= odleglosc) return p;
+            double distance = Math.sqrt(Math.pow(myszkaX - pociagX, 2) + Math.pow(myszkaY - pociagY, 2));
+            if (distance <= odleglosc) return p;
 
-            if ((myszkaY <= pociagY + odleglosc && myszkaY >= pociagY - odleglosc) &&
-                    (myszkaX <= pociagX + odleglosc && myszkaX >= pociagX - odleglosc)) {
-                return p;
-            }
+//            if ((myszkaY <= pociagY + odleglosc && myszkaY >= pociagY - odleglosc) &&
+//                    (myszkaX <= pociagX + odleglosc && myszkaX >= pociagX - odleglosc)) {
+//                return p;
+//            }
         }
         System.out.println("Nie kliknięto pociagu.");
         return null;
@@ -192,18 +192,6 @@ public class MapaPanel extends JPanel {
                 Cursor c = toolkit.createCustomCursor(image, new Point(0, 0), "img");
                 this.setCursor(c);
             }
-            case ADD_POCIAG -> {
-            }
-
-            case USUN_POCIAG -> {
-            }
-
-            case ADD_TRASE -> {
-            }
-
-            case USUN_TRASE -> {
-            }
-            //todo pousuwac niepotrzebne
             case DEFAULT -> {
                 setCursor(Cursor.getDefaultCursor());
                 repaint();

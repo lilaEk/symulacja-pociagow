@@ -41,7 +41,7 @@ public class BagazowoPocztowy extends Wagon {
     }
 
     public int obliczWage(int iloscBagazu) {
-        return this.wagaDodatkowaWagonu = (int) (wagaDodatkowaWagonu + podstawowaWagaWagonu + iloscBagazu * sredniaWagaBagazu);
+        return this.wagaDodatkowaWagonu = (int) (this.wagaDodatkowaWagonu + super.podstawowaWagaWagonu + iloscBagazu * this.sredniaWagaBagazu);
     }
 
     public boolean sprawdzCzyNadanoPrzesylki() {
@@ -72,8 +72,14 @@ public class BagazowoPocztowy extends Wagon {
     }
 
     @Override
+    public int getCalkowitaWagaWagonu() {
+        return calkowitaWagaWagonu;
+    }
+
+    @Override
     public String toString() {
-        String info = "Wagon bagażowo-pocztowy o numerze" + nrIdentyfikacyjnyWagonu + ". Całkowita waga wagonu wynosi " + calkowitaWagaWagonu + ". Wagon przechowuje " + iloscPrzechowywanegoBagazu + " sztuk bagażu.";
+        String info = "Wagon bagażowo-pocztowy o numerze " + nrIdentyfikacyjnyWagonu + ". Całkowita waga wagonu wynosi " + calkowitaWagaWagonu + ". Wagon przechowuje " + iloscPrzechowywanegoBagazu + " sztuk bagażu." +
+                " Wagon posiada zabezpieczenia: " + rodzajZabezpieczenWagonu;
         if (!this.czyNadanoPrzesylki) return info;
         info = info + " Nadadano przesyłki. Nadawca: " + nadawca + ", odbiorca: " + odbiorca + ".";
         return info;

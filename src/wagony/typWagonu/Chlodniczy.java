@@ -22,7 +22,7 @@ public class Chlodniczy
     public Chlodniczy() {
         super();
 
-        this.calkowitaWagaWagonu = this.wagaDodatkowaWagonu + podstawowaWagaWagonu;
+        this.calkowitaWagaWagonu = super.podstawowaWagaWagonu + this.wagaDodatkowaWagonu;
 
         super.rodzajZabezpieczenWagonu = new ArrayList<>();
         rodzajZabezpieczenWagonu.add(RodzajZabezpieczen.ZABEZPIECZENIA_PRZECIWPOZAROWE);
@@ -60,9 +60,15 @@ public class Chlodniczy
     }
 
     @Override
+    public int getCalkowitaWagaWagonu() {
+        return calkowitaWagaWagonu;
+    }
+
+    @Override
     public String toString() {
-        return "Wagon chłodniczy o numerze" + nrIdentyfikacyjnyWagonu + ". Całkowita waga wagonu wynosi " + calkowitaWagaWagonu +
-                ". Wagon przewozi " + String.valueOf(rodzajPrzewozonegoTowaru) + " w odpowiedniej temperaturze " + pozadanaTemperatura + ".";
+        return "Wagon chłodniczy o numerze " + nrIdentyfikacyjnyWagonu + ". Całkowita waga wagonu wynosi " + calkowitaWagaWagonu +
+                ". Wagon przewozi " + String.valueOf(rodzajPrzewozonegoTowaru) + " w odpowiedniej temperaturze " + pozadanaTemperatura + "." +
+                " Wagon posiada zabezpieczenia: " + rodzajZabezpieczenWagonu;
 
 
     }

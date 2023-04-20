@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
-//bo kolekcje
-
 
 public class StacjaKolejowa extends Ellipse2D.Double {
 

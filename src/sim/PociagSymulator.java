@@ -19,7 +19,7 @@ public class PociagSymulator {
         this.ruchPociagow = ruchPociagow;
     }
 
-    public void update(long deltaT, long tick, int updatesPerSecond) {
+    public void update(long deltaT, long tick, int updatesPerSecond) throws RailroadHazard {
         for (Pociag pociag : ruchPociagow.getPociagi()) {
             if (pociag.getZaplanowanaTrasaJazdy() == null) {
                 pociag.setZaplanowanaTrasaJazdy(generujTraseJazdy(pociag));
@@ -38,7 +38,7 @@ public class PociagSymulator {
             visited.add(pociag.getStacjaMacierzysta());
 
             List<LinkedList<StacjaKolejowa>> ret = findPaths(pociag, paths, currentNode, visited);
-            //todo znajdz najkrotsza sciezke na podstawie dlugosci tras
+
             return ret.get(0);
         } catch (Exception e) {
             pociag.setStatus("Brak połączeń dla trasy między stacją " + pociag.getStacjaMacierzysta().getNazwaStacji() + ", a stacją " + pociag.getStacjaDocelowa().getNazwaStacji() + ". Dodaj połączenie ręcznie.");
