@@ -13,13 +13,13 @@ import java.util.*;
 
 public class Pociag extends Rectangle2D.Double {
 
-    private static final int maxUciag = 1000;
+    private static final int maxUciag = 800;
     private static int maxLiczbaWagonow = 15;
     private static int nrIdentyfikacyjnyPociagu;
     private static int counter = 1;
     private final int maxPredkosc = 200;
     private final int maxWagonyPodlaczoneDoElektrycznosci = 5;
-    private final List<Wagon> wagony;
+    public final List<Wagon> wagony;
     public StacjaKolejowa stacjaZrodlowa;
     private String nazwaPociagu;
     private double predkosc = 100;
@@ -28,12 +28,13 @@ public class Pociag extends Rectangle2D.Double {
 
     private StacjaKolejowa stacjaMacierzysta;
     private StacjaKolejowa stacjaDocelowa;
-    private String status = "Pociąg jedzie bez zakłóceń.";
+    public int liczbaWagonow;
 
     private double przebytaDroga;
     private int aktualnaPosredniaTrasaPodrozy = 0;
     private long czasRozpoczeciaPostoju = 0;
-    private int liczbaWagonow;
+    private String status = "spawned";
+    private ArrayList<Wagon> listaWagonowPociagu;
 
 
     public Pociag(List<Wagon> wagony, MapaTransportu mapaTransportu) {
@@ -67,7 +68,7 @@ public class Pociag extends Rectangle2D.Double {
         return new Pociag(Wagon.stworzZestawWagonow(iloscWagonow), mapaTransportu);
     }
 
-    public static ArrayList<Pociag> getPociagi() {
+    public synchronized static ArrayList<Pociag> getPociagi() {
         return pociagi;
     }
 
@@ -348,5 +349,9 @@ public class Pociag extends Rectangle2D.Double {
 
     public int getMaxWagonyPodlaczoneDoElektrycznosci() {
         return maxWagonyPodlaczoneDoElektrycznosci;
+    }
+
+    public void addWagon(Wagon nowoPodlaczanyWagon) {
+        this.wagony.add(nowoPodlaczanyWagon);
     }
 }

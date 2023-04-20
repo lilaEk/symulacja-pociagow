@@ -4,12 +4,14 @@ package swing;
 import mapa.MapaTransportu;
 import pociag.Pociag;
 import sim.RuchPociagow;
+import wagony.Wagon;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class PrzyciskiPanel extends JPanel {
@@ -49,18 +51,32 @@ public class PrzyciskiPanel extends JPanel {
             }
         });
 
-        JButton dodaj_wagon_do_lokomotywy = new JButton("Dodaj wagon do pociągu");
+        JButton dodaj_wagon_do_lokomotywy = new JButton("Dodaj losowy wagon");
         dodaj_wagon_do_lokomotywy.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                System.out.println("Wybierz lokomotywę, do której chcesz dodać wagon.");
-                //MapaPanel.ktoryPociagKliknieto().Pociag.dodajLosowyWagonDoPociagu();
+                Pociag pociag = Pociag.losujPociag();
+                Wagon.dodajLosowyWagonDoPociagu(pociag);
 
-                //.......................
-                System.out.println("Dodano wagon o numerze ... do wybranego pociągu."); //todo
+                System.out.println("Dodano wagon [ " + (Wagon.stworzZestawWagonow(1)).toString() + " ] do pociągu " + pociag.toString() + ".");
             }
         });
+
+        JButton usun_losowy_wagon = new JButton("Usuń losowy wagon");
+        usun_losowy_wagon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                Pociag pociag = Pociag.losujPociag();
+                List<Wagon> wagony = pociag.wagony;
+                int losowyNrWagonu = new Random().nextInt(wagony.size());
+                System.out.println("w Pociągu: " + pociag);
+                System.out.println("Usunieto wagon [ " + (pociag.wagony.get(losowyNrWagonu)).toString() + " ].");
+                wagony.remove(wagony.get(losowyNrWagonu));
+            }
+        });
+
 
         JButton dodaj_pociag = new JButton("Dodaj losowy pociąg");
         dodaj_pociag.addMouseListener(new MouseAdapter() {
@@ -124,7 +140,7 @@ public class PrzyciskiPanel extends JPanel {
         przyciskiMenu.add(usun_pociag);
 
         przyciskiMenu.add(dodaj_wagon_do_lokomotywy);
-        przyciskiMenu.add(new JButton("Usuń wagon z lokomotywy"));
+        przyciskiMenu.add(usun_losowy_wagon);
 
         przyciskiMenu.add(stworz_polaczenie_miedzy_stacjami);
         przyciskiMenu.add(usun_polczenie_miedzy_stacjami);

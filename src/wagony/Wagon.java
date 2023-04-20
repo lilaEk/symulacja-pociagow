@@ -77,6 +77,55 @@ public abstract class Wagon {
         return null;
     }
 
+    public static void dodajLosowyWagonDoPociagu(Pociag p) {
+        int losowa = new Random().nextInt(12);
+        Wagon nowoPodlaczanyWagon;
+        switch (losowa) {
+            case 0:
+                nowoPodlaczanyWagon = new BagazowoPocztowy();
+                break;
+            case 1:
+                nowoPodlaczanyWagon = new Chlodniczy();
+                break;
+            case 2:
+                nowoPodlaczanyWagon = new Pasazerski();
+                break;
+            case 3:
+                nowoPodlaczanyWagon = new Pocztowy();
+                break;
+            case 4:
+                nowoPodlaczanyWagon = new Restauracyjny();
+                break;
+            case 5:
+                nowoPodlaczanyWagon = new TowarowyCiezki();
+                break;
+            case 6:
+                nowoPodlaczanyWagon = new TCMaterialyToksyczne();
+                break;
+            case 7:
+                nowoPodlaczanyWagon = new TCMaterialyWybuchowe();
+                break;
+            case 8:
+                nowoPodlaczanyWagon = new TCMaterialyWybuchoweCiekle();
+                break;
+            case 9:
+                nowoPodlaczanyWagon = new TowarowyPodstawowy();
+                break;
+            case 10:
+                nowoPodlaczanyWagon = new TPChlodniczy();
+                break;
+            case 11:
+                nowoPodlaczanyWagon = new TPMaterialyCiekle();
+                break;
+            case 12:
+                nowoPodlaczanyWagon = new TPMaterialyGazowe();
+                break;
+            default:
+                nowoPodlaczanyWagon = new Pasazerski();
+        }
+        p.addWagon(nowoPodlaczanyWagon);
+    }
+
     public int getCalkowitaWagaWagonu() {
         return calkowitaWagaWagonu;
     }

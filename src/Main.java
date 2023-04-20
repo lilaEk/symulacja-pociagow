@@ -16,14 +16,13 @@ import static pociag.Pociag.zdajRaportWagonow;
 
 
 public class Main {
-    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(20));
+    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(100));
     final static RuchPociagow ruchPociagow = new RuchPociagow(mapaTransportu);
     final static int updatesPerSecond = 60;
 
     public static void main(String[] args) throws InterruptedException {
 
-        for (int i = 0; i < 5; i++) {
-
+        for (int i = 0; i < 25; i++) {
             Pociag.generujLosowyPociag(mapaTransportu, new Random().nextInt(10) + 5);
             System.out.println();
         }
@@ -64,14 +63,14 @@ public class Main {
     }
 
     public static void dodajDoPlikuStatystyki() {
-        String wpisz = "AKTUALIZACJA\n\n " + new Date() + "\n";
+        String wpisz = "\nAKTUALIZACJA\n\n " + new Date() + "\n";
 
         StringBuilder sb = new StringBuilder(wpisz);
 
         for (Pociag pociag : Pociag.pociagi) {
             sb.append(pociag.getNazwaPociagu());
             sb.append(zdajRaportWagonow(pociag));
-            sb.append("\n");
+            sb.append("\n\n");
         }
 
         FileWriter fw = null;

@@ -141,7 +141,6 @@ public class MapaPanel extends JPanel {
         System.out.println("Wybrano współrzędne " + e.getX() + " " + e.getY());
         for (StacjaKolejowa sk : gui.mapaTransportu.getListStacjeKolejowe()) {
 
-//            if (e.getX()==sk.getX() && e.getY()==sk.getY()){
             double distance = Math.sqrt(Math.pow(e.getX() - sk.getX(), 2) + Math.pow(e.getY() - sk.getY(), 2));
             if (distance < 20) {
                 gui.mapaTransportu.usunStacje(sk, gui);
