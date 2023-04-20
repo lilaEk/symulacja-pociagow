@@ -152,16 +152,12 @@ public class Pociag extends Rectangle2D.Double {
     }
 
     public String procentTrasyMiedzyStacjami() {
-        if (this.stacjaDocelowa == null) return "0 %";
-        double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(this.stacjaDocelowa, this.getNajblizszaDocelowa());
+        if (this.stacjaZrodlowa == null) return "0 %";
+        double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(this.stacjaZrodlowa, this.getNajblizszaDocelowa());
         double procentTrasy = this.przebytaDroga / pelnaDlugosc; // todo oblicz przebytą drogę
         return String.valueOf(procentTrasy * 100) + " %";
     }
-//    public String procentTrasyCalej(){ ---- obliczy w linii prostej
-//        double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(stacjaZrodlowa, this.stacjaDocelowa);
-//        double procentTrasy = this.przebytaDroga / pelnaDlugosc;
-//        return String.valueOf(procentTrasy*100)+"%";
-//    }
+
 
     public double getPozycjaX() {
 
@@ -271,9 +267,11 @@ public class Pociag extends Rectangle2D.Double {
             if (znajdzPociagNaTejsamejTrasie(ruchPociagow) == null) {
                 this.stacjaZrodlowa = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
             }
+            this.status = "czeka az inny pociąg zjedzie z trasy";
             return;
         }
         // pociag jedzie
+        this.status = "jedzie";
         this.przebytaDroga += obliczPrzebytaDroga(deltaT, this.predkosc);
         long l = deltaT * ((tick % updatesPerSecond) + 4);
         if (l / 1000 > 0) {
@@ -287,12 +285,14 @@ public class Pociag extends Rectangle2D.Double {
             this.stacjaZrodlowa = null;
             this.aktualnaPosredniaTrasaPodrozy++;
             this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 2_000;
+            this.status = "czeka na postoju 2sek";
             this.przebytaDroga = 0;
             this.predkosc = predkosc;
 
             StacjaKolejowa currentSk = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
             if (currentSk == this.stacjaDocelowa || currentSk == this.stacjaMacierzysta) {
                 this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 30_000;
+                this.status = "czeka na postoju 20sek";
                 Collections.reverse(this.zaplanowanaTrasaJazdy);
                 this.aktualnaPosredniaTrasaPodrozy = 0;
             }
