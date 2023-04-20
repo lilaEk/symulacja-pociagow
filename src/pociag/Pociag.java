@@ -7,10 +7,11 @@ import sim.RuchPociagow;
 import wagony.Wagon;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.*;
 
-public class Pociag {
+public class Pociag extends Rectangle2D.Double {
 
     private static final int maxUciag = 1000;
     private static int maxLiczbaWagonow = 15;
@@ -32,9 +33,14 @@ public class Pociag {
     private double przebytaDroga;
     private int aktualnaPosredniaTrasaPodrozy = 0;
     private long czasRozpoczeciaPostoju = 0;
+    private int liczbaWagonow;
 
 
     public Pociag(List<Wagon> wagony, MapaTransportu mapaTransportu) {
+        // dla rysowania kwadratu na mapie
+        this.width = 10;
+        this.height = this.width;
+
         this.nrIdentyfikacyjnyPociagu = counter;
         counter++;
         this.nazwaPociagu = nadajNazwe();
@@ -47,17 +53,11 @@ public class Pociag {
         } while (this.stacjaMacierzysta == this.stacjaDocelowa);
 
         pociagi.add(this);
+        this.liczbaWagonow = policzWagony();
     }
 
-    public static ArrayList<Pociag> getPociagi() {
-        return pociagi;
-    }
-
-
-    public static Pociag generujLosowyPociag(MapaTransportu mapaTransportu) {
-        int iloscWagonow = 0;
+    public static Pociag generujLosowyPociag(MapaTransportu mapaTransportu, int iloscWagonow) {
         try {
-            iloscWagonow = new Random().nextInt(10) + 5;
             if (iloscWagonow > maxLiczbaWagonow) {
                 throw new Exception("Przekroczono dopuszczalną ilość wagonów.");
             }
@@ -65,6 +65,25 @@ public class Pociag {
             throw new RuntimeException(e);
         }
         return new Pociag(Wagon.stworzZestawWagonow(iloscWagonow), mapaTransportu);
+    }
+
+    public static ArrayList<Pociag> getPociagi() {
+        return pociagi;
+    }
+
+    public static String zdajRaportPociagu(Pociag pociag) {
+        String nazwaStacji = pociag.stacjaMacierzysta.getNazwaStacji();
+        String ostatniaPoprzedniaStacji = pociag.stacjaZrodlowa != null ? pociag.stacjaZrodlowa.getNazwaStacji() : pociag.stacjaMacierzysta.getNazwaStacji();
+        String docelowa = pociag.stacjaDocelowa != null ? pociag.stacjaDocelowa.getNazwaStacji() : "Nie utworzono trasy - brak stacji docelowej";
+        String procent1 = pociag.procentTrasyMiedzyStacjami() != null ? pociag.procentTrasyMiedzyStacjami() : "Nie utworzono trasy - 0%";
+        String procent2 = null; //todo
+        String informacjeWagony = null; //todo
+
+
+        String zawartoscRaportu = pociag.toString() + "\nStatus pociągu: " + pociag.status + "\nStacja macierzysta: " + nazwaStacji + "\nStacja, z której ostatnio wyjechano: " + ostatniaPoprzedniaStacji + "\nStacja docelowa: " + docelowa + "\nAktualna prędkość: " + pociag.predkosc + // czy poprawnie
+                "\nProcent ukończonej drogi na całej trasie: " + procent2 + "\nProcent ukończonej drogi na do najbliższej stacji: " + procent1 + "\nLiczba wagonów: " + pociag.liczbaWagonow + "\nRodzaj wagonów i zawartość: " + informacjeWagony;
+
+        return zawartoscRaportu;
     }
 
     public static int getMaxUciag() {
@@ -90,24 +109,9 @@ public class Pociag {
         return Math.random() < 0.5 ? this.predkosc * 1.03 : this.predkosc * 0.97;
     }
 
-    public static String zdajRaportPociagu(Pociag pociag) {
-        String nazwaStacji = pociag.stacjaMacierzysta.getNazwaStacji();
-        String ostatniaPoprzedniaStacji = pociag.stacjaZrodlowa != null ? pociag.stacjaZrodlowa.getNazwaStacji() : pociag.stacjaMacierzysta.getNazwaStacji();
-        String docelowa = pociag.stacjaDocelowa != null ? pociag.stacjaDocelowa.getNazwaStacji() : "Nie utworzono trasy - brak stacji docelowej";
-        String procent1 = pociag.procentTrasyMiedzyStacjami() != null ? pociag.procentTrasyMiedzyStacjami() : "Nie utworzono trasy - 0%";
-
-        String zawartoscRaportu = pociag.toString() +
-                "\nStatus pociągu: " + pociag.status +
-                "\nStacja macierzysta: " + nazwaStacji +
-                "\nStacja, z której ostatnio wyjechano: " + ostatniaPoprzedniaStacji +
-                "\nStacja docelowa: " + docelowa +
-                "\nAktualna prędkość: " + pociag.predkosc + // czy poprawnie
-                "\nProcent ukończonej drogi na całej trasie: " + "DO DODANIA" + // todo
-                "\nProcent ukończonej drogi na do najbliższej stacji: " + procent1 +
-                "\nLiczba wagonów: " + "DO DODANIA" + //todo
-                "\nRodzaj wagonów i zawartość: " + "DO DODANIA" //todo
-                ;
-        return zawartoscRaportu;
+    private int policzWagony() {
+        int iloscWagonow = new Random().nextInt(10) + 5;
+        return iloscWagonow;
     }
 
     private int getMaxLiczbaWagonow() {
@@ -124,31 +128,32 @@ public class Pociag {
         g2d.setPaint(Color.GREEN);
         int dlugoscBoku = 10;
         if (this.zaplanowanaTrasaJazdy == null) {
-            g2d.fillRect((int) this.stacjaMacierzysta.getX() - dlugoscBoku / 2, (int) this.stacjaMacierzysta.getY() - dlugoscBoku / 2, dlugoscBoku, dlugoscBoku);
+            this.x = (int) this.stacjaMacierzysta.getX() - this.width / 2;
+            this.y = (int) this.stacjaMacierzysta.getY() - this.width / 2;
+            g2d.fill(this);
             return;
         }
         if (this.stacjaZrodlowa == null) {
-
             StacjaKolejowa stacjaKolejowa = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
-            g2d.fillRect((int) stacjaKolejowa.getX() - dlugoscBoku / 2, (int) stacjaKolejowa.getY() - dlugoscBoku / 2, dlugoscBoku, dlugoscBoku);
-
+            this.x = (int) stacjaKolejowa.getX() - this.width / 2;
+            this.y = (int) stacjaKolejowa.getY() - this.width / 2;
+            g2d.fill(this);
             return;
         }
         skaluj(g2d);
     }
 
     public void skaluj(Graphics2D g2d) {
-
         double x = this.stacjaZrodlowa.getX();
         double y = this.stacjaZrodlowa.getY();
-
-        g2d.fillRect((int) (x + getPozycjaX()) - 5, (int) (y + getPozycjaY()) - 5, 10, 10);
+        this.x = x + getPozycjaX() - this.width / 2;
+        this.y = y + getPozycjaY() - this.width / 2;
+        g2d.fill(this);
     }
 
     public String procentTrasyMiedzyStacjami() {
-        if (stacjaZrodlowa == null) stacjaZrodlowa = this.stacjaMacierzysta;
-        if (stacjaDocelowa == null) return "0 %";
-        double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(stacjaZrodlowa, this.getNajblizszaDocelowa());
+        if (this.stacjaDocelowa == null) return "0 %";
+        double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(this.stacjaDocelowa, this.getNajblizszaDocelowa());
         double procentTrasy = this.przebytaDroga / pelnaDlugosc; // todo oblicz przebytą drogę
         return String.valueOf(procentTrasy * 100) + " %";
     }
@@ -292,6 +297,7 @@ public class Pociag {
                 this.aktualnaPosredniaTrasaPodrozy = 0;
             }
         }
+
     }
 
     public String getNazwaPociagu() {
@@ -307,9 +313,7 @@ public class Pociag {
         //todo nie moga byc na tej samej trasie wcale
         for (Pociag pociag : ruchPociagow.getPociagi()) {
             if (this == pociag) continue;
-            if (
-                    (pociag.stacjaZrodlowa == this.getNajblizszaDocelowa()
-                            && pociag.getNajblizszaDocelowa() == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))
+            if ((pociag.stacjaZrodlowa == this.getNajblizszaDocelowa() && pociag.getNajblizszaDocelowa() == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))
 //                            || pociag.stacjaZrodlowa == this.stacjaZrodlowa)
 //                            && pociag.zaplanowanaTrasaJazdy.get(aktualnaPosredniaTrasaPodrozy) == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy)
 //

@@ -43,11 +43,11 @@ public class MapaPanel extends JPanel {
                     usunTraseNaMapie(e, gui);
                 } else {
                     System.out.println("Kliknięto: " + e.getX() + " " + e.getY());
-                    Pociag kliknietyPociag = ktoryPociagKliknieto(e);
-                    if (kliknietyPociag != null) {
-                        wyswietlRaportDlaPociagu(kliknietyPociag);
-                        System.out.println("Wyświetlono raport dla pociągu " + kliknietyPociag.getNazwaPociagu());
-                        kliknietyPociag = null;
+                    for (Pociag p : Pociag.getPociagi()) {
+                        if (p.contains(e.getPoint())) {
+                            wyswietlRaportDlaPociagu(p);
+                            System.out.println("Wyświetlono raport dla pociągu " + p.getNazwaPociagu());
+                        }
                     }
                 }
             }
@@ -55,27 +55,7 @@ public class MapaPanel extends JPanel {
         this.setVisible(true);
     }
 
-    private Pociag ktoryPociagKliknieto(MouseEvent e) {
 
-        int odleglosc = 30;
-        for (Pociag p : Pociag.getPociagi()) {
-            int myszkaX = e.getX();
-            int myszkaY = e.getY();
-
-            double pociagX = p.getPozycjaX();
-            double pociagY = p.getPozycjaY();
-
-            double distance = Math.sqrt(Math.pow(myszkaX - pociagX, 2) + Math.pow(myszkaY - pociagY, 2));
-            if (distance <= odleglosc) return p;
-
-//            if ((myszkaY <= pociagY + odleglosc && myszkaY >= pociagY - odleglosc) &&
-//                    (myszkaX <= pociagX + odleglosc && myszkaX >= pociagX - odleglosc)) {
-//                return p;
-//            }
-        }
-        System.out.println("Nie kliknięto pociagu.");
-        return null;
-    }
 
     private void wyswietlRaportDlaPociagu(Pociag pociag) {
         this.gui.raportPanel.wyswietlNowyRaport(pociag);

@@ -6,6 +6,8 @@ import sim.RailroadHazard;
 import sim.RuchPociagow;
 import swing.GUI;
 
+import java.util.Random;
+
 
 public class Main {
     final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(20));
@@ -15,7 +17,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         for (int i = 0; i < 5; i++) {
-            ruchPociagow.dodajPociag(Pociag.generujLosowyPociag(mapaTransportu));
+            ruchPociagow.dodajPociag(Pociag.generujLosowyPociag(mapaTransportu, new Random().nextInt(10) + 5));
             System.out.println();
         }
 

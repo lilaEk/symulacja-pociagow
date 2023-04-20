@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PrzyciskiPanel extends JPanel {
     public PrzyciskiPanel(MapaPanel mapaPanel, RuchPociagow ruchPociagow, MapaTransportu mapaTransportu) {
@@ -66,7 +67,7 @@ public class PrzyciskiPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Pociag pociag = Pociag.generujLosowyPociag(mapaTransportu);
+                Pociag pociag = Pociag.generujLosowyPociag(mapaTransportu, new Random().nextInt(10) + 5);
                 ruchPociagow.dodajPociag(pociag);
                 System.out.println("Dodano pociąg o numerze " + pociag.getNazwaPociagu());
             }
