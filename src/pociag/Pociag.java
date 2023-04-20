@@ -71,28 +71,52 @@ public class Pociag extends Rectangle2D.Double {
         return pociagi;
     }
 
+    public static String zdajRaportWagonow(Pociag pociag) {
+        String informacjeWagony = "\nRodzaj wagonów i zawartość: ";
+        StringBuilder sb = new StringBuilder(informacjeWagony);
+        int counter = 1;
+        for (Wagon wagon : pociag.wagony) {
+            sb.append("\n" + counter + ". " + wagon);
+            counter++;
+        }
+        return sb.toString();
+    }
+
     public static String zdajRaportPociagu(Pociag pociag) {
         String nazwaStacji = pociag.stacjaMacierzysta.getNazwaStacji();
         String ostatniaPoprzedniaStacji = pociag.stacjaZrodlowa != null ? pociag.stacjaZrodlowa.getNazwaStacji() : pociag.stacjaMacierzysta.getNazwaStacji();
         String docelowa = pociag.stacjaDocelowa != null ? pociag.stacjaDocelowa.getNazwaStacji() : "Nie utworzono trasy - brak stacji docelowej";
         String procent1 = pociag.procentTrasyMiedzyStacjami() != null ? pociag.procentTrasyMiedzyStacjami() : "Nie utworzono trasy - 0%";
         String procent2 = null; //todo
-        String informacjeWagony = null; //todo
 
 
-        String zawartoscRaportu = pociag.toString() + "\nStatus pociągu: " + pociag.status + "\nStacja macierzysta: " + nazwaStacji + "\nStacja, z której ostatnio wyjechano: " + ostatniaPoprzedniaStacji + "\nStacja docelowa: " + docelowa + "\nAktualna prędkość: " + pociag.predkosc + // czy poprawnie
-                "\nProcent ukończonej drogi na całej trasie: " + procent2 + "\nProcent ukończonej drogi na do najbliższej stacji: " + procent1 + "\nLiczba wagonów: " + pociag.liczbaWagonow + "\nRodzaj wagonów i zawartość: " + informacjeWagony;
+        String zawartoscRaportu = pociag.toString() + "\nStatus pociągu: " + pociag.status +
+                "\nStacja macierzysta: " + nazwaStacji +
+                "\nStacja, z której ostatnio wyjechano: " + ostatniaPoprzedniaStacji +
+                "\nStacja docelowa: " + docelowa +
+                "\nAktualna prędkość: " + pociag.predkosc +
+                "\nProcent ukończonej drogi na całej trasie: " + procent2 +
+                "\nProcent ukończonej drogi na do najbliższej stacji: " + procent1 +
+                "\nLiczba wagonów: " + pociag.liczbaWagonow +
+                zdajRaportWagonow(pociag);
 
         return zawartoscRaportu;
     }
+
 
     public static int getMaxUciag() {
         return maxUciag;
     }
 
     public static Pociag losujPociag(MapaTransportu mapaTransportu) {
-        int losowyIndeks = new Random().nextInt(pociagi.size());
-        Pociag losowyPociag = pociagi.get(losowyIndeks);
+        int losowyIndeks;
+        Pociag losowyPociag;
+        do {
+            losowyIndeks = new Random().nextInt(pociagi.size());
+            losowyPociag = pociagi.get(losowyIndeks);
+        } while (losowyPociag != null);
+
+        losowyPociag = pociagi.get(losowyIndeks);
         return losowyPociag;
     }
 
@@ -267,11 +291,11 @@ public class Pociag extends Rectangle2D.Double {
             if (znajdzPociagNaTejsamejTrasie(ruchPociagow) == null) {
                 this.stacjaZrodlowa = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
             }
-            this.status = "czeka az inny pociąg zjedzie z trasy";
+            this.status = "Oczekuje aż inny pociąg zjedzie z trasy.";
             return;
         }
         // pociag jedzie
-        this.status = "jedzie";
+        this.status = "Jedzie.";
         this.przebytaDroga += obliczPrzebytaDroga(deltaT, this.predkosc);
         long l = deltaT * ((tick % updatesPerSecond) + 4);
         if (l / 1000 > 0) {
@@ -285,14 +309,14 @@ public class Pociag extends Rectangle2D.Double {
             this.stacjaZrodlowa = null;
             this.aktualnaPosredniaTrasaPodrozy++;
             this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 2_000;
-            this.status = "czeka na postoju 2sek";
+            this.status = "Czeka na postoju - 2 sek.";
             this.przebytaDroga = 0;
             this.predkosc = predkosc;
 
             StacjaKolejowa currentSk = this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy);
             if (currentSk == this.stacjaDocelowa || currentSk == this.stacjaMacierzysta) {
                 this.czasRozpoczeciaPostoju = System.currentTimeMillis() + 30_000;
-                this.status = "czeka na postoju 30sek";
+                this.status = "Czeka na postoju - 30 sek.";
                 Collections.reverse(this.zaplanowanaTrasaJazdy);
                 this.aktualnaPosredniaTrasaPodrozy = 0;
             }
@@ -310,7 +334,6 @@ public class Pociag extends Rectangle2D.Double {
     }
 
     private StacjaKolejowa znajdzPociagNaTejsamejTrasie(RuchPociagow ruchPociagow) {
-        //todo nie moga byc na tej samej trasie wcale
         for (Pociag pociag : ruchPociagow.getPociagi()) {
             if (this == pociag) continue;
             if ((pociag.stacjaZrodlowa == this.getNajblizszaDocelowa() && pociag.getNajblizszaDocelowa() == this.zaplanowanaTrasaJazdy.get(this.aktualnaPosredniaTrasaPodrozy))) {

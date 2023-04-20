@@ -62,7 +62,7 @@ public class PrzyciskiPanel extends JPanel {
             }
         });
 
-        JButton dodaj_pociag = new JButton("Dodaj pociąg");
+        JButton dodaj_pociag = new JButton("Dodaj losowy pociąg");
         dodaj_pociag.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -73,7 +73,7 @@ public class PrzyciskiPanel extends JPanel {
             }
         });
 
-        JButton usun_pociag = new JButton("Usuń pociąg");
+        JButton usun_pociag = new JButton("Usuń losowy pociąg");
         usun_pociag.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

@@ -1,0 +1,189 @@
+AKTUALIZACJA
+
+ Thu Apr 20 13:21:20 CEST 2023
+1TRAIN1
+Rodzaj wagonów i zawartość: 
+1. TPMaterialyGazowe{wagaDodatkowaWagonu=10, calkowitaWagaWagonu=40, nrIdentyfikacyjnyWagonu=1}
+2. Wagon pocztowy o numerze 2. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 977 paczek i listów. Czy załadowano towar: true.
+3. Wagon restauracyjny o numerze 3. Całkowita waga wagonu wynosi 32. Wagon serwuje kuchnię: KUCHNIA_FRANCUSKA. Aktualnie w wagonie przebywa 93. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+4. TPChlodniczy{wagaDodatkowaWagonu=6, calkowitaWagaWagonu=36, nrIdentyfikacyjnyWagonu=4}
+5. TowarowyPodstawowy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=5}
+6. Wagon pocztowy o numerze 6. Całkowita waga wagonu wynosi 35Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 451 paczek i listów. Czy załadowano towar: false.
+7. TowarowyPodstawowy{wagaDodatkowaWagonu=6, calkowitaWagaWagonu=36, nrIdentyfikacyjnyWagonu=7}
+8. TPChlodniczy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=8}
+9. TowarowyCiezki{wagaDodatkowaWagonu=16, calkowitaWagaWagonu=46, nrIdentyfikacyjnyWagonu=9}
+10. Wagon pasażerski o numerze 10. Całkowita waga wagonu wynosi 30. Liczba miejsc siedzacych to 150, a obecna ilość pasażerów wysoni 59. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+2TRAIN2
+Rodzaj wagonów i zawartość: 
+1. Wagon chłodniczy o numerze 11. Całkowita waga wagonu wynosi 35. Wagon przewozi OWOCE_I_WARZYWA w odpowiedniej temperaturze 3. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+2. Wagon chłodniczy o numerze 12. Całkowita waga wagonu wynosi 36. Wagon przewozi OWOCE_I_WARZYWA w odpowiedniej temperaturze 0. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+3. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=15, calkowitaWagaWagonu=45, nrIdentyfikacyjnyWagonu=13}
+4. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=14}
+5. Wagon pocztowy o numerze 15. Całkowita waga wagonu wynosi 30Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 797 paczek i listów. Czy załadowano towar: false.
+6. TowarowyPodstawowy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=16}
+3TRAIN3
+Rodzaj wagonów i zawartość: 
+1. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=17}
+2. TCMaterialyToksyczne{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=18}
+3. TPMaterialyCiekle{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=19}
+4. Wagon chłodniczy o numerze 20. Całkowita waga wagonu wynosi 35. Wagon przewozi PRODUKTY_MROZONE w odpowiedniej temperaturze -24. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+5. TPChlodniczy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=21}
+6. Wagon bagażowo-pocztowy o numerze 22. Całkowita waga wagonu wynosi 55. Wagon przechowuje 39 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU] Nadadano przesyłki. Nadawca: Pani Ania, odbiorca: Pani Zosia.
+7. Wagon chłodniczy o numerze 23. Całkowita waga wagonu wynosi 36. Wagon przewozi PRODUKTY_MROZONE w odpowiedniej temperaturze -21. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+8. TPChlodniczy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=24}
+9. TCMaterialyToksyczne{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=25}
+10. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=24, calkowitaWagaWagonu=54, nrIdentyfikacyjnyWagonu=26}
+4TRAIN4
+Rodzaj wagonów i zawartość: 
+1. Wagon pocztowy o numerze 27. Całkowita waga wagonu wynosi 39Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 8 paczek i listów. Czy załadowano towar: false.
+2. Wagon pocztowy o numerze 28. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 755 paczek i listów. Czy załadowano towar: true.
+3. Wagon pasażerski o numerze 29. Całkowita waga wagonu wynosi 30. Liczba miejsc siedzacych to 150, a obecna ilość pasażerów wysoni 174. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+4. TowarowyCiezki{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=30}
+5. TPMaterialyGazowe{wagaDodatkowaWagonu=14, calkowitaWagaWagonu=44, nrIdentyfikacyjnyWagonu=31}
+6. Wagon restauracyjny o numerze 32. Całkowita waga wagonu wynosi 31. Wagon serwuje kuchnię: KUCHNIA_FRANCUSKA. Aktualnie w wagonie przebywa 41. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+7. Wagon pocztowy o numerze 33. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 635 paczek i listów. Czy załadowano towar: false.
+8. Wagon bagażowo-pocztowy o numerze 34. Całkowita waga wagonu wynosi 48. Wagon przechowuje 30 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU]
+9. TowarowyPodstawowy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=35}
+10. TPMaterialyGazowe{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=36}
+11. Wagon chłodniczy o numerze 37. Całkowita waga wagonu wynosi 33. Wagon przewozi PRODUKTY_MIĘSNE w odpowiedniej temperaturze 1. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+5TRAIN5
+Rodzaj wagonów i zawartość: 
+1. TCMaterialyWybuchowe{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=38}
+2. TPChlodniczy{wagaDodatkowaWagonu=8, calkowitaWagaWagonu=38, nrIdentyfikacyjnyWagonu=39}
+3. TowarowyCiezki{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=40}
+4. TPChlodniczy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=41}
+5. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=42}
+6. Wagon bagażowo-pocztowy o numerze 43. Całkowita waga wagonu wynosi 67. Wagon przechowuje 64 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU]
+7. TPChlodniczy{wagaDodatkowaWagonu=7, calkowitaWagaWagonu=37, nrIdentyfikacyjnyWagonu=44}
+8. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=45}
+9. TCMaterialyToksyczne{wagaDodatkowaWagonu=22, calkowitaWagaWagonu=52, nrIdentyfikacyjnyWagonu=46}
+10. TPChlodniczy{wagaDodatkowaWagonu=7, calkowitaWagaWagonu=37, nrIdentyfikacyjnyWagonu=47}
+11. Wagon chłodniczy o numerze 48. Całkowita waga wagonu wynosi 35. Wagon przewozi PRODUKTY_MIĘSNE w odpowiedniej temperaturze 0. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+12. Wagon restauracyjny o numerze 49. Całkowita waga wagonu wynosi 30. Wagon serwuje kuchnię: KUCHNIA_INDYJSKA. Aktualnie w wagonie przebywa 4. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+13. TPMaterialyCiekle{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=50}
+AKTUALIZACJA
+
+ Thu Apr 20 13:21:28 CEST 2023
+1TRAIN1
+Rodzaj wagonów i zawartość: 
+1. TPMaterialyGazowe{wagaDodatkowaWagonu=10, calkowitaWagaWagonu=40, nrIdentyfikacyjnyWagonu=1}
+2. Wagon pocztowy o numerze 2. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 977 paczek i listów. Czy załadowano towar: true.
+3. Wagon restauracyjny o numerze 3. Całkowita waga wagonu wynosi 32. Wagon serwuje kuchnię: KUCHNIA_FRANCUSKA. Aktualnie w wagonie przebywa 93. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+4. TPChlodniczy{wagaDodatkowaWagonu=6, calkowitaWagaWagonu=36, nrIdentyfikacyjnyWagonu=4}
+5. TowarowyPodstawowy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=5}
+6. Wagon pocztowy o numerze 6. Całkowita waga wagonu wynosi 35Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 451 paczek i listów. Czy załadowano towar: false.
+7. TowarowyPodstawowy{wagaDodatkowaWagonu=6, calkowitaWagaWagonu=36, nrIdentyfikacyjnyWagonu=7}
+8. TPChlodniczy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=8}
+9. TowarowyCiezki{wagaDodatkowaWagonu=16, calkowitaWagaWagonu=46, nrIdentyfikacyjnyWagonu=9}
+10. Wagon pasażerski o numerze 10. Całkowita waga wagonu wynosi 30. Liczba miejsc siedzacych to 150, a obecna ilość pasażerów wysoni 59. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+2TRAIN2
+Rodzaj wagonów i zawartość: 
+1. Wagon chłodniczy o numerze 11. Całkowita waga wagonu wynosi 35. Wagon przewozi OWOCE_I_WARZYWA w odpowiedniej temperaturze 3. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+2. Wagon chłodniczy o numerze 12. Całkowita waga wagonu wynosi 36. Wagon przewozi OWOCE_I_WARZYWA w odpowiedniej temperaturze 0. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+3. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=15, calkowitaWagaWagonu=45, nrIdentyfikacyjnyWagonu=13}
+4. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=14}
+5. Wagon pocztowy o numerze 15. Całkowita waga wagonu wynosi 30Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 797 paczek i listów. Czy załadowano towar: false.
+6. TowarowyPodstawowy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=16}
+3TRAIN3
+Rodzaj wagonów i zawartość: 
+1. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=17}
+2. TCMaterialyToksyczne{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=18}
+3. TPMaterialyCiekle{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=19}
+4. Wagon chłodniczy o numerze 20. Całkowita waga wagonu wynosi 35. Wagon przewozi PRODUKTY_MROZONE w odpowiedniej temperaturze -24. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+5. TPChlodniczy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=21}
+6. Wagon bagażowo-pocztowy o numerze 22. Całkowita waga wagonu wynosi 55. Wagon przechowuje 39 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU] Nadadano przesyłki. Nadawca: Pani Ania, odbiorca: Pani Zosia.
+7. Wagon chłodniczy o numerze 23. Całkowita waga wagonu wynosi 36. Wagon przewozi PRODUKTY_MROZONE w odpowiedniej temperaturze -21. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+8. TPChlodniczy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=24}
+9. TCMaterialyToksyczne{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=25}
+10. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=24, calkowitaWagaWagonu=54, nrIdentyfikacyjnyWagonu=26}
+4TRAIN4
+Rodzaj wagonów i zawartość: 
+1. Wagon pocztowy o numerze 27. Całkowita waga wagonu wynosi 39Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 8 paczek i listów. Czy załadowano towar: false.
+2. Wagon pocztowy o numerze 28. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 755 paczek i listów. Czy załadowano towar: true.
+3. Wagon pasażerski o numerze 29. Całkowita waga wagonu wynosi 30. Liczba miejsc siedzacych to 150, a obecna ilość pasażerów wysoni 174. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+4. TowarowyCiezki{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=30}
+5. TPMaterialyGazowe{wagaDodatkowaWagonu=14, calkowitaWagaWagonu=44, nrIdentyfikacyjnyWagonu=31}
+6. Wagon restauracyjny o numerze 32. Całkowita waga wagonu wynosi 31. Wagon serwuje kuchnię: KUCHNIA_FRANCUSKA. Aktualnie w wagonie przebywa 41. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+7. Wagon pocztowy o numerze 33. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 635 paczek i listów. Czy załadowano towar: false.
+8. Wagon bagażowo-pocztowy o numerze 34. Całkowita waga wagonu wynosi 48. Wagon przechowuje 30 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU]
+9. TowarowyPodstawowy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=35}
+10. TPMaterialyGazowe{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=36}
+11. Wagon chłodniczy o numerze 37. Całkowita waga wagonu wynosi 33. Wagon przewozi PRODUKTY_MIĘSNE w odpowiedniej temperaturze 1. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+5TRAIN5
+Rodzaj wagonów i zawartość: 
+1. TCMaterialyWybuchowe{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=38}
+2. TPChlodniczy{wagaDodatkowaWagonu=8, calkowitaWagaWagonu=38, nrIdentyfikacyjnyWagonu=39}
+3. TowarowyCiezki{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=40}
+4. TPChlodniczy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=41}
+5. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=42}
+6. Wagon bagażowo-pocztowy o numerze 43. Całkowita waga wagonu wynosi 67. Wagon przechowuje 64 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU]
+7. TPChlodniczy{wagaDodatkowaWagonu=7, calkowitaWagaWagonu=37, nrIdentyfikacyjnyWagonu=44}
+8. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=45}
+9. TCMaterialyToksyczne{wagaDodatkowaWagonu=22, calkowitaWagaWagonu=52, nrIdentyfikacyjnyWagonu=46}
+10. TPChlodniczy{wagaDodatkowaWagonu=7, calkowitaWagaWagonu=37, nrIdentyfikacyjnyWagonu=47}
+11. Wagon chłodniczy o numerze 48. Całkowita waga wagonu wynosi 35. Wagon przewozi PRODUKTY_MIĘSNE w odpowiedniej temperaturze 0. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+12. Wagon restauracyjny o numerze 49. Całkowita waga wagonu wynosi 30. Wagon serwuje kuchnię: KUCHNIA_INDYJSKA. Aktualnie w wagonie przebywa 4. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+13. TPMaterialyCiekle{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=50}
+AKTUALIZACJA
+
+ Thu Apr 20 13:21:33 CEST 2023
+1TRAIN1
+Rodzaj wagonów i zawartość: 
+1. TPMaterialyGazowe{wagaDodatkowaWagonu=10, calkowitaWagaWagonu=40, nrIdentyfikacyjnyWagonu=1}
+2. Wagon pocztowy o numerze 2. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 977 paczek i listów. Czy załadowano towar: true.
+3. Wagon restauracyjny o numerze 3. Całkowita waga wagonu wynosi 32. Wagon serwuje kuchnię: KUCHNIA_FRANCUSKA. Aktualnie w wagonie przebywa 93. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+4. TPChlodniczy{wagaDodatkowaWagonu=6, calkowitaWagaWagonu=36, nrIdentyfikacyjnyWagonu=4}
+5. TowarowyPodstawowy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=5}
+6. Wagon pocztowy o numerze 6. Całkowita waga wagonu wynosi 35Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 451 paczek i listów. Czy załadowano towar: false.
+7. TowarowyPodstawowy{wagaDodatkowaWagonu=6, calkowitaWagaWagonu=36, nrIdentyfikacyjnyWagonu=7}
+8. TPChlodniczy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=8}
+9. TowarowyCiezki{wagaDodatkowaWagonu=16, calkowitaWagaWagonu=46, nrIdentyfikacyjnyWagonu=9}
+10. Wagon pasażerski o numerze 10. Całkowita waga wagonu wynosi 30. Liczba miejsc siedzacych to 150, a obecna ilość pasażerów wysoni 59. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+2TRAIN2
+Rodzaj wagonów i zawartość: 
+1. Wagon chłodniczy o numerze 11. Całkowita waga wagonu wynosi 35. Wagon przewozi OWOCE_I_WARZYWA w odpowiedniej temperaturze 3. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+2. Wagon chłodniczy o numerze 12. Całkowita waga wagonu wynosi 36. Wagon przewozi OWOCE_I_WARZYWA w odpowiedniej temperaturze 0. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+3. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=15, calkowitaWagaWagonu=45, nrIdentyfikacyjnyWagonu=13}
+4. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=14}
+5. Wagon pocztowy o numerze 15. Całkowita waga wagonu wynosi 30Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 797 paczek i listów. Czy załadowano towar: false.
+6. TowarowyPodstawowy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=16}
+3TRAIN3
+Rodzaj wagonów i zawartość: 
+1. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=17}
+2. TCMaterialyToksyczne{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=18}
+3. TPMaterialyCiekle{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=19}
+4. Wagon chłodniczy o numerze 20. Całkowita waga wagonu wynosi 35. Wagon przewozi PRODUKTY_MROZONE w odpowiedniej temperaturze -24. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+5. TPChlodniczy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=21}
+6. Wagon bagażowo-pocztowy o numerze 22. Całkowita waga wagonu wynosi 55. Wagon przechowuje 39 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU] Nadadano przesyłki. Nadawca: Pani Ania, odbiorca: Pani Zosia.
+7. Wagon chłodniczy o numerze 23. Całkowita waga wagonu wynosi 36. Wagon przewozi PRODUKTY_MROZONE w odpowiedniej temperaturze -21. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+8. TPChlodniczy{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=24}
+9. TCMaterialyToksyczne{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=25}
+10. TCMaterialyWybuchoweCiekle{wagaDodatkowaWagonu=24, calkowitaWagaWagonu=54, nrIdentyfikacyjnyWagonu=26}
+4TRAIN4
+Rodzaj wagonów i zawartość: 
+1. Wagon pocztowy o numerze 27. Całkowita waga wagonu wynosi 39Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 8 paczek i listów. Czy załadowano towar: false.
+2. Wagon pocztowy o numerze 28. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: true. Wagon przewozi łącznie 755 paczek i listów. Czy załadowano towar: true.
+3. Wagon pasażerski o numerze 29. Całkowita waga wagonu wynosi 30. Liczba miejsc siedzacych to 150, a obecna ilość pasażerów wysoni 174. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+4. TowarowyCiezki{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=30}
+5. TPMaterialyGazowe{wagaDodatkowaWagonu=14, calkowitaWagaWagonu=44, nrIdentyfikacyjnyWagonu=31}
+6. Wagon restauracyjny o numerze 32. Całkowita waga wagonu wynosi 31. Wagon serwuje kuchnię: KUCHNIA_FRANCUSKA. Aktualnie w wagonie przebywa 41. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+7. Wagon pocztowy o numerze 33. Całkowita waga wagonu wynosi 32Czy wagon posiada rampę załadunkową: false. Wagon przewozi łącznie 635 paczek i listów. Czy załadowano towar: false.
+8. Wagon bagażowo-pocztowy o numerze 34. Całkowita waga wagonu wynosi 48. Wagon przechowuje 30 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU]
+9. TowarowyPodstawowy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=35}
+10. TPMaterialyGazowe{wagaDodatkowaWagonu=13, calkowitaWagaWagonu=43, nrIdentyfikacyjnyWagonu=36}
+11. Wagon chłodniczy o numerze 37. Całkowita waga wagonu wynosi 33. Wagon przewozi PRODUKTY_MIĘSNE w odpowiedniej temperaturze 1. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+5TRAIN5
+Rodzaj wagonów i zawartość: 
+1. TCMaterialyWybuchowe{wagaDodatkowaWagonu=11, calkowitaWagaWagonu=41, nrIdentyfikacyjnyWagonu=38}
+2. TPChlodniczy{wagaDodatkowaWagonu=8, calkowitaWagaWagonu=38, nrIdentyfikacyjnyWagonu=39}
+3. TowarowyCiezki{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=40}
+4. TPChlodniczy{wagaDodatkowaWagonu=12, calkowitaWagaWagonu=42, nrIdentyfikacyjnyWagonu=41}
+5. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=42}
+6. Wagon bagażowo-pocztowy o numerze 43. Całkowita waga wagonu wynosi 67. Wagon przechowuje 64 sztuk bagażu. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU]
+7. TPChlodniczy{wagaDodatkowaWagonu=7, calkowitaWagaWagonu=37, nrIdentyfikacyjnyWagonu=44}
+8. TPChlodniczy{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=45}
+9. TCMaterialyToksyczne{wagaDodatkowaWagonu=22, calkowitaWagaWagonu=52, nrIdentyfikacyjnyWagonu=46}
+10. TPChlodniczy{wagaDodatkowaWagonu=7, calkowitaWagaWagonu=37, nrIdentyfikacyjnyWagonu=47}
+11. Wagon chłodniczy o numerze 48. Całkowita waga wagonu wynosi 35. Wagon przewozi PRODUKTY_MIĘSNE w odpowiedniej temperaturze 0. Wagon posiada zabezpieczenia: [ZABEZPIECZENIA_PRZECIWPOZAROWE, SYSTEM_KONTROLI_DOSTEPU, MONITORING_TEMPERATURY]
+12. Wagon restauracyjny o numerze 49. Całkowita waga wagonu wynosi 30. Wagon serwuje kuchnię: KUCHNIA_INDYJSKA. Aktualnie w wagonie przebywa 4. Wagon posiada zabezpieczenia: [KAMERY_MONITORINGU, ZABEZPIECZENIA_PRZECIWPOZAROWE, HAMULEC_RECZNY]
+13. TPMaterialyCiekle{wagaDodatkowaWagonu=5, calkowitaWagaWagonu=35, nrIdentyfikacyjnyWagonu=50}
