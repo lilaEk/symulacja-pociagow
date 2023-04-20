@@ -11,6 +11,7 @@ public class RaportPanel extends JPanel {
 
     private final TextArea raport;
     private String tekstRaportu = "\nRAPORT POCIĄGU\n(wybierz pociąg, którego dane chcesz zobaczyć)\n\n";
+    private Pociag pociag;
 
     public RaportPanel() {
 
@@ -26,9 +27,13 @@ public class RaportPanel extends JPanel {
 
     }
 
-    public void wyswietlNowyRaport(Pociag pociag) {
-        String s = Pociag.zdajRaportPociagu(pociag);
+    public void setPociag(Pociag pociag) {
+        this.pociag = pociag;
+    }
 
+    public void wyswietlNowyRaport() {
+        if (this.pociag == null) return;
+        String s = Pociag.zdajRaportPociagu(this.pociag);
         raport.setText(tekstRaportu + s);
         this.repaint();
     }

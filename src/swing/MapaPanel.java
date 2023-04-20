@@ -47,7 +47,7 @@ public class MapaPanel extends JPanel {
                     System.out.println("Kliknięto: " + e.getX() + " " + e.getY());
                     for (Pociag p : Pociag.getPociagi()) {
                         if (p.contains(e.getPoint())) {
-                            wyswietlRaportDlaPociagu(p);
+                            gui.raportPanel.setPociag(p);
                             System.out.println("Wyświetlono raport dla pociągu " + p.getNazwaPociagu());
                         }
                     }
@@ -58,9 +58,8 @@ public class MapaPanel extends JPanel {
     }
 
 
-
-    private void wyswietlRaportDlaPociagu(Pociag pociag) {
-        this.gui.raportPanel.wyswietlNowyRaport(pociag);
+    private void wyswietlRaportDlaPociagu() {
+        this.gui.raportPanel.wyswietlNowyRaport();
     }
 
     private void dodajTraseNaMapie(MouseEvent e, GUI gui) {
@@ -187,6 +186,7 @@ public class MapaPanel extends JPanel {
         rysujPolaczenia(g, gui.mapaTransportu);
         rysujStacje(g, gui.mapaTransportu);
         rysujPociagi(g, gui.mapaTransportu, gui.ruchPociagow);
+        this.gui.raportPanel.wyswietlNowyRaport();
     }
 
     private void rysujPociagi(Graphics g, MapaTransportu mapaTransportu, RuchPociagow ruchPociagow) {
