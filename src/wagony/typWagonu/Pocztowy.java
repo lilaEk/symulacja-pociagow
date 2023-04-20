@@ -51,4 +51,9 @@ public class Pocztowy extends Wagon implements DostepDoSieciElektrycznej {
                 "Czy wagon posiada rampę załadunkową: " + rampaZaladunkowa + ". Wagon przewozi łącznie " +
                 iloscPaczekIListow + " paczek i listów. Czy załadowano towar: " + czyZaladowanoTowar + ".";
     }
+
+    @Override
+    public void podlaczDoGniazdka() {
+        System.out.println("Podłączono urządzenie do prądu.");
+    }
 }

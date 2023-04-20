@@ -5,7 +5,6 @@ import pociag.Pociag;
 import javax.swing.*;
 import java.awt.*;
 
-//import static javax.swing.JScrollPane.*;
 
 public class RaportPanel extends JPanel {
 

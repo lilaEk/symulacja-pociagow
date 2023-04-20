@@ -1,7 +1,7 @@
 package swing;
 
 import mapa.MapaTransportu;
-import sim.RuchPociagow;
+import symulacja.RuchPociagow;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -26,7 +26,7 @@ public class GUI extends JFrame {
         this.setLocation(50, 50);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
-        this.setUndecorated(false); // przy true usuwa pasek
+        this.setUndecorated(false);
         this.setLayout(null);
         this.setTitle("Mapa kolejowa");
 

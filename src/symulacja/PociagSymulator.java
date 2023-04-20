@@ -1,8 +1,9 @@
-package sim;
+package symulacja;
 
 import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
 import pociag.Pociag;
+import pociag.RailroadHazard;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

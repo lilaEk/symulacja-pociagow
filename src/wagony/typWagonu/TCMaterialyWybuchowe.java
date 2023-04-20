@@ -1,11 +1,14 @@
 package wagony.typWagonu;
 
+import wagony.cechyWagonu.RodzajTowaruCiezkiego;
+
 import java.util.Random;
 
 public class TCMaterialyWybuchowe extends TowarowyCiezki {
 
     private int wagaDodatkowaWagonu = new Random().nextInt(15) + 10;
     private int calkowitaWagaWagonu;
+    final private RodzajTowaruCiezkiego rodzajTowaruCiezkiego = RodzajTowaruCiezkiego.MATERIALY_WYBUCHOWE;
 
     public TCMaterialyWybuchowe() {
         super();
@@ -19,10 +22,7 @@ public class TCMaterialyWybuchowe extends TowarowyCiezki {
 
     @Override
     public String toString() {
-        return "TCMaterialyWybuchowe{" +
-                "wagaDodatkowaWagonu=" + wagaDodatkowaWagonu +
-                ", calkowitaWagaWagonu=" + calkowitaWagaWagonu +
-                ", nrIdentyfikacyjnyWagonu=" + nrIdentyfikacyjnyWagonu +
-                '}';
+        return "Wagon towarowy ciężki przewożący materiały wybuchowe o numerze " + nrIdentyfikacyjnyWagonu + ". Całkowita waga wagonu wynosi " + calkowitaWagaWagonu
+                + ". Rodzaj przechowywanego towaru: " + this.rodzajTowaruCiezkiego;
     }
 }

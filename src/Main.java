@@ -1,10 +1,10 @@
 import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
 import pociag.Pociag;
-import sim.PociagSymulator;
-import sim.RailroadHazard;
-import sim.RuchPociagow;
+import pociag.RailroadHazard;
 import swing.GUI;
+import symulacja.PociagSymulator;
+import symulacja.RuchPociagow;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,9 +16,9 @@ import static pociag.Pociag.zdajRaportWagonow;
 
 
 public class Main {
-    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(100));
+    final static MapaTransportu mapaTransportu = new MapaTransportu(StacjaKolejowa.stworzStacje(50));
     final static RuchPociagow ruchPociagow = new RuchPociagow(mapaTransportu);
-    final static int updatesPerSecond = 60;
+    final static int updatesPerSecond = 10;
 
     public static void main(String[] args) throws InterruptedException {
 

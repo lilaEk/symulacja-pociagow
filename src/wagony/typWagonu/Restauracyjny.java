@@ -68,4 +68,14 @@ public class Restauracyjny
                 ". Wagon serwuje kuchnię: " + String.valueOf(rodzajKuchni) + ". Aktualnie w wagonie przebywa " + obecnaIloscGosci + "." +
                 " Wagon posiada zabezpieczenia: " + rodzajZabezpieczenWagonu;
     }
+
+    @Override
+    public void podlaczDoGniazdka() {
+        System.out.println("Podłączono urządzenie do prądu.");
+    }
+
+    @Override
+    public void udostepnijWifi() {
+        System.out.println("Goście mogą swobodnie korzystać z WIFI.");
+    }
 }

@@ -14,7 +14,6 @@ public class MapaTransportu {
     public MapaTransportu(List<StacjaKolejowa> listaStacji) {
         this.dlugoscTras = new HashMap<StacjaKolejowa[], Double>();
         this.trasyKolejowe = generujTrasyKolejowe(listaStacji);
-
     }
 
     private Map<StacjaKolejowa, Set<StacjaKolejowa>> generujTrasyKolejowe(List<StacjaKolejowa> listaStacji) {
@@ -30,7 +29,6 @@ public class MapaTransportu {
                 StacjaKolejowa stacjaDocelowa = listaStacji.get(losowyIndeksStacji);
 
                 dodajTrase(trasaKolejowa, stacjaGlowna, stacjaDocelowa);
-                // zmiana random w nastepnej linijce - losowa ilosc stacji
 
             } while (trasaKolejowa.get(stacjaGlowna).size() == 0 || (trasaKolejowa.get(stacjaGlowna).size() < 3 && Math.random() < 0.5));
         }

@@ -3,7 +3,7 @@ package swing;
 import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
 import pociag.Pociag;
-import sim.RuchPociagow;
+import symulacja.RuchPociagow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +18,7 @@ public class MapaPanel extends JPanel {
     private StacjaKolejowa[] wybranaStacja;
 
     public MapaPanel(GUI gui, int mapaWight, int canvasHeight) {
-        super(true);//set Double buffering for JPanel
+        super(true);
 
         this.gui = gui;
 
@@ -64,9 +64,6 @@ public class MapaPanel extends JPanel {
 
     private void dodajTraseNaMapie(MouseEvent e, GUI gui) {
 
-        //nie zabezpiecza przed dodaniem ponownie tego samego polaczenia
-        //wyrzuca bladprzy klikieciu dwa razy jednej stacji
-
         for (StacjaKolejowa sk : gui.mapaTransportu.getListStacjeKolejowe()) {
 
             if (sk.contains(e.getPoint())) {
@@ -95,7 +92,6 @@ public class MapaPanel extends JPanel {
             }
         }
     }
-
     private void usunTraseNaMapie(MouseEvent e, GUI gui) {
 
         for (StacjaKolejowa sk : gui.mapaTransportu.getListStacjeKolejowe()) {

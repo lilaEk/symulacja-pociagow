@@ -69,7 +69,10 @@ public class Chlodniczy
         return "Wagon chłodniczy o numerze " + nrIdentyfikacyjnyWagonu + ". Całkowita waga wagonu wynosi " + calkowitaWagaWagonu +
                 ". Wagon przewozi " + String.valueOf(rodzajPrzewozonegoTowaru) + " w odpowiedniej temperaturze " + pozadanaTemperatura + "." +
                 " Wagon posiada zabezpieczenia: " + rodzajZabezpieczenWagonu;
+    }
 
-
+    @Override
+    public void podlaczDoGniazdka() {
+        System.out.println("Podłączono urządzenie do prądu.");
     }
 }

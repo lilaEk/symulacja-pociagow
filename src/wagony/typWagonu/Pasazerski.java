@@ -42,4 +42,14 @@ public class Pasazerski
                 ". Liczba miejsc siedzacych to " + liczbaMiejscSiedzacych + ", a obecna ilość pasażerów wysoni " + obecnaIloscPasazerow + "." +
                 " Wagon posiada zabezpieczenia: " + rodzajZabezpieczenWagonu;
     }
+
+    @Override
+    public void podlaczDoGniazdka() {
+        System.out.println("Podłączono urządzenie do prądu.");
+    }
+
+    @Override
+    public void udostepnijWifi() {
+        System.out.println("Goście mogą swobodnie korzystać z WIFI.");
+    }
 }

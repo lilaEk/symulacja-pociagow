@@ -2,8 +2,7 @@ package pociag;
 
 import mapa.MapaTransportu;
 import mapa.StacjaKolejowa;
-import sim.RailroadHazard;
-import sim.RuchPociagow;
+import symulacja.RuchPociagow;
 import wagony.Wagon;
 
 import java.awt.*;
@@ -38,7 +37,6 @@ public class Pociag extends Rectangle2D.Double {
 
 
     public Pociag(List<Wagon> wagony, MapaTransportu mapaTransportu) {
-        // dla rysowania kwadratu na mapie
         this.width = 10;
         this.height = this.width;
 
@@ -88,18 +86,10 @@ public class Pociag extends Rectangle2D.Double {
         String ostatniaPoprzedniaStacji = pociag.stacjaZrodlowa != null ? pociag.stacjaZrodlowa.getNazwaStacji() : pociag.stacjaMacierzysta.getNazwaStacji();
         String docelowa = pociag.stacjaDocelowa != null ? pociag.stacjaDocelowa.getNazwaStacji() : "Nie utworzono trasy - brak stacji docelowej";
         String procent1 = pociag.procentTrasyMiedzyStacjami() != null ? pociag.procentTrasyMiedzyStacjami() : "Nie utworzono trasy - 0%";
-        String procent2 = null; //todo
+        String procent2 = String.valueOf(pociag.procentTrasyMiedzyStacjaMacierzystaDocelowa()); //todo
 
 
-        String zawartoscRaportu = pociag.toString() + "\nStatus pociągu: " + pociag.status +
-                "\nStacja macierzysta: " + nazwaStacji +
-                "\nStacja, z której ostatnio wyjechano: " + ostatniaPoprzedniaStacji +
-                "\nStacja docelowa: " + docelowa +
-                "\nAktualna prędkość: " + pociag.predkosc +
-                "\nProcent ukończonej drogi na całej trasie: " + procent2 +
-                "\nProcent ukończonej drogi na do najbliższej stacji: " + procent1 +
-                "\nLiczba wagonów: " + pociag.liczbaWagonow +
-                zdajRaportWagonow(pociag);
+        String zawartoscRaportu = pociag.toString() + "\nStatus pociągu: " + pociag.status + "\nStacja macierzysta: " + nazwaStacji + "\nStacja, z której ostatnio wyjechano: " + ostatniaPoprzedniaStacji + "\nStacja docelowa: " + docelowa + "\nAktualna prędkość: " + pociag.predkosc + "\nProcent ukończonej drogi na całej trasie: " + procent2 + "\nProcent ukończonej drogi na do najbliższej stacji: " + procent1 + "\nLiczba wagonów: " + pociag.liczbaWagonow + zdajRaportWagonow(pociag);
 
         return zawartoscRaportu;
     }
@@ -126,7 +116,6 @@ public class Pociag extends Rectangle2D.Double {
     }
 
     public double nadajPredkosc() {
-        // jesli wazy wiecej niz costam to losuj z mniejszych
         return Math.random() < 0.5 ? this.predkosc * 1.03 : this.predkosc * 0.97;
     }
 
@@ -174,15 +163,29 @@ public class Pociag extends Rectangle2D.Double {
 
     public String procentTrasyMiedzyStacjami() {
         if (this.stacjaZrodlowa == null) return "0 %";
-        double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(this.stacjaZrodlowa, this.getNajblizszaDocelowa());
-        double procentTrasy = this.przebytaDroga / pelnaDlugosc; // todo oblicz przebytą drogę
+        double pelnaDlugoscMiedzyStacjami = MapaTransportu.obliczDlugoscTrasy(this.stacjaZrodlowa, this.getNajblizszaDocelowa());
+        double procentTrasy = this.przebytaDroga / pelnaDlugoscMiedzyStacjami;
         return String.valueOf(procentTrasy * 100) + " %";
+    }
+
+    public double procentTrasyMiedzyStacjaMacierzystaDocelowa() {
+
+        double pelnaDlugosc = 0;
+        for (int i = 0; i < this.zaplanowanaTrasaJazdy.size() - 1; i++) {
+            pelnaDlugosc += MapaTransportu.obliczDlugoscTrasy(this.zaplanowanaTrasaJazdy.get(i), this.zaplanowanaTrasaJazdy.get(i + 1));
+        }
+
+        double aktualnaDlugosc = this.przebytaDroga;
+        for (int i = 0; i < this.aktualnaPosredniaTrasaPodrozy - 1; i++) {
+            aktualnaDlugosc += MapaTransportu.obliczDlugoscTrasy(this.zaplanowanaTrasaJazdy.get(i), this.zaplanowanaTrasaJazdy.get(i + 1));
+        }
+
+        return Math.round(aktualnaDlugosc / pelnaDlugosc * 100);
     }
 
 
     public double getPozycjaX() {
 
-        //test
         if (this.getNajblizszaDocelowa() == null) {
             return stacjaMacierzysta.getX();
         }
@@ -222,8 +225,7 @@ public class Pociag extends Rectangle2D.Double {
 
         StacjaKolejowa najblizszaDocelowa = this.getNajblizszaDocelowa();
         double pelnaDlugosc = MapaTransportu.obliczDlugoscTrasy(stacjaZrodlowa, najblizszaDocelowa);
-//        double procentTrasy = this.obliczPrzebytaDroga(convertToMetersPerSecond(delta), this.predkosc ) / pelnaDlugosc;
-        double procentTrasy = this.przebytaDroga / pelnaDlugosc; // przebyta droga==0
+        double procentTrasy = this.przebytaDroga / pelnaDlugosc;
 
         double y = stacjaZrodlowa.getY();
         double y1 = najblizszaDocelowa.getY();

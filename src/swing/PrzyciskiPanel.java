@@ -3,7 +3,7 @@ package swing;
 
 import mapa.MapaTransportu;
 import pociag.Pociag;
-import sim.RuchPociagow;
+import symulacja.RuchPociagow;
 import wagony.Wagon;
 
 import javax.swing.*;
